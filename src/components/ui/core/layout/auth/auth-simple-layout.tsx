@@ -21,12 +21,13 @@ const AuthLayoutTemplate = ({
   numberOfIterations,
   className,
   loading = false,
-  title = `Welcome to satusuara`,
-  quote = `Design and dev partner for startups and founders.`,
-  description = `Welcome to SatuSuara — Let's get started`,
+  title = `Selamat Datang Inovator`,
+  quote = `Gagasmu bukan cuma wacana — jadikan aksi.`,
+  description = `Selamat datang di SatuSuara — Ayo kita mulai `,
   ...props
 }: AuthLayoutProps) => {
-  const formTypeReverse = formType == "register" ? "login" : "register";
+  const formTypeLabel = formType == "register" ? "masuk" : "daftar";
+  const formTypeLink = formType == "register" ? "login" : "register";
 
   return (
     <div className=" h-full flex items-center justify-center overflow-hidden ">
@@ -49,7 +50,7 @@ const AuthLayoutTemplate = ({
         <div className="w-[8rem] h-[5rem] blur-2xl bg-background absolute z-1 rounded-full bottom-0 animate-pulse pointer-events-none"></div>
 
         <div className="bg-black hidden lg:flex text-white p-8 lg:p-12 lg:w-1/2 relative  overflow-hidden">
-          <h1 className="text-2xl lg:text-3xl font-medium leading-tight z-10 tracking-tight relative">
+          <h1 className="text-2xl max-w-md lg:text-3xl font-medium leading-tight z-10 tracking-tight relative">
             {quote}
           </h1>
         </div>
@@ -77,19 +78,19 @@ const AuthLayoutTemplate = ({
             {formType && (
               <div className="text-center mt-4 text-muted-foreground text-sm">
                 {formType == "register"
-                  ? `Already have account? `
-                  : "dont have an account yet? "}
+                  ? `Sudah punya akun? `
+                  : "belum punya akun? "}
                 <Link
                   aria-disabled={loading}
                   tabIndex={!loading ? -1 : undefined}
-                  href={`/${formTypeReverse}`}
+                  href={`/${formTypeLink}`}
                   className={cn(
                     "text-secondary-foreground capitalize font-medium underline",
                     loading
                       ? "pointer-events-none cursor-none text-foreground/50"
                       : ""
                   )}>
-                  {formTypeReverse}
+                  {formTypeLabel}
                 </Link>
               </div>
             )}

@@ -78,7 +78,7 @@ function SignIn() {
           type="submit"
           className="w-full  transition-colors"
         >
-          Sign In
+          Masuk
           {(isPending || loading) && (
             <Loader className='animate-spin ml-2'/>
           )}

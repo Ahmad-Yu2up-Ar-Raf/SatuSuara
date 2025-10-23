@@ -69,7 +69,7 @@ function SignUpFormLastStep<T extends FieldValues, >({
           value={item.value}
           id={`${i}-1`}
           aria-describedby={`${i}-1-description`}
-          className="order-1 after:absolute after:inset-0"
+          className="order-1 cursor-pointer after:absolute after:inset-0"
         />
         </FormControl>
         <FormLabel className="flex grow items-center gap-3">

@@ -47,9 +47,9 @@ function SignUpFormSecondStep<T extends FieldValues, >({
     name={"password" as FieldPath<T>}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Password </FormLabel>
+              <FormLabel>Sandi</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="Password" {...field} />
+                <PasswordInput placeholder="sandi" {...field} />
               </FormControl>
               <FormDescription  className=' sr-only '>Enter your password.</FormDescription>
               <FormMessage  className=' '/>
@@ -62,9 +62,9 @@ function SignUpFormSecondStep<T extends FieldValues, >({
     name={"password_confirmation" as FieldPath<T>}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Confirm Password</FormLabel>
+              <FormLabel>konfirmasi sandi</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="Confirmation" {...field} />
+                <PasswordInput placeholder="konfirmasi" {...field} />
               </FormControl>
               <FormDescription  className='sr-only '>Enter your password.</FormDescription>
               <FormMessage  className=' '/>

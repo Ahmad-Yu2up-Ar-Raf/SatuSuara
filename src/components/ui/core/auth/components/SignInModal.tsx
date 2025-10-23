@@ -84,7 +84,7 @@ function SignInModal({ className }: { className?: string}) {
               done.
             </DialogDescription>
           </DialogHeader>
-            <AuthLayoutTemplate formType="login" loading={loading} title="Log in to your account" description="Enter your email and password below to log in" className=' h-full lg:max-w-[76em]'>
+            <AuthLayoutTemplate formType="login" loading={loading} title="Log in to your account" description="Masukkan email dan kata sandi Anda di bawah ini untuk masuk" className=' h-full lg:max-w-[76em]'>
          
       <SignInForm form={form} isPending={isPending || loading} onSubmit={onSubmit}>
       <Button
@@ -92,7 +92,7 @@ function SignInModal({ className }: { className?: string}) {
           type="submit"
           className="w-full  transition-colors"
         >
-          Sign In
+          Masuk
           {(isPending || loading) && (
             <Loader className='animate-spin ml-2'/>
           )}

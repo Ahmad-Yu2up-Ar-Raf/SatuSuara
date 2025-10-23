@@ -113,7 +113,7 @@ const router = useRouter()
   // Loading state while hydrating
   if (!isClient || !hasHydrated) {
     return (
-      <AuthLayoutTemplate loading={loading} title='What do you do?' description='Select whether you’re a student or already working.' className=' lg:max-w-none h-dvh '>
+      <AuthLayoutTemplate loading={loading} title='Apa pekerjaanmu?' description='Pilih apakah Anda seorang pelajar atau sudah bekerja.' className=' lg:max-w-none h-dvh '>
         <div className="flex items-center justify-center py-8">
           <Loader className="animate-spin size-6" />
         </div>
@@ -122,7 +122,7 @@ const router = useRouter()
   }
 
   return (
-    <AuthLayoutTemplate  loading={loading} title='What do you do?' description='Select whether you’re a student or already working.' className=' lg:max-w-none h-dvh '>
+    <AuthLayoutTemplate  loading={loading} title='Apa pekerjaanmu?' description='Pilih apakah Anda seorang pelajar atau sudah bekerja.' className=' lg:max-w-none h-dvh '>
       <SignUpFormLastStep form={form} isPending={isPending || loading} onSubmit={onSubmit}>
        <div className=" w-full space-y-5">
 
@@ -131,13 +131,14 @@ const router = useRouter()
           type="submit"
           className="w-full  transition-colors"
         >
-          Next 
+          Selanjutnya
           {(isPending || loading) ? (
             <Loader className='animate-spin ml-2'/>
           ): <ChevronRight className=''/>}
         </Button>
    
                 <Link
+                
                       aria-disabled={(isPending || loading)}  tabIndex={!(isPending || loading) ? -1 : undefined} 
                             href={'/register/location'}
                              className={cn(buttonVariants({ variant: "link"} ,
@@ -147,7 +148,7 @@ const router = useRouter()
                                {( loading) ? (
                     <Loader className='animate-spin ml-2'/>
                   ) : <ChevronLeft className=''/>}
-                            Back
+                            Kembali
                         </Link>
               
         

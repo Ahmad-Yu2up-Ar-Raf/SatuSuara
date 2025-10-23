@@ -36,8 +36,7 @@ function SignInForm<T extends FieldValues, >({
    <Form {...form}>
       <form onSubmit={form.handleSubmit(props.onSubmit)} className=" space-y-6 *:
       
-      
-  [&_input]:text-sm [&_input]:w-full [&_input]:py-2 [&_input]:px-3 [&_input]:border [&_input]:rounded-lg [&_input]:focus:outline-none [&_input]:focus:ring-1 [&_input]:bg-background [&_input]:text-black [&_input]:focus:ring-orange-500
+  [&_input]:text-sm [&_input]:w-full [&_input]:py-2 [&_input]:px-3 [&_input]:border [&_input]:rounded-xl [&_input]:focus:outline-none [&_input]:focus:ring-1 [&_input]:bg-background [&_input]:text-accent-foreground [&_input]:focus:ring-primary
       ">
       
 
@@ -67,13 +66,13 @@ function SignInForm<T extends FieldValues, >({
     name={"password" as FieldPath<T>}
           render={({ field }) => (
             <FormItem>
-              <FormLabel className=' flex w-full justify-between'><span>Password</span> 
+              <FormLabel className=' flex w-full justify-between'><span>Sandi</span> 
               <Link
               className=' underline text-muted-foreground hover:text-accent-foreground'
               href={'/forgot-password'}
-              >Forgot Password?</Link></FormLabel>
+              >Lupa Sandi?</Link></FormLabel>
               <FormControl>
-                <PasswordInput placeholder="Placeholder"  {...field} />
+                <PasswordInput placeholder="sandi"  {...field} />
               </FormControl>
               <FormDescription className=' sr-only'>Enter your password.</FormDescription>
               <FormMessage />
@@ -96,7 +95,7 @@ function SignInForm<T extends FieldValues, >({
                 />
               </FormControl>
               <div className="space-y-1  cursor-pointer  leading-none">
-                <FormLabel className='  cursor-pointer'>Remember me</FormLabel>
+                <FormLabel className='  cursor-pointer'>Ingat saya</FormLabel>
                 <FormDescription className=' sr-only'>You can manage your mobile notifications in the mobile settings page.</FormDescription>
                 <FormMessage />
               </div>
