@@ -84,7 +84,7 @@ const router = useRouter()
   if (!isClient || !hasHydrated) {
     return (
       <AuthLayoutTemplate
-       loading={loading} title='Create your password' description='Make a strong password - to protect your account' className=' lg:max-w-none h-dvh '>
+       loading={loading} title='Buat kata sandi Anda' description='Buat kata sandi yang kuat - untuk melindungi akun Anda' className=' lg:max-w-none h-dvh '>
         <div className="flex items-center justify-center py-8">
           <Loader className="animate-spin size-6" />
         </div>
@@ -93,7 +93,7 @@ const router = useRouter()
   }
 
   return (
-    <AuthLayoutTemplate loading={loading} title='Create your password' description='Make a strong password - to protect your account' className=' lg:max-w-none h-dvh '>
+    <AuthLayoutTemplate loading={loading} title='Buat kata sandi Anda' description='Buat kata sandi yang kuat - untuk melindungi akun Anda' className=' lg:max-w-none h-dvh '>
       <SignUpFormSecondStep form={form} isPending={isPending || loading} onSubmit={onSubmit}>
           <div className=" w-full space-y-5">
 
@@ -102,7 +102,7 @@ const router = useRouter()
           type="submit"
           className="w-full  transition-colors"
         >
-          Next 
+         Selanjutnya
           {(isPending || loading) ? (
             <Loader className='animate-spin ml-2'/>
           ) :   <ChevronRight className=' ml-2'/>}
@@ -110,16 +110,16 @@ const router = useRouter()
  
                        
                 <Link
-                
-                                href={'/register/'}
-                                                         className={cn(buttonVariants({ variant: "link"} ,
-                                                          
-                                                         ), 'w-full  transition-colors')}
+               aria-disabled={(isPending || loading)}  tabIndex={!(isPending || loading) ? -1 : undefined} 
+                                       href={'/register/'}
+                                           className={cn(buttonVariants({ variant: "link"} ,
+                                          
+                                           ), 'w-full  transition-colors' ,      (isPending || loading) && 'pointer-events-none cursor-none text-foreground/50' ,)}
                             >
                                {( loading) ? (
                     <Loader className='animate-spin ml-2'/>
                   ) : <ChevronLeft className=' '/>}
-                            Back
+                            Kembali
                         </Link>
                
           </div>

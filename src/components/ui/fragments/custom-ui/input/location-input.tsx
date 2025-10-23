@@ -297,7 +297,7 @@ export const ProvinceSelector = ({
                   ? "Select country first..." 
                   : !hasProvinces 
                   ? "No provinces available" 
-                  : "Select Province..."}
+                  : "Pilih Provinsi..."}
               </span>
             )}
             <ChevronsUpDown className="h-4 w-4 shrink-0 opacity-50 ml-2" />

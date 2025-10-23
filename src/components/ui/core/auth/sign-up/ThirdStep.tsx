@@ -91,7 +91,7 @@ function ThirdStep() {
   if (!isClient || !hasHydrated) {
     return (
       <AuthLayoutTemplate
-       loading={loading} title='Where Are You From?' description='Fill in your country, province, and phone number.' className=' lg:max-w-none h-dvh '>
+       loading={loading} title='Asalmu dari mana?' description='Isi negara, provinsi, dan nomor telepon Anda.' className=' lg:max-w-none h-dvh '>
         <div className="flex items-center justify-center py-8">
           <Loader className="animate-spin size-6" />
         </div>
@@ -100,7 +100,7 @@ function ThirdStep() {
   }
 
   return (
-    <AuthLayoutTemplate loading={loading} title='Where Are You From?' description='Fill in your country, province, and phone number.' className=' lg:max-w-none h-dvh '>
+    <AuthLayoutTemplate loading={loading} title='Asalmu dari mana?' description='Isi negara, provinsi, dan nomor telepon Anda.' className=' lg:max-w-none h-dvh '>
       <SignUpFormThirdStep form={form} isPending={isPending || loading} onSubmit={onSubmit}>
           <div className=" w-full space-y-5">
 
@@ -109,7 +109,7 @@ function ThirdStep() {
           type="submit"
           className="w-full  transition-colors"
         >
-          Next 
+          Selanjutnya
           {(isPending || loading) ? (
             <Loader className='animate-spin ml-2'/>
           ) :   <ChevronRight className=' ml-2'/>}
@@ -117,16 +117,16 @@ function ThirdStep() {
  
                        
                 <Link
-                
-                                href={'/register/'}
-                                                         className={cn(buttonVariants({ variant: "link"} ,
+                 aria-disabled={(isPending || loading)}  tabIndex={!(isPending || loading) ? -1 : undefined} 
+                                                       href={'/register/password'}
+                                                           className={cn(buttonVariants({ variant: "link"} ,
                                                           
-                                                         ), 'w-full  transition-colors')}
+                                                           ), 'w-full  transition-colors' ,      (isPending || loading) && 'pointer-events-none cursor-none text-foreground/50' ,)}
                             >
                                {( loading) ? (
                     <Loader className='animate-spin ml-2'/>
                   ) : <ChevronLeft className=' '/>}
-                            Back
+                            Kembali
                         </Link>
                
           </div>

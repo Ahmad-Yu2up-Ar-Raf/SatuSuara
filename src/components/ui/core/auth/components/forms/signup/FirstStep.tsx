@@ -45,10 +45,10 @@ function SignUpFormFirstStep<T extends FieldValues, >({
            name={"name" as FieldPath<T>}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Full Name</FormLabel>
+              <FormLabel>Nama lengkap</FormLabel>
               <FormControl>
                 <Input
-                placeholder="name"
+                placeholder="nama"
                 
                 type="text"
                 {...field} />

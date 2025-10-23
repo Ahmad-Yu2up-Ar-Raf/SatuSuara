@@ -43,7 +43,10 @@ function SignUpFormThirdStep<T extends FieldValues>({
     <Form {...form}>
       <form 
         onSubmit={form.handleSubmit(props.onSubmit)} 
-        className="overflow-x-hidden space-y-6 "
+className=" space-y-6 *:
+      
+      
+  [&_input]:text-sm [&_input]:w-full [&_input]:py-2 [&_input]:px-3 [&_input]:border [&_input]:rounded-xl [&_input]:focus:outline-none [&_input]:focus:ring-1 [&_input]:bg-background [&_input]:text-accent-foreground [&_input]:focus:ring-primary"
       >
         <div className=" grid grid-cols-2 gap-4">
 
@@ -53,7 +56,7 @@ function SignUpFormThirdStep<T extends FieldValues>({
           name={"country" as FieldPath<T>}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Country</FormLabel>
+              <FormLabel>Negara</FormLabel>
               <FormControl>
                 <CountrySelector
                   value={field.value}
@@ -75,7 +78,7 @@ function SignUpFormThirdStep<T extends FieldValues>({
           name={"province" as FieldPath<T>}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Province / State</FormLabel>
+              <FormLabel>Provinsi</FormLabel>
               <FormControl>
                 <ProvinceSelector
                   value={field.value}
@@ -99,10 +102,10 @@ function SignUpFormThirdStep<T extends FieldValues>({
           name={"phone" as FieldPath<T>}
           render={({ field }) => (
             <FormItem className="flex flex-col items-start">
-              <FormLabel>Phone number</FormLabel>
+              <FormLabel>Nomor telepon</FormLabel>
               <FormControl className="w-full">
                 <PhoneInput
-                  placeholder="Enter phone number"
+                  placeholder="Masukkan nomor telepon"
                   {...field}
                   defaultCountry="ID"
                   disabled={isPending}

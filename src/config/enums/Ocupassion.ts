@@ -8,14 +8,14 @@ export interface GroupedOptions {
 export const UserOccupation: OptionItem[] = [
   { 
     value: "student", 
-    label: "Student", 
+    label: "Murid", 
     icon: GraduationCap, 
     subLabel: "Pelajar / Mahasiswa", 
     description: "Masih menempuh pendidikan di sekolah atau universitas." 
   },
   { 
     value: "worker", 
-    label: "Worker", 
+    label: "Pekerja", 
     icon: Briefcase, 
     subLabel: "Pekerja / Profesional", 
     description: "Sudah bekerja secara aktif di suatu bidang atau perusahaan." 
