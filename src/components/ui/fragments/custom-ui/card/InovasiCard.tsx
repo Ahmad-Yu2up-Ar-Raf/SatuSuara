@@ -2,7 +2,7 @@ import React from 'react'
 
 function InovasiCard() {
   return (
-    <div>Inovasi</div>
+    <div>Inovasiku</div>
   )
 }
 
