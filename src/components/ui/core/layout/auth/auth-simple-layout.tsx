@@ -21,9 +21,9 @@ const AuthLayoutTemplate = ({
   numberOfIterations,
   className,
   loading = false,
-  title = `Welcome to sundress`,
+  title = `Welcome to satusuara`,
   quote = `Design and dev partner for startups and founders.`,
-  description = `Welcome to Sundress — Let's get started`,
+  description = `Welcome to SatuSuara — Let's get started`,
   ...props
 }: AuthLayoutProps) => {
   const formTypeReverse = formType == "register" ? "login" : "register";
