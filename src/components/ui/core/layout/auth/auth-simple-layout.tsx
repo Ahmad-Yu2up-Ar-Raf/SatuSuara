@@ -2,9 +2,11 @@
 
 import Link from "next/link";
 import { cn } from "@/lib/utils";
+import { useLottie } from "lottie-react";
 import * as React from "react";
 import { Logo, LogoDark, LogoWhiter } from "@/components/ui/fragments/svg/logo";
-
+import animationData from "@/config/assets/animations/Phoenix.json";
+import { useIsMobile } from "@/hooks/use-mobile";
 type AuthLayoutProps = {
   children?: React.ReactNode;
   title?: string;
@@ -21,19 +23,30 @@ const AuthLayoutTemplate = ({
   numberOfIterations,
   className,
   loading = false,
-  title = `Selamat Datang Inovator`,
+  title = `Selamat Datang`,
   quote = `Gagasmu bukan cuma wacana — jadikan aksi.`,
-  description = `Selamat datang di SatuSuara — Ayo kita mulai `,
+  description = `Perjalanan akan segera dimulai `,
   ...props
 }: AuthLayoutProps) => {
   const formTypeLabel = formType == "register" ? "masuk" : "daftar";
   const formTypeLink = formType == "register" ? "login" : "register";
-
+    
+      const lottieOptions = {
+        loop: true,
+        autoplay: true,
+        animationData: animationData,
+        rendererSettings: {
+          preserveAspectRatio: "xMidYMid slice",
+        },
+      };
+      const isMobile = useIsMobile()
+     const style = { width:  "100%", height: "100%" , margin: "auto"  , }; // atur sesuai kebutuhan
+  const { View } = useLottie(lottieOptions, style);
   return (
-    <div className=" h-full flex items-center justify-center overflow-hidden ">
+    <div className=" max-h-svh h-svh flex items-center justify-center overflow-hidden ">
       <div
         className={cn(
-          "  w-full relative max-w-lg  overflow-hidden flex flex-col  lg:flex-row shadow-xl lg:max-w-none h-dvh",
+          "  w-full relative max-w-lg  overflow-hidden flex flex-col  lg:flex-row shadow-xl lg:max-w-none h-lvh",
           className
         )}>
         <div className="w-full h-full z-2 absolute bg-linear-to-t from-transparent to-black"></div>
@@ -59,17 +72,23 @@ const AuthLayoutTemplate = ({
           className={cn(
             "p-8 lg:w-1/2 justify-center items-center  h-full content-center relative bg-background z-[100] text-secondary-foreground overflow-visible "
           )}>
-          <div className="justify-center max-w-sm flex m-auto flex-col h-full">
-            <div className="flex flex-col items-left mb-8">
-              <div className={cn("relative mb-4")}>
+          <div className=" pt-17 lg:justify-center max-w-sm flex m-auto flex-col h-full">
+            <div className="flex justify-center text-center flex-col  lg:text-left items-left mb-7">
+             
+             <div className="  m-auto lg:sr-only w-50 h-42 ">
+              {  View}
+              </div> 
+
+              <div className={cn("relative  hidden lg:inline-flex mb-6 md:ml-0 m-auto")}>
                 <LogoWhiter className="absolute top-0 size-12 opacity-100 transition-transform ease-in-out duration-500 dark:opacity-0" />
                 <LogoDark className="size-12 opacity-0 transition-transform ease-in-out duration-500 dark:opacity-100" />
               </div>
+          
 
-              <h2 className="text-3xl font-medium mb-2 tracking-tight">
+              <h2 className=" text-xl lg:text-2xl mt-6 mb-2 font-medium  tracking-tight">
                 {title}
               </h2>
-              <p className="text-left opacity-80">{description}</p>
+              <p className=" line-clamp-1 text-xs lg:text-sm opacity-80">{description}</p>
             </div>
 
             {/* Form content area */}

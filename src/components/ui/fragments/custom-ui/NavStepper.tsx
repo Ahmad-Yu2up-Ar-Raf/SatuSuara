@@ -8,6 +8,7 @@ import React from 'react'
 type componentsProps = {
     isLast?  : boolean
     curentActive : number
+    
 }
 
 function NavStepper({ isLast  , curentActive}: componentsProps) {
@@ -26,7 +27,7 @@ const active = index <= curentActive
                   <li  
        
                     className={cn(
-                      "flex  rounded min-h-[0.5dvh] items-center gap-3 flex-shrink-0",
+                      "flex  rounded min-h-[0.5lvh] items-center gap-3 flex-shrink-0",
                       active ? "min-w-[2em] bg-primary" : "min-w-[1em] bg-primary/30"
                     )}
                   />

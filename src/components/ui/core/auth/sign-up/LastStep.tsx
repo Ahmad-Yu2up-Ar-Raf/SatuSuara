@@ -113,7 +113,7 @@ const router = useRouter()
   // Loading state while hydrating
   if (!isClient || !hasHydrated) {
     return (
-      <AuthLayoutTemplate loading={loading} title='Apa pekerjaanmu?' description='Pilih apakah Anda seorang pelajar atau sudah bekerja.' className=' lg:max-w-none h-dvh '>
+      <AuthLayoutTemplate loading={loading} title='Apa pekerjaanmu?' description='Pilih apakah Anda seorang pelajar atau sudah bekerja.' className=' lg:max-w-none h-lvh '>
         <div className="flex items-center justify-center py-8">
           <Loader className="animate-spin size-6" />
         </div>
@@ -122,7 +122,7 @@ const router = useRouter()
   }
 
   return (
-    <AuthLayoutTemplate  loading={loading} title='Apa pekerjaanmu?' description='Pilih apakah Anda seorang pelajar atau sudah bekerja.' className=' lg:max-w-none h-dvh '>
+    <AuthLayoutTemplate  loading={loading} title='Apa pekerjaanmu?' description='Pilih apakah Anda seorang pelajar atau sudah bekerja.' className=' lg:max-w-none h-lvh '>
       <SignUpFormLastStep form={form} isPending={isPending || loading} onSubmit={onSubmit}>
        <div className=" w-full space-y-5">
 

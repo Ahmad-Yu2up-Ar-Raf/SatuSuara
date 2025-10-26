@@ -24,6 +24,7 @@ interface TaskFormProps<T extends FieldValues>
   form: UseFormReturn<T>;
   onSubmit: (data: T) => void;
   isPending: boolean;
+    setIsTyping: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function SignUpFormThirdStep<T extends FieldValues>({
@@ -43,11 +44,11 @@ function SignUpFormThirdStep<T extends FieldValues>({
     <Form {...form}>
       <form 
         onSubmit={form.handleSubmit(props.onSubmit)} 
-className=" space-y-6 *:
+className="  space-y-6 *:
+
       
-      
-  [&_input]:text-sm [&_input]:w-full [&_input]:py-2 [&_input]:px-3 [&_input]:border [&_input]:rounded-xl [&_input]:focus:outline-none [&_input]:focus:ring-1 [&_input]:bg-background [&_input]:text-accent-foreground [&_input]:focus:ring-primary"
-      >
+  [&_input]:text-xs [&_input]:w-full [&_input]:py-2 [&_input]:px-3 [&_input]:border [&_input]:rounded-xl [&_input]:focus:outline-none [&_input]:focus:ring-1 [&_input]:bg-background [&_input]:text-accent-foreground [&_input]:focus:ring-primary
+      ">
         <div className=" grid grid-cols-2 gap-4">
 
         {/* Country Field */}
@@ -109,6 +110,8 @@ className=" space-y-6 *:
                   {...field}
                   defaultCountry="ID"
                   disabled={isPending}
+                       onBlur={() => props.setIsTyping(false)}
+                        onFocus={() => props.setIsTyping(true)} 
                 />
               </FormControl>
               <FormDescription className='text-xs sr-only text-muted-foreground'>

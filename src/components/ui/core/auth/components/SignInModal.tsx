@@ -75,7 +75,7 @@ function SignInModal({ className }: { className?: string}) {
        
       <DialogContent 
 
-        className={cn("max-h-[100dvh] overflow-hidden  w-full p-0  h-full  lg:max-h-[40rem] justify-between border-0 lg:max-w-[76em] ", className)}
+        className={cn("max-h-[100lvh] overflow-hidden  w-full p-0  h-full  lg:max-h-[40rem] justify-between border-0 lg:max-w-[76em] ", className)}
       >
          <DialogHeader className=' sr-only'>
             <DialogTitle>Edit profile</DialogTitle>

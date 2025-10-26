@@ -60,7 +60,7 @@ function SignIn() {
       setLoading(false)
     }
   }
-
+  const [isTyping, setIsTyping] = useState(false);
 
 
  React.useEffect(() => {
@@ -71,8 +71,8 @@ function SignIn() {
 
 
   return (
-    <AuthLayoutTemplate  loading={loading} numberOfIterations={10}  formType="login" className=' lg:max-w-none h-dvh '>
-      <SignInForm form={form} isPending={isPending || loading} onSubmit={onSubmit}>
+    <AuthLayoutTemplate  loading={loading} numberOfIterations={10}  formType="login" className=' lg:max-w-none h-lvh '>
+      <SignInForm setIsTyping={setIsTyping} form={form} isPending={isPending || loading} onSubmit={onSubmit}>
       <Button
           disabled={isPending || loading}
           type="submit"

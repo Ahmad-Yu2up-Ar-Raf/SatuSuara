@@ -62,7 +62,7 @@ const desckripcion = `Thanks for signing up! Before getting started, could you v
 
                 const verifyMassage = `Magic link has send to your email, pls check your email to verify your account`
   return (
-    <AuthLayoutTemplate   description={status != null ? verifyMassage : desckripcion} title={status != null ? `Pls check email ` : `Verify-Email`}  className=' lg:max-w-none h-dvh ' >
+    <AuthLayoutTemplate   description={status != null ? verifyMassage : desckripcion} title={status != null ? `Pls check email ` : `Verify-Email`}  className=' lg:max-w-none h-lvh ' >
   {status == null && (
 
      <div className=" w-full space-y-5">
