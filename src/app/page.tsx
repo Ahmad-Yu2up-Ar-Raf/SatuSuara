@@ -20,7 +20,7 @@ export default function HomePage() {
   <Marque/>
 
 
-    {/* <About/> */}
+    <About/>
  <Features/>
  <Bento/>
     </>

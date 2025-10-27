@@ -20,11 +20,11 @@ export const ColorfullBento = () => {
 const inovationsData = inovations.slice(0,4) as InovasiRingkas[]
 
   return (
-    <Card id='free-tools' className='w-full max-w-7xl m-auto  gap-10 py-10 rounded-2xl  px-5 content-center'>
+    <Card id='free-tools' className='w-full max-w-7xl m-auto  gap-10  py-10 rounded-4xl  px-5 content-center'>
 
 
-        <CardHeader className='flex px-2  flex-col md:flex-row items-end justify-between w-full'>
-          <div className='flex flex-col   w-full items-start justify-start gap-5 '>
+        <CardHeader className='flex px-2   flex-col md:flex-row items-end justify-between w-full'>
+          <div className='flex flex-col  text-[10px]  w-full items-start justify-start gap-5 '>
           <Badge
         
             
@@ -35,11 +35,12 @@ const inovationsData = inovations.slice(0,4) as InovasiRingkas[]
           </Badge>
             
             <div className='flex flex-col md:flex-row gap-5 md:items-end w-full md:justify-between '>
-              <CardTitle className="relative text-2xl md:text-5xl font-sans font-semibold  text-balance  tracking-tighter max-w-xl text-left leading-[1.1em] space-x-6 text-base-content">
+              <CardTitle className="relative text-2xl lg:text-5xl font-sans font-semibold  text-balance  tracking-tighter max-w-xl text-left leading-[1.1em] space-x-3 md:space-x-6 text-base-content">
+                
                 <TextAnimate as={"span"}>
                    SatuSuara — Bagikan & Dukung Inovasi  
                 </TextAnimate> 
-          <Gift className="inline-flex text-primary fill-primary/10 rotate-12" size={50} strokeWidth={2} />
+          <Gift className="inline-flex text-primary md:size-10 size-5 fill-primary/10 rotate-12"  strokeWidth={2} />
                 </CardTitle>
               <CardDescription className='max-w-sm line-clamp-2  text-xs text-muted-foreground'>  
                 <TextAnimate as={"span"}>
@@ -48,26 +49,26 @@ const inovationsData = inovations.slice(0,4) as InovasiRingkas[]
            </div>
 
             <div className=' text-xs md::text-base  hidden md:flex flex-row text-primary gap-2 md:gap-6 items-start md:justify-center'>
-              <p className='whitespace-nowrap font-medium'>+1,000 Downloads</p>
-              <p className=' whitespace-nowrap font-medium'>Rated 5/5 by 100 Founders</p> 
+             <p className="whitespace-nowrap font-medium">+1.200 Ide</p>
+  <p className="whitespace-nowrap font-medium">18.450 Dukungan</p>
             </div>
           </div>
         </CardHeader>
           <CardContent className="grid  grid-cols-1 p-0 md:grid-cols-3 md:items-start md:justify-start gap-4 ">
           
-        
+        <VisualReportCard/>
          
-         
-  <VisualReportCard/>
-            <VotingCard/>
-<CommunityCard   className=" h-full"/>
-<BerkaryaBentoCard   className=" h-full"/>
-  <InovasiPopulerCard
+           <InovasiPopulerCard
   
             inovations={inovationsData}
             className="h-full hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out  "
             />
   
+  
+        
+<CommunityCard   className=" hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out h-full"/>
+<BerkaryaBentoCard   className="  hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out h-full"/>
+    <VotingCard/>
             
      
           </CardContent>

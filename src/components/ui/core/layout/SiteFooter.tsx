@@ -30,6 +30,7 @@ import { Logo } from '../../fragments/svg/logo';
 
 type StickyFooterProps = React.ComponentProps<'footer'>;
 import { Instagram, Linkedin, Twitter, Youtube } from 'lucide-react';
+import VerticalCutReveal from '../../fragments/custom-ui/animate-ui/vertical-cut-reveal';
 
 
 const footerColumns = [
@@ -109,7 +110,7 @@ export default function SiteFooter({ className, ...props }: StickyFooterProps) {
                   <li key={text}>
                     <Link
                       href="#"
-                      className="text-foreground/60 text-xs hover:text-foreground transition"
+                      className="text-foreground/60 cursor-target text-xs hover:text-foreground transition"
                     >
                       {text}
                     </Link>
@@ -120,8 +121,22 @@ export default function SiteFooter({ className, ...props }: StickyFooterProps) {
           ))}
         </div>
 						 <div className=" w-full flex   items-center justify-center   ">
-          <h1 className="text-center text-[20dvw] lg:text-[14em] font-bold bg-clip-text text-transparent  tracking-tighter bg-gradient-to-b  to-background from-yellow-950/50 select-none">
+                   <h1 className="text-center relative text-[20dvw] lg:text-[14em] font-bold bg-clip-text tracking-tighter bg-gradient-to-b  to-background from-yellow-950/50 select-none">
+                   <div className=" w-full h-full absolute"/>
+                 <VerticalCutReveal
+            splitBy="characters"
+            staggerDuration={0.05}
+            staggerFrom="first"
+            transition={{
+              type: "spring",
+              stiffness: 200,
+              damping: 21,
+            }}
+          >
             SatuSuara
+          </VerticalCutReveal>
+     
+          
           </h1>
         </div>
 					</div>

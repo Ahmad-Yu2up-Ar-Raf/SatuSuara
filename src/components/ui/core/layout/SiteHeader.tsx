@@ -14,10 +14,10 @@ import {
 
 export default function NavbarDemo() {
   const navItems = [
-        {
-      name: "Tentang Kami",
-      link: "/tentang-kami",
-    },
+    //     {
+    //   name: "Tentang Kami",
+    //   link: "/tentang-kami",
+    // },
   
     {
       name: "Inovasi",
@@ -25,7 +25,7 @@ export default function NavbarDemo() {
     },
     {
       name: "Peringkat",
-      link: "#peringkat",
+      link: "/peringkat",
     },
    
 

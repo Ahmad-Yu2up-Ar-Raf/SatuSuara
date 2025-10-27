@@ -3,8 +3,8 @@
 import { useRef } from "react"
 import { motion, useScroll, useTransform } from 'framer-motion'
 import animationData1 from "@/config/assets/animations/Cute Boy Running.json";
-import animationData2 from "@/config/assets/animations/Businessman looking for career opportunities.json";
-import animationData3 from "@/config/assets/animations/GO TO SCHOOL ANIMATION.json";
+import animationData3 from "@/config/assets/animations/communication.json";
+import animationData2 from "@/config/assets/animations/First Place.json";
 
 import { useLottie } from "lottie-react";
 import Link from "next/link";
@@ -12,6 +12,7 @@ import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { buttonVariants } from "../../shadcn-ui/button";
 import { TextAnimate } from "./text-animate";
+import { BlurFade } from "./blur-fade";
 
 export const StickyScroll = () => {
     // Array of section data
@@ -22,7 +23,7 @@ export const StickyScroll = () => {
           description:
             "Unggah ide atau prototipmu dengan cepat — lengkapi ringkasan, gambar, dan kategori supaya komunitas bisa menemukan dan mendukungnya.",
           LottieFilesData: animationData1,
-          reverse: false,
+          reverse: true,
           className : null
         },
         {
@@ -31,8 +32,8 @@ export const StickyScroll = () => {
           description:
             "Lihat proyek dengan dukungan terbanyak — berikan suara untuk ide yang kamu nilai berdampak agar mendapat prioritas pengembangan.",
           LottieFilesData: animationData2,
-          reverse: true,
-                className : "w-70  md:w-100"
+          reverse: false  ,
+                className : "w-90   md:mb-45 md:w-120"
         },
         {
           id: 3,
@@ -40,8 +41,8 @@ export const StickyScroll = () => {
           description:
             "Diskusikan, beri masukan, dan jalin tim dengan pembuat lain — fitur komentar dan kolaborasi untuk membuat ide jadi lebih matang.",
           LottieFilesData: animationData3,
-          reverse: false,
-        className : "w-70  md:w-100"
+          reverse: true,
+        className : "w-70   md:w-110"
         },
         // {
         //   id: 4,
@@ -96,7 +97,7 @@ export const StickyScroll = () => {
     <section className=" min-h-lvh content-center items-center container md:min-h-dvh ">
     
       {/* <ScrollSection /> */}
-       <div className="flex flex-col  md:px-0 px-10">
+       <div className="flex flex-col  md:gap-20  md:px-0 px-10">
             {sections.map((section, index) => {
     const lottieOptions = {
         loop: true,
@@ -113,10 +114,25 @@ export const StickyScroll = () => {
                     <div 
                         key={section.id}
                         ref={sectionRefs[index]} 
-                        className={` min-h-[70svh] md:min-h-[70dvh]  flex-col md:flex-row flex items-center justify-center md:gap-40 gap-0 ${section.reverse ? 'md:flex-row-reverse' : ''}`}
+                        className={` min-h-[70lvh] md:min-h-dvh  flex-col md:flex-row flex items-center justify-center md:gap-30 gap-10 ${section.reverse ? 'md:flex-row-reverse' : ''}`}
                     >
-                        <motion.div style={{ y: translateContents[index] }} 
-                        className=" max-w-xl space-y-4"
+                    
+                        <motion.div 
+                            style={{ 
+                                opacity: opacityContents[index],
+                                clipPath: clipProgresses[index],
+                            }}
+                            className="relative"
+                        >
+                           <div className={cn("h-full md:order-2" ,
+                            section.className ? section.className : " w-40 md:w-60"
+
+                           )}>
+                           {View}
+                           </div>
+                        </motion.div>
+                            <motion.div style={{ y: translateContents[index] }} 
+                        className=" md:order-1 max-w-sm space-y-4"
                         >
                             <TextAnimate delay={delay} as={"h3"} className="text-2xl  md:text-4xl ">{section.title}</TextAnimate>
                             <TextAnimate
@@ -127,30 +143,19 @@ export const StickyScroll = () => {
                                 {section.description}
                             </TextAnimate>
                             <Link href={"#"}
-                            className={cn(buttonVariants({variant: "link"}) , "p-0 has-[>svg]:px-0 px-0 text-xs md:text-sm")}
+                            className={cn(buttonVariants({variant: "link"}) , "p-0 has-[>svg]:px-0 cursor-target underline px-0 text-xs md:text-sm")}
                             >
                            <TextAnimate as={"span"}
                            delay={delay * 3}
-                       
+                           className=" underline-offset-2  underline"
                            >
                            Pelajari Lebih Lanjut
                             </TextAnimate>  
-                            <ArrowUpRight/>
-                            </Link>
-                        </motion.div>
-                        <motion.div 
-                            style={{ 
-                                opacity: opacityContents[index],
-                                clipPath: clipProgresses[index],
-                            }}
-                            className="relative"
-                        >
-                           <div className={cn("h-full" ,
-                            section.className ? section.className : " w-40 md:w-70"
+                            <BlurFade direction="up" delay={delay * 4} inView>
 
-                           )}>
-                           {View}
-                           </div>
+                            <ArrowUpRight/>
+                            </BlurFade>
+                            </Link>
                         </motion.div>
                     </div>
                 )

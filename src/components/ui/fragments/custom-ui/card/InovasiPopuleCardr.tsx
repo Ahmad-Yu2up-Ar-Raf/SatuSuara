@@ -35,7 +35,7 @@ export const InovasiPopulerCard: React.FC<CarouselProps> = ({
 }) => {
  
   return (
-    <BentoCard SubTitle="Inovasi Terpopuler"  className={className} descripcions="Lihat inovasi yang paling banyak dibicarakan komunitas." title="Lihat Yang Lagi Naik Daun 🌿">
+    <BentoCard  SubTitle="Inovasi Terpopuler"  className={className} descripcions="Lihat inovasi yang paling banyak dibicarakan komunitas." title="Lihat Yang Lagi Naik Daun 🌿">
 
      
          

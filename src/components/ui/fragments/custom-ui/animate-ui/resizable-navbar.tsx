@@ -216,7 +216,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         <Link
           onMouseEnter={() => setHovered(idx)}
           onClick={onItemClick}
-          className={cn("relative px-4 py-2 text-neutral-600 dark:text-neutral-300",
+          className={cn("relative px-4 py-2 cursor-target text-neutral-600 dark:text-neutral-300",
             isActive && ""
           )}
           key={`link-${idx}`}
@@ -401,7 +401,7 @@ export const NavbarButton = ({
   return (
     <Link
       href={href || "/"}
-      className={cn(buttonVariants({variant: variant}) , "cursor-pointer text-xs z-50", className)}
+      className={cn(buttonVariants({variant: variant}) , "cursor-pointer  cursor-target text-xs z-50", className)}
       // {...props}
     >
       {children}

@@ -148,9 +148,9 @@ export const ScrollVelocity: React.FC<ScrollVelocityProps> = ({
     return (
       <div className={`${parallaxClassName} relative `} style={parallaxStyle}>
         <motion.div
-          className={cn(`flex bg-primary text-primary-foreground whitespace-nowrap text-center font-sans text-4xl font-bold tracking-[-0.02em] drop-shadow md:text-[5rem] md:leading-[5rem]` ,
+          className={cn(`flex bg-primary text-primary-foreground whitespace-nowrap text-center font-sans text-[6dvw] font-bold  drop-shadow md:text-[4.7dvw] md:leading-[5rem]` ,
             scrollerClassName ,
-            index! > 0 ? "-rotate-10  md:-rotate-3" : "rotate-10  md:rotate-3"
+            index! > 0 ? "-rotate-7  md:-rotate-3 bg-secondary text-primary" : "rotate-7  md:rotate-3"
           )}
           style={{ x, ...scrollerStyle }}
         >
