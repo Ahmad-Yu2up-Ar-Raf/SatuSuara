@@ -15,54 +15,46 @@ import { useState } from "react";
 
 export default function NavbarDemo() {
   const navItems = [
-        {
+    {
       name: "Tentang Kami",
       link: "/tentang-kami",
     },
-  
+
     {
       name: "Inovasi",
       link: "/jelajahi-inovasi",
     },
     {
       name: "Peringkat",
-      link: "#peringkat",
+      link: "/leaderboard",
     },
-   
-
   ];
 
-
-
   return (
-  
-      <Navbar className=" z-40">
-        {/* Desktop Navigation */}
-        <NavBody>
+    <Navbar className=" z-40">
+      {/* Desktop Navigation */}
+      <NavBody>
+        <NavbarLogo />
+        <NavItems items={navItems} />
+        <div className="flex items-center gap-4">
+          <NavbarButton
+            variant={"default"}
+            className=" rounded-full"
+            href="/login">
+            Login
+          </NavbarButton>
+          {/* <NavbarButton variant="primary">Book a call</NavbarButton> */}
+        </div>
+      </NavBody>
+
+      {/* Mobile Navigation */}
+      <MobileNav>
+        <MobileNavHeader>
           <NavbarLogo />
-          <NavItems items={navItems} />
-          <div className="flex items-center gap-4">
-            <NavbarButton  variant={'default'} className=" rounded-full" href="/login">Login</NavbarButton>
-            {/* <NavbarButton variant="primary">Book a call</NavbarButton> */}
-          </div>
-        </NavBody>
 
-        {/* Mobile Navigation */}
-        <MobileNav>
-          <MobileNavHeader>
-            <NavbarLogo />
-        
-          <MobileNavMenu
-          items={navItems}
-          />
-          </MobileNavHeader>
-
-          
-        </MobileNav>
-      </Navbar>
-
-
- 
+          <MobileNavMenu items={navItems} />
+        </MobileNavHeader>
+      </MobileNav>
+    </Navbar>
   );
 }
-
