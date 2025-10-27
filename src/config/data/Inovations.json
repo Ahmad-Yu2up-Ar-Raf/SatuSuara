@@ -1,0 +1,70 @@
+[
+  {
+    "name": "GeNose C19",
+    "summary": "Alat deteksi Covid-19 melalui hembusan napas karya UGM",
+    "description": "Alat skrining Covid-19 non-invasif berbasis sensor gas dan AI, dikembangkan oleh Universitas Gadjah Mada. Diperkenalkan tahun 2020, GeNose memperoleh izin Kemenkes dan digunakan di berbagai fasilitas publik:contentReference[oaicite:22]{index=22}.",
+    "date": "2020-12-28",
+    "votes": 10000,
+    "creator": { "name": "Tim Peneliti UGM", "organization": "Universitas Gadjah Mada" },
+    "imageUrl": "https://kompaspedia.kompas.id/wp-content/uploads/2021/07/20210303PO_FIK_genose-alat-deteksi-covid-19-buatan-ugm_thumb.jpg",
+    "category": "Kesehatan",
+    "tags": ["Covid-19", "skrining", "AI", "diagnostik"]
+  },
+  {
+    "name": "PeduliLindungi",
+    "summary": "Aplikasi pemerintah untuk tracing dan vaksin digital Covid-19",
+    "description": "Aplikasi resmi tracing, tracking, dan sertifikat vaksin Covid-19 di Indonesia. Diluncurkan April 2020 oleh Kominfo dengan operator seluler:contentReference[oaicite:23]{index=23}, membantu memantau penyebaran virus dan mengelola data vaksinasi.",
+    "date": "2020-04-18",
+    "votes": 20000,
+    "creator": { "name": "Kemenkominfo", "organization": "Kementerian Komunikasi dan Informatika" },
+    "imageUrl": "https://cdn1-production-images-kly.akamaized.net/Uajw7pteBHKF-bno5OdhStnMdMs=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3571391/original/003178200_1631610459-0E6A5528-01.jpeg",
+    "category": "Kesehatan",
+    "tags": ["tracing", "Covid-19", "vaksin", "pemerintah"]
+  },
+  {
+    "name": "MAGMA Indonesia",
+    "summary": "Aplikasi mitigasi bencana geologi multi-platform",
+    "description": "MAGMA Indonesia adalah aplikasi web/mobil untuk mitigasi bencana geologi (gunungapi, gempa, tsunami) secara real-time:contentReference[oaicite:24]{index=24}. Dikembangkan sejak 2015 oleh PVMBG (Badan Geologi), menyediakan informasi interaktif dan API untuk mitigasi bencana di Indonesia.",
+    "date": "2015-08-10",
+    "votes": 7500,
+    "creator": { "name": "Pusat Vulkanologi & Mitigasi Bencana Geologi", "organization": "Badan Geologi (Kementerian ESDM)" },
+    "imageUrl": "https://mounture.com/wp-content/uploads/2022/01/272309213_1038887159993187_9005140951419333522_n.jpg",
+    "category": "Teknologi Bencana",
+    "tags": ["bencana", "gempa", "tsunami", "geologi"]
+  },
+ 
+  {
+    "name": "eFishery",
+    "summary": "Startup IoT penyedia feeder otomatis untuk budidaya ikan",
+    "description": "eFishery mengembangkan alat pemberi pakan ikan/udang otomatis yang terhubung ke ponsel pintar. Dengan sensor cerdas, eFishery mengatur jadwal dan jumlah pakan secara optimal, menghemat hingga 20% biaya pakan:contentReference[oaicite:26]{index=26}. Berdiri sejak 2013, eFishery membantu ribuan petambak di Indonesia:contentReference[oaicite:27]{index=27}.",
+    "date": "2013-10-15",
+    "votes": 9000,
+    "creator": { "name": "Gibran Huzaifah", "organization": "eFishery" },
+    "imageUrl": "https://awsimages.detik.net.id/community/media/visual/2023/07/07/efishery-mendapatkan-pendanaan-rp-3-triliun_169.jpeg?w=600&q=90",
+    "category": "Pertanian & Akuakultur",
+    "tags": ["akuakultur", "IoT", "startup", "perikanan"]
+  },
+ 
+  {
+    "name": "PaDi UMKM",
+    "summary": "Platform pasar digital BUMN–UMKM untuk pengadaan barang/jasa",
+    "description": "Pasar Digital UMKM (PaDi) menghubungkan UMKM dengan kebutuhan belanja BUMN secara online:contentReference[oaicite:30]{index=30}. Diluncurkan 17 Agustus 2020, platform ini memudahkan UMKM menawarkan produk ke BUMN, sekaligus menyediakan akses pelatihan, pembiayaan, dan sertifikasi agar UMKM naik kelas.",
+    "date": "2020-08-17",
+    "votes": 5000,
+    "creator": { "name": "Loto Srinaita Ginting", "organization": "Kementerian BUMN" },
+    "imageUrl": "https://cyberlabs.co.id/wp-content/uploads/2023/01/21959139.jpeg",
+    "category": "Ekonomi Digital",
+    "tags": ["UMKM", "digital", "pengadaan", "ekonomi"]
+  },
+  {
+    "name": "Ruangguru",
+    "summary": "Platform edukasi daring berbasis video tutorial interaktif",
+    "description": "Ruangguru adalah startup edtech yang menawarkan video pembelajaran sesuai kurikulum sekolah:contentReference[oaicite:31]{index=31}. Didirikan April 2014, Ruangguru menyediakan kelas online, latihan soal, dan materi belajar interaktif melalui aplikasi seluler/komputer, menjangkau jutaan siswa SMP/SMA di Indonesia.",
+    "date": "2014-04-01",
+    "votes": 15000,
+    "creator": { "name": "Belva Devara & Iman Usman", "organization": "PT Ruang Raya Indonesia" },
+    "imageUrl": "https://assets.pikiran-rakyat.com/crop/0x0:0x0/720x0/webp/photo/2024/08/18/4294487934.jpg",
+    "category": "Pendidikan & Teknologi",
+    "tags": ["edtech", "pembelajaran", "startup", "video"]
+  }
+]

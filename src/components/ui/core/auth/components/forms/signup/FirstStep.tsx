@@ -22,7 +22,8 @@ interface TaskFormProps<T extends FieldValues, >
   form: UseFormReturn<T>;
   onSubmit: (data: T) => void;
   isPending: boolean;
-  
+
+    setIsTyping: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function SignUpFormFirstStep<T extends FieldValues, >({
@@ -32,10 +33,10 @@ function SignUpFormFirstStep<T extends FieldValues, >({
 }: TaskFormProps<T>) {
   return (
    <Form {...form}>
-      <form onSubmit={form.handleSubmit(props.onSubmit)} className=" space-y-6 *:
+      <form onSubmit={form.handleSubmit(props.onSubmit)} className="  space-y-6 *:
+
       
-      
-  [&_input]:text-sm [&_input]:w-full [&_input]:py-2 [&_input]:px-3 [&_input]:border [&_input]:rounded-xl [&_input]:focus:outline-none [&_input]:focus:ring-1 [&_input]:bg-background [&_input]:text-accent-foreground [&_input]:focus:ring-primary
+  [&_input]:text-xs [&_input]:w-full [&_input]:py-2 [&_input]:px-3 [&_input]:border [&_input]:rounded-xl [&_input]:focus:outline-none [&_input]:focus:ring-1 [&_input]:bg-background [&_input]:text-accent-foreground [&_input]:focus:ring-primary
       ">
       
 
@@ -45,13 +46,15 @@ function SignUpFormFirstStep<T extends FieldValues, >({
            name={"name" as FieldPath<T>}
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Nama lengkap</FormLabel>
+              <FormLabel className=' text-xs'>Nama lengkap</FormLabel>
               <FormControl>
                 <Input
                 placeholder="nama"
-                
-                type="text"
-                {...field} />
+                {...field}
+                onBlur={() => props.setIsTyping(false)}
+                        onFocus={() => props.setIsTyping(true)}
+                type="text" 
+                />
               </FormControl>
               <FormDescription className=' sr-only '>This is your public display name.</FormDescription>
               <FormMessage  className=' '/>

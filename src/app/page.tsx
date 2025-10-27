@@ -1,19 +1,23 @@
 "use client";
 
-import { Hero } from "@/components/ui/core/section/Hero";
+
 import About from "@/components/ui/core/section/About";
-import Features from "@/components/ui/core/section/Features";
-import Preload from "@/components/ui/fragments/custom-ui/animate-ui/Preload";
+
+import{ Hero} from "@/components/ui/core/section/Hero";
+import Bento from "@/components/ui/core/section/Bento";
+import MarqueeAlongSvgPathDemo from "@/components/ui/core/section/marquee-along-svg-path";
+
+
 
 export default function HomePage() {
   return (
     <>
-      <Preload />
-      <main className="overflow-hidden">
+   
+
         <Hero />
-        <About />
-        <Features />
-      </main>
+    <About/>
+        {/* <MarqueeAlongSvgPathDemo/> */}
+ <Bento/>
     </>
   );
 }

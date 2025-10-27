@@ -20,7 +20,7 @@ export default function RootLayout({
         <script src="https://cdn.userway.org/widget.js" data-account="t85cN7BOL2"/>
         </head> */}
       <body
-        className={`${fontVariables} antialiased font-serif `}
+        className={`${fontVariables} antialiased `}
       >
         <Providers>
         {children}

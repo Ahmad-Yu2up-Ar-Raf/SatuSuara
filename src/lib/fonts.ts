@@ -9,14 +9,27 @@ import {
     Source_Serif_4,
    Delius_Swash_Caps,
     Noto_Sans_Mono,
-    Bangers
+    Bangers,
+    NTR,
+    Caprasimo,
+    Poppins,
+    Merienda,
+    Libre_Baskerville,
+    Lora,
+    IBM_Plex_Mono
   } from 'next/font/google';
-  import localFont from "next/font/local";
+
   import { cn } from '@/lib/utils';
   
-  const fontSans = Source_Serif_4({
+  const fontSans = Libre_Baskerville({
     subsets: ['latin'],
-    variable: '--font-sans'
+    variable: '--font-sans',
+    weight: ['400', '700']
+  });
+  const fontSerif = Lora({
+    subsets: ['latin'],
+    variable: '--font-serif',
+   
   });
   const fontOutfit = Outfit({
     subsets: ['latin'],
@@ -34,9 +47,10 @@ import {
     weight: ['400', ]
   });
   
-  const fontMono = Geist_Mono({
+  const fontMono = IBM_Plex_Mono({
     subsets: ['latin'],
-    variable: '--font-mono'
+    variable: '--font-mono',
+    weight: '400'
   });
   
   const fontNunito = Nunito({
@@ -77,5 +91,5 @@ import {
     fontNunito.variable,
     fontDelius.variable,
     fontOutfit.variable,
-  
+  fontSerif.variable
   );

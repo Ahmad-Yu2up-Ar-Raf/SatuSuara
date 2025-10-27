@@ -1,25 +1,60 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import animationData from "@/config/data/Logo-animation-preload.json";
+import animationData from "@/config/assets/animations/Logo-animation-preload.json";
 import { useLottie } from "lottie-react";
 import { BlurFade } from "./blur-fade";
+import { useIsMobile } from "@/hooks/use-mobile";
 
-export default function Preload() {
+/**
+ * Props untuk Preload Component
+ * @param onComplete - Callback yang dipanggil saat preload animation selesai
+ */
+interface PreloadProps {
+  onComplete?: () => void;
+}
+
+/**
+ * Preload Component
+ * Menampilkan splash screen animation saat website pertama kali dibuka
+ * 
+ * Flow:
+ * 1. Fade in (0.4s)
+ * 2. Hold animation (3s) 
+ * 3. Fade out (0.4s)
+ * 4. Call onComplete callback
+ */
+export default function Preload({ onComplete }: PreloadProps) {
   const [show, setShow] = useState(true);
+  const isMobile = useIsMobile();
 
-  // parameter animasi masuk di BlurFade (seconds)
+  // ========== CONFIG DURASI ANIMASI ==========
+  const FADE_DURATION = 0.4;  // Durasi fade in/out dalam detik
+  const HOLD_DURATION = 3;    // Durasi hold animation dalam detik
+  // ===========================================
 
-  const duration = 0.4; // detik
-
-  // Kita akan menunggu: enterDelay + duration + extraHold (detik) sebelum start exit
-  const extraHold = 3; // beri sedikit waktu sebelum start fade-out
   useEffect(() => {
-    const totalMs = (duration + extraHold) * 1000;
-    const t = setTimeout(() => setShow(false), totalMs);
-    return () => clearTimeout(t);
-  }, []);
+    // Hitung total waktu preload (fade in + hold + fade out)
+    const totalHoldTime = (FADE_DURATION + HOLD_DURATION) * 1000;
+    
+    // Timer untuk mulai fade out
+    const fadeOutTimer = setTimeout(() => {
+      setShow(false);
+      
+      // Setelah fade out selesai, panggil callback onComplete
+      const completeTimer = setTimeout(() => {
+        if (onComplete) {
+          onComplete();
+        }
+      }, FADE_DURATION * 1000);
 
+      return () => clearTimeout(completeTimer);
+    }, totalHoldTime);
+
+    return () => clearTimeout(fadeOutTimer);
+  }, [FADE_DURATION, HOLD_DURATION, onComplete]);
+
+  // Konfigurasi Lottie animation
   const lottieOptions = {
     loop: false,
     autoplay: true,
@@ -31,12 +66,15 @@ export default function Preload() {
 
   const { View } = useLottie(lottieOptions);
 
+  // Skip preload untuk mobile devices
+
   return (
     <BlurFade
       initial=""
-      duration={duration}
+      duration={FADE_DURATION}
       show={show}
-      className="flex fixed inset-0 bg-background z-[9999] justify-center items-center pointer-events-none">
+      className="flex fixed inset-0 bg-background z-[9999] justify-center items-center pointer-events-none"
+    >
       <div className="md:scale-100 scale-130">{View}</div>
     </BlurFade>
   );

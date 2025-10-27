@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import * as React from "react"
 import { SVGProps } from "react"
+import MediaItem from "../custom-ui/media/MediaItem";
 const LogoWhiter = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -106,8 +107,15 @@ const  Logo = ({  className}: {className?: string})  =>{
   return(
 
    <div className={cn(" relative" , className)} >
-                <LogoWhiter className="absolute top-0 size-12 opacity-100  transition-transform ease-in-out duration-500 dark:opacity-0 " />
-                <LogoDark className="  size-12 opacity-0 stransition-transform ease-in-out duration-500 dark:opacity-100 " />
+                 <div
+                 
+               
+                  className=" size-9  relative  flex justify-center object-cover duration-200 cursor-pointer transition-transform  rounded-full lg:hidden"
+                
+                >  
+      <MediaItem webViewLink="/assets/logo/dark-logo.png" className=" size-20 "/>
+                  </div>
+              <LogoWhiter className=" hidden lg:inline-flex  size-8"  />
               
               </div>
              

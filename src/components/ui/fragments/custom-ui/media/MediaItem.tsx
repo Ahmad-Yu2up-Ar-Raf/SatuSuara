@@ -125,7 +125,7 @@ const MediaItem = ({ webViewLink, className, mediaType = "image", onClick, style
                 </video>
                 {isBuffering && (
                     <div className="absolute inset-0 flex items-center justify-center bg-accent-foreground/10">
-                        <Spinner className="w-6 h-6  text-accent rounded-full animate-spin" />
+                        <Spinner className="w-6 h-6  text-accent rounded-xl animate-spin" />
                     </div>
                 )}
             </div>
@@ -139,7 +139,7 @@ const MediaItem = ({ webViewLink, className, mediaType = "image", onClick, style
                 alt={webViewLink}
                 fill
                 quality={100}
-                className="object-contain "
+                className="object-cover "
                 onClick={onClick}
                 loading="lazy"
                 onLoad={handleImageLoad}
@@ -152,7 +152,7 @@ const MediaItem = ({ webViewLink, className, mediaType = "image", onClick, style
             />
             {!imageLoaded && (
                 <div className="absolute inset-0 flex items-center justify-center bg-accent-foreground">
-                    <Spinner className="w-6 h-6 text-accent rounded-full animate-spin" />
+                    <Spinner className="w-6 h-6 text-accent rounded-xl animate-spin" />
                 </div>
             )}
         </div>

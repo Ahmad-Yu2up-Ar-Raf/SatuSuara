@@ -23,7 +23,8 @@ interface TaskFormProps<T extends FieldValues, >
   form: UseFormReturn<T>;
   onSubmit: (data: T) => void;
   isPending: boolean;
-  
+     
+      setIsTyping: React.Dispatch<React.SetStateAction<boolean>>
 }
 
 function SignUpFormSecondStep<T extends FieldValues, >({
@@ -33,10 +34,10 @@ function SignUpFormSecondStep<T extends FieldValues, >({
 }: TaskFormProps<T>) {
   return (
    <Form {...form}>
-      <form onSubmit={form.handleSubmit(props.onSubmit)} className=" space-y-6 *:
-      
-      
+      <form onSubmit={form.handleSubmit(props.onSubmit)} className="  space-y-6 *:
 
+      
+  [&_input]:text-xs [&_input]:w-full [&_input]:py-2 [&_input]:px-3 [&_input]:border [&_input]:rounded-xl [&_input]:focus:outline-none [&_input]:focus:ring-1 [&_input]:bg-background [&_input]:text-accent-foreground [&_input]:focus:ring-primary
       ">
       
 
@@ -49,7 +50,12 @@ function SignUpFormSecondStep<T extends FieldValues, >({
             <FormItem>
               <FormLabel>Sandi</FormLabel>
               <FormControl>
-                <PasswordInput placeholder="sandi" {...field} />
+                <PasswordInput placeholder="sandi" 
+                {...field}
+                     onBlur={() => props.setIsTyping(false)}
+                        onFocus={() => props.setIsTyping(true)} 
+                        
+                        />
               </FormControl>
               <FormDescription  className=' sr-only '>Enter your password.</FormDescription>
               <FormMessage  className=' '/>

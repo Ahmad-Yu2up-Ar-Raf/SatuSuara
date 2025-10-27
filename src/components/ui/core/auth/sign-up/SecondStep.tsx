@@ -80,11 +80,11 @@ const router = useRouter()
       toast.error("Failed to submit the form. Please try again." , {id: "register"});
     }
   }
-
+  const [isTyping, setIsTyping] = useState(false);
   if (!isClient || !hasHydrated) {
     return (
       <AuthLayoutTemplate
-       loading={loading} title='Buat kata sandi Anda' description='Buat kata sandi yang kuat - untuk melindungi akun Anda' className=' lg:max-w-none h-dvh '>
+       loading={loading} title='Buat kata sandi Anda' description='Buat kata sandi yang kuat - untuk melindungi akun Anda' className=' lg:max-w-none h-lvh '>
         <div className="flex items-center justify-center py-8">
           <Loader className="animate-spin size-6" />
         </div>
@@ -93,8 +93,8 @@ const router = useRouter()
   }
 
   return (
-    <AuthLayoutTemplate loading={loading} title='Buat kata sandi Anda' description='Buat kata sandi yang kuat - untuk melindungi akun Anda' className=' lg:max-w-none h-dvh '>
-      <SignUpFormSecondStep form={form} isPending={isPending || loading} onSubmit={onSubmit}>
+    <AuthLayoutTemplate isTyping={isTyping} loading={loading} title='Buat kata sandi Anda' description='Buat kata sandi yang kuat - untuk melindungi akun Anda' className=' lg:max-w-none h-lvh '>
+      <SignUpFormSecondStep setIsTyping={setIsTyping} form={form} isPending={isPending || loading} onSubmit={onSubmit}>
           <div className=" w-full space-y-5">
 
         <Button

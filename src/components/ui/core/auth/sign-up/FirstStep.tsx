@@ -56,7 +56,7 @@ const router = useRouter()
   useEffect(() => {
     setIsClient(true);
   }, []);
-
+  const [isTyping, setIsTyping] = useState(false);
   function onSubmit(input: FormFirstStepSchema) {
     try {
       setLoading(true)
@@ -75,7 +75,7 @@ const router = useRouter()
   
   if (!isClient || !hasHydrated) {
     return (
-      <AuthLayoutTemplate description='Mari kita mulai dengan nama lengkap dan alamat email Anda.' loading={loading} formType="register" title='Siapa namamu?' className=' lg:max-w-none h-dvh '>
+      <AuthLayoutTemplate description='Mari kita mulai dengan nama lengkap dan alamat email Anda.' loading={loading} formType="register" title='Siapa namamu?' className=' lg:max-w-none h-lvh '>
         <div className="flex items-center justify-center py-8">
           <Loader className="animate-spin size-6" />
         </div>
@@ -84,8 +84,8 @@ const router = useRouter()
   }
 
   return (
-    <AuthLayoutTemplate description='Mari kita mulai dengan nama lengkap dan alamat email Anda.'  loading={loading} formType="register" title='Siapa namamu?' className=' lg:max-w-none h-dvh '>
-      <SignUpFormFirstStep form={form} isPending={(isPending || loading)} onSubmit={onSubmit}>
+    <AuthLayoutTemplate  description='Mari kita mulai dengan nama lengkap dan alamat email Anda.'  loading={loading} formType="register" title='Siapa namamu?' className=' lg:max-w-none h-lvh '>
+      <SignUpFormFirstStep setIsTyping={setIsTyping} form={form} isPending={(isPending || loading)} onSubmit={onSubmit}>
         <Button
           disabled={(isPending || loading)}
           type="submit"

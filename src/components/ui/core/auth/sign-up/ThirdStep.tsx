@@ -87,11 +87,11 @@ function ThirdStep() {
       toast.error("Failed to submit the form. Please try again." , {id: "register"});
     }
   }
-
+  const [isTyping, setIsTyping] = useState(false);
   if (!isClient || !hasHydrated) {
     return (
       <AuthLayoutTemplate
-       loading={loading} title='Asalmu dari mana?' description='Isi negara, provinsi, dan nomor telepon Anda.' className=' lg:max-w-none h-dvh '>
+       loading={loading} title='Asalmu dari mana?' description='Isi negara, provinsi, dan nomor telepon Anda.' className=' lg:max-w-none h-lvh '>
         <div className="flex items-center justify-center py-8">
           <Loader className="animate-spin size-6" />
         </div>
@@ -100,8 +100,8 @@ function ThirdStep() {
   }
 
   return (
-    <AuthLayoutTemplate loading={loading} title='Asalmu dari mana?' description='Isi negara, provinsi, dan nomor telepon Anda.' className=' lg:max-w-none h-dvh '>
-      <SignUpFormThirdStep form={form} isPending={isPending || loading} onSubmit={onSubmit}>
+    <AuthLayoutTemplate isTyping={isTyping} loading={loading} title='Asalmu dari mana?' description='Isi negara, provinsi, dan nomor telepon Anda.' className=' lg:max-w-none h-lvh '>
+      <SignUpFormThirdStep setIsTyping={setIsTyping} form={form} isPending={isPending || loading} onSubmit={onSubmit}>
           <div className=" w-full space-y-5">
 
         <Button
