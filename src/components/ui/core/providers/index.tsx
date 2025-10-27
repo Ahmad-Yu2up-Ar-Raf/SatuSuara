@@ -198,11 +198,11 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
           {contentReady && (
             <main className=' relative'>
               {/* Header - tidak ditampilkan di route tertentu */}
-              {/* {!EXCLUDED_ROUTES.includes(pathname) && (
+              {!EXCLUDED_ROUTES.includes(pathname) && (
                 <AnimatePresence mode="wait">
                   <SiteHeader key="site-header" />
                 </AnimatePresence>
-              )} */}
+              )}
               
               {/* Main Content Area */}
               <AnimatePresence mode="wait">

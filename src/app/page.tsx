@@ -15,7 +15,7 @@ export default function HomePage() {
    
 
         <Hero />
-    {/* <About/> */}
+    <About/>
         {/* <MarqueeAlongSvgPathDemo/> */}
  <Bento/>
     </>

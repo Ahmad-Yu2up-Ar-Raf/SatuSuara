@@ -61,7 +61,7 @@ borderBottom ? "rounded-[20px] md:rounded-b-[40px]" : "rounded-[20px] md:rounded
             </div>
           </CardHeader>
       
-          <div className="flex w-full relative items-center justify-center gap-4">
+          <div className="flex w-full h-full content-center relative items-center justify-center gap-4">
          
 {children}
           </div>

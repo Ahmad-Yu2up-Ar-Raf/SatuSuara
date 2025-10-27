@@ -23,7 +23,7 @@ function CommunityCard({  className} : { className?: string}) {
    borderBottom className={className}>
  
       
-     <div className="  m-auto  w-full h-full ">
+     <div className="  m-auto  w-full h-50  ">
               {  View}
               </div> 
 
