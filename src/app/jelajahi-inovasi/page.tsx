@@ -12,14 +12,14 @@ export default function Page() {
 
   return (
     <InovasiProvider>
-      <div className="flex min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white">
+      <div className="flex min-h-screen dark:bg-gray-900 text-gray-900 ">
         {/* === SIDEBAR (LEFT) === */}
         <SidebarKategori sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
         {/* === MAIN CONTENT (RIGHT) === */}
         <div className="flex-1 flex flex-col">
           {/* HEADER */}
-          <header className="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 flex items-center justify-between sticky top-0 z-20">
+          <header className="p-4 sm:p-6 border-b border-gray-200 dark:border-gray-700  dark:bg-gray-800 flex items-center justify-between sticky top-0 z-20">
             <div className="flex items-center gap-2">
               <Lightbulb className="w-6 h-6 text-yellow-500" /> {/* 💡 diganti icon */}
               <h1 className="text-2xl sm:text-3xl font-bold">Jelajahi Inovasi Desa</h1>

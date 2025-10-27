@@ -22,6 +22,8 @@ interface CarouselProps {
 
 
 import { cn } from "@/lib/utils"
+import { TextAnimate } from "../animate-ui/text-animate"
+import { BlurFade } from "../animate-ui/blur-fade"
 export const BentoCard: React.FC<CarouselProps> = ({
   children,
   title,
@@ -31,7 +33,7 @@ export const BentoCard: React.FC<CarouselProps> = ({
   descripcions,
   className,
 }) => {
- 
+ const delay = 0.25
   return (
     <>
 
@@ -54,9 +56,15 @@ borderBottom ? "rounded-[20px] md:rounded-b-[40px]" : "rounded-[20px] md:rounded
             <div className="flex gap-1 md:gap-2">
               <div className=" space-y-3">
                 <CardTitle className=" text-xl   opacity-85 font-bold tracking-tighter">
-                {title}
+          <TextAnimate as={"span"} delay={ delay }>
+          {title}
+            </TextAnimate>   
                 </CardTitle>
-             <CardDescription className=" text-muted-foreground text-xs">{descripcions}</CardDescription>
+             <CardDescription className=" text-muted-foreground text-xs">
+             <TextAnimate as={"span"} delay={ delay  * 2}>
+             {descripcions}
+              </TextAnimate> 
+              </CardDescription>
               </div>
             </div>
           </CardHeader>

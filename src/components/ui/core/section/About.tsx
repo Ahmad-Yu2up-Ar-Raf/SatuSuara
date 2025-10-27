@@ -86,13 +86,16 @@ const demoIcons: FloatingIconsHeroProps['icons'] = [
 
 export default function About() {
   return (
-    <FloatingIconsHero
-      title="A World of Innovation"
-      subtitle="Dunia Inovasi
-Jelajahi beragam kemungkinan dengan platform kami, yang menghubungkan Anda dengan perangkat dan teknologi yang membentuk masa depan."
-      ctaText="Join the Revolution"
-      ctaHref="#"
-      icons={demoIcons}
-    />
+      <section className=' min-h-[40lvh] md:min-h-lvh content-center w-full'>
+
+        <FloatingIconsHero
+          title="A World of Innovation"
+          subtitle="Dunia Inovasi
+    Jelajahi beragam kemungkinan dengan platform kami, yang menghubungkan Anda dengan perangkat dan teknologi yang membentuk masa depan."
+          ctaText="Join the Revolution"
+          ctaHref="#"
+          icons={demoIcons}
+        />
+      </section>
   );
 }

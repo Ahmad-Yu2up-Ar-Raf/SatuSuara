@@ -283,6 +283,7 @@ delay={delay * 8}
           </Link>
         </BlurFade>
       </div>
+     
     </section>
   )
 }

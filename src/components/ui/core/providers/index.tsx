@@ -14,7 +14,7 @@ import SmoothFollower from '../../fragments/custom-ui/cursor';
 import SignInModal from '../auth/components/SignInModal';
 import Preload from '../../fragments/custom-ui/animate-ui/Preload';
 import { useEffect, useState } from 'react';
-import MarqueeAlongSvgPathDemo from '../section/marquee-along-svg-path';
+import MarqueeAlongSvgPathDemo from '../../fragments/custom-ui/animate-ui/marquee-along';
 
 /**
  * ========================================

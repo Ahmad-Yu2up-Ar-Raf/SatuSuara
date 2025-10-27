@@ -10,8 +10,7 @@ import {
   MobileNavToggle,
   MobileNavMenu,
 } from "@/components/ui/fragments/custom-ui/animate-ui/resizable-navbar";
-import Link from "next/link";
-import { useState } from "react";
+
 
 export default function NavbarDemo() {
   const navItems = [
@@ -41,8 +40,9 @@ export default function NavbarDemo() {
         <NavBody>
           <NavbarLogo />
           <NavItems items={navItems} />
-          <div className="flex items-center gap-4">
-            <NavbarButton  variant={'default'} className=" rounded-full" href="/login">Login</NavbarButton>
+          <div className="flex items-center gap-2">
+            <NavbarButton  variant={'default'} className=" rounded-full" href="/login">Masuk</NavbarButton>
+            <NavbarButton  variant={"secondary"} className=" rounded-full" href="/register">Daftar</NavbarButton>
             {/* <NavbarButton variant="primary">Book a call</NavbarButton> */}
           </div>
         </NavBody>
