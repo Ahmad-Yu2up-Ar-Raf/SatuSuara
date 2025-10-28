@@ -1,152 +1,36 @@
-"use client";
-
-import React, { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
+import React from "react";
+import { BentoCard } from "./BentoCard";
+import { ChartArea, Play } from "lucide-react";
 import { motion } from "framer-motion";
-import { useLottie } from "lottie-react";
-import confetti from "canvas-confetti";
 import animationData from "@/config/assets/animations/Vote.json";
-import { BlurFade } from "@/components/ui/fragments/custom-ui/animate-ui/blur-fade";
-import { Progress } from "@/components/ui/fragments/shadcn-ui/progress";
-import { Button } from "@/components/ui/fragments/shadcn-ui/button";
-import { BentoCard } from "@/components/ui/fragments/custom-ui/bento/Bento";
-import { ChartArea } from "lucide-react";
-
-export default function NotifikasiVote() {
-  const router = useRouter();
-  const [progress, setProgress] = useState(0);
-
-  const { View } = useLottie({
-    animationData,
-    loop: false,
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useLottie } from "lottie-react";
+function VotingCardBento() {
+  const lottieOptions = {
+    loop: true,
     autoplay: true,
-    style: {
-      width: "100%",
-      maxWidth: 250,
-      height: "auto",
-      margin: "0 auto",
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
     },
-  });
-
-  // 🔹 Efek Confetti + Progress bar animasi
-  useEffect(() => {
-    const html = document.documentElement;
-    const body = document.body;
-    html.style.overflow = "hidden";
-    body.style.overflow = "hidden";
-    body.style.height = "100vh";
-    body.style.position = "fixed";
-    body.style.width = "100%";
-
-    // 🎉 confetti
-    const duration = 2 * 1000;
-    const end = Date.now() + duration;
-    const frame = () => {
-      confetti({
-        particleCount: 5,
-        spread: 80,
-        startVelocity: 40,
-        origin: { x: Math.random(), y: Math.random() - 0.2 },
-      });
-      if (Date.now() < end) requestAnimationFrame(frame);
-    };
-    frame();
-
-    // progress
-    let val = 0;
-    const interval = setInterval(() => {
-      val += 2.5;
-      if (val >= 100) {
-        val = 100;
-        clearInterval(interval);
-        router.push("/leaderboard");
-      }
-      setProgress(val);
-    }, 100);
-
-    return () => {
-      clearInterval(interval);
-      html.style.overflow = "";
-      body.style.overflow = "";
-      body.style.height = "";
-      body.style.position = "";
-      body.style.width = "";
-    };
-  }, [router]);
+  };
+  const isMobile = useIsMobile();
+  const style = { width: "100%", height: "100%", margin: "auto" }; // atur sesuai kebutuhan
+  const { View } = useLottie(lottieOptions, style);
 
   return (
-    <section className="fixed inset-0 w-full h-[100dvh] overflow-hidden flex flex-col items-center justify-center bg-background px-6 text-center">
-      <div className="max-w-md w-full flex flex-col items-center justify-center space-y-6">
-        {/* 🎉 Judul */}
-        <BlurFade direction="up" delay={0.1}>
-          <motion.h1
-            className="text-2xl sm:text-3xl font-bold text-primary"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}>
-            Voting Berhasil!
-          </motion.h1>
-        </BlurFade>
-
-        {/* 🪄 Animasi utama */}
-        <motion.div
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="flex justify-center w-full">
-          {View}
-        </motion.div>
-
-        {/* 🧩 Kartu Bento animatif */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: [1, 1.03, 1],
-          }}
-          transition={{
-            duration: 1,
-            delay: 0.6,
-            ease: "easeOut",
-            repeat: Infinity,
-            repeatDelay: 4,
-          }}
-          className="w-full">
-          <BentoCard
-            BadgeIcon={ChartArea}
-            SubTitle="Terima Kasih"
-            title="Suaramu Telah Tercatat ✅"
-            descripcions="Partisipasimu membantu ide terbaik naik ke permukaan. Nantikan hasilnya di leaderboard!"
-            borderBottom
-            className="hover:scale-[1.01] transition-all duration-300 bg-card/60 backdrop-blur-md border border-muted">
-            <div className="w-36 h-36 m-auto flex items-center justify-center">
-              {View}
-            </div>
-          </BentoCard>
-        </motion.div>
-
-        {/* 📊 Progress bar */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1 }}
-          className="w-full">
-          <Progress value={progress} className="h-2 mt-2" />
-          <p className="text-xs text-muted-foreground mt-1">
-            Mengarahkan ke leaderboard...
-          </p>
-        </motion.div>
-
-        {/* 🔘 Tombol manual */}
-        <Button
-          variant="default"
-          size="lg"
-          className="w-full mt-3"
-          onClick={() => router.push("/leaderboard")}>
-          Pergi ke Leaderboard Sekarang
-        </Button>
+    <BentoCard
+      BadgeIcon={ChartArea}
+      SubTitle="Dapat Dukungan"
+      borderBottom
+      descripcions="Berikan suara — bantu ide lokal menjadi solusi nyata."
+      title="kumpulkan dukungan publik"
+      className="h-full  md:gap-0 hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1  transition-all duration-200 ease-in-out  ">
+      <div className=" scale-150  m-auto  md:w-40 md:h-20  md:scale-400 w-60 h-30 ">
+        {View}
       </div>
-    </section>
+    </BentoCard>
   );
 }
+
+export default VotingCardBento;

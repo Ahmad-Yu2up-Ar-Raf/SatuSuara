@@ -30,17 +30,19 @@ export default function Leaderboard() {
   const [category, setCategory] = useState("all");
   const [selected, setSelected] = useState<any | null>(null);
 
+  // === FILTER & SORT ===
   const categoryFiltered =
     category === "all"
       ? validData
       : validData.filter((item) => item.category === category);
 
-  const sorted = [...categoryFiltered].sort((a, b) => b.votes - a.votes);
-  const topThree = sorted.slice(0, 3);
-  const others = sorted.slice(3);
-  const filtered = others.filter((item) =>
+  const searched = categoryFiltered.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
+
+  const sorted = [...searched].sort((a, b) => b.votes - a.votes);
+  const topThree = sorted.slice(0, 3);
+  const others = sorted.slice(3);
 
   return (
     <section className="container mx-auto px-5 sm:px-6 py-10 md:py-16 flex flex-col items-center">
@@ -90,71 +92,73 @@ export default function Leaderboard() {
       </div>
 
       {/* === PODIUM === */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
-        viewport={{ once: true }}
-        className="grid grid-cols-3 gap-3 sm:gap-6 items-end mb-10 sm:mb-14 max-w-full sm:max-w-4xl">
-        {topThree.map((item, index) => {
-          const rank = index + 1;
-          const isFirst = rank === 1;
-          const orderClasses =
-            rank === 1 ? "order-2" : rank === 2 ? "order-1" : "order-3";
+      {topThree.length > 0 && (
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="grid grid-cols-3 gap-2 sm:gap-6 items-end mb-12 sm:mb-16 w-full max-w-[420px] sm:max-w-4xl">
+          {topThree.map((item, index) => {
+            const rank = index + 1;
+            const isFirst = rank === 1;
+            const orderClasses =
+              rank === 1 ? "order-2" : rank === 2 ? "order-1" : "order-3";
 
-          return (
-            <motion.div
-              key={item.name}
-              whileHover={{ scale: 1.04 }}
-              transition={{ type: "spring", stiffness: 300 }}
-              className={`relative flex flex-col items-center ${orderClasses}`}>
-              <div
-                className={`rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white/60 backdrop-blur-lg 
-                            w-full max-w-[140px] sm:max-w-[260px] md:max-w-[290px]
-                            ${
-                              isFirst
-                                ? "h-44 sm:h-64 md:h-72"
-                                : "h-36 sm:h-52 md:h-60"
-                            } 
-                            flex items-center justify-center`}>
-                <MediaItem
-                  webViewLink={item.imageUrl}
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            return (
+              <motion.div
+                key={item.name}
+                whileHover={{ scale: 1.04 }}
+                transition={{ type: "spring", stiffness: 300 }}
+                onClick={() => setSelected(item)}
+                className={`relative flex flex-col items-center cursor-pointer ${orderClasses}`}>
+                <motion.div
+                  animate={{
+                    y: [0, -5, 0],
+                  }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 2,
+                    ease: "easeInOut",
+                    delay: index * 0.3,
+                  }}
+                  className={`rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white/60 backdrop-blur-lg 
+                              w-full max-w-[130px] sm:max-w-[240px] md:max-w-[280px]
+                              ${
+                                isFirst
+                                  ? "h-48 sm:h-64 md:h-72"
+                                  : "h-40 sm:h-56 md:h-64"
+                              } 
+                              flex items-center justify-center`}>
+                  <MediaItem
+                    webViewLink={item.imageUrl}
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
 
-              <div
-                className={`absolute -top-4 px-4 py-1 text-xs sm:text-sm font-bold text-white rounded-full shadow-md ${
-                  isFirst
-                    ? "bg-yellow-400"
-                    : rank === 2
-                    ? "bg-gray-400"
-                    : "bg-amber-700"
-                }`}>
-                #{rank}
-              </div>
+                <div
+                  className={`absolute -top-4 px-4 py-1 text-xs sm:text-sm font-bold text-white rounded-full shadow-md ${
+                    isFirst
+                      ? "bg-yellow-400"
+                      : rank === 2
+                      ? "bg-gray-400"
+                      : "bg-amber-700"
+                  }`}>
+                  #{rank}
+                </div>
 
-              <p className="mt-3 font-semibold text-gray-800 text-center text-xs sm:text-sm md:text-base">
-                {item.name}
-              </p>
-              <p className="text-[11px] sm:text-xs text-gray-500">
-                {item.votes.toLocaleString()} suara
-              </p>
-            </motion.div>
-          );
-        })}
-      </motion.div>
-      {/* === MINI SUMMARY === */}
-      <div className="w-full max-w-3xl text-center sm:text-left mb-3 sm:mb-4 px-3 flex justify-center">
-        <p className="text-xs sm:text-sm text-gray-600 bg-white/70 backdrop-blur-sm py-2 px-3 rounded-lg border border-gray-200 inline-block shadow-sm">
-          Menampilkan{" "}
-          <span className="font-semibold text-gray-800">{filtered.length}</span>{" "}
-          inovasi{" "}
-          {category === "all"
-            ? "dari semua kategori"
-            : `dalam kategori ${category}`}
-        </p>
-      </div>
+                <p className="mt-3 font-semibold text-gray-800 text-center text-xs sm:text-sm md:text-base">
+                  {item.name}
+                </p>
+                <p className="text-[11px] sm:text-xs text-gray-500">
+                  {item.votes.toLocaleString()} suara
+                </p>
+              </motion.div>
+            );
+          })}
+        </motion.div>
+      )}
+
       {/* === TABLE SECTION === */}
       <AnimatePresence mode="wait">
         <motion.div
@@ -163,7 +167,7 @@ export default function Leaderboard() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
-          className="w-full  sm:max-w-3xl bg-white/80 backdrop-blur-lg rounded-2xl 
+          className="w-full sm:max-w-3xl bg-white/80 backdrop-blur-lg rounded-2xl 
                      shadow-lg overflow-hidden border border-gray-200 px-0 sm:px-2">
           <div className="overflow-x-auto w-full">
             <table className="min-w-full text-left text-xs sm:text-sm md:text-base">
@@ -179,7 +183,7 @@ export default function Leaderboard() {
                 </tr>
               </thead>
               <tbody>
-                {filtered.map((item, index) => (
+                {others.map((item, index) => (
                   <motion.tr
                     key={item.name}
                     initial={{ opacity: 0, y: 20 }}
@@ -233,37 +237,45 @@ export default function Leaderboard() {
 
       {/* === MODAL === */}
       <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-        <DialogContent className="max-w-[90vw] sm:max-w-lg rounded-xl">
+        <DialogContent className="max-w-[95vw] sm:max-w-lg rounded-xl p-0 max-h-screen overflow-y-auto">
           {selected && (
-            <>
-              <DialogHeader>
-                <DialogTitle className="text-lg font-semibold text-center sm:text-left">
-                  {selected.name}
-                </DialogTitle>
-              </DialogHeader>
-              <div className="space-y-4">
-                <div className="rounded-xl overflow-hidden shadow">
-                  <MediaItem
-                    webViewLink={selected.imageUrl}
-                    className="w-full h-52 sm:h-60 object-cover"
-                  />
-                </div>
+            <div className="flex flex-col">
+              {/* Gambar di atas */}
+              <div>
+                <img
+                  src={selected.imageUrl}
+                  className="w-full h-60 object-cover rounded-t-xl shadow-md"
+                />
+              </div>
+
+              {/* Konten */}
+              <div className="px-4 py-4 space-y-4">
+                <DialogHeader className="px-0 pt-0 pb-2">
+                  <DialogTitle className="text-lg font-semibold text-center sm:text-left">
+                    {selected.name}
+                  </DialogTitle>
+                </DialogHeader>
+
                 <p className="text-gray-600 text-sm leading-relaxed text-justify">
                   {selected.description}
                 </p>
-                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                  {selected.tags?.map((tag: string) => (
-                    <Badge key={tag} variant="outline">
-                      #{tag}
-                    </Badge>
-                  ))}
-                </div>
+
+                {selected.tags?.length > 0 && (
+                  <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+                    {selected.tags.map((tag: string) => (
+                      <Badge key={tag} variant="outline" className="text-xs">
+                        #{tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
+
                 <div className="text-xs text-gray-500 text-center sm:text-left">
                   Dibuat oleh: <b>{selected.creator.name}</b> (
                   {selected.creator.organization || "Independen"})
                 </div>
               </div>
-            </>
+            </div>
           )}
         </DialogContent>
       </Dialog>
