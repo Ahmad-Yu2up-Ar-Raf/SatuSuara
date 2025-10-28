@@ -12,6 +12,7 @@ import { Pen, Telescope } from "lucide-react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
 import animationData from "@/config/assets/animations/Businessman flies up with rocket.json";
+import { useOnboardingStore } from "@/hooks/use-store-signup";
 
 const exampleImages = [
   {
@@ -89,6 +90,8 @@ function Hero() {
      const style = { width:  isMobile ? 250 : 300, height: 150 , margin: "auto" }; // atur sesuai kebutuhan
   const { View } = useLottie(lottieOptions, style);
       const delay = 0.45
+        const name = useOnboardingStore((state) => state.name);
+       
   return (
     <section 
  
@@ -269,7 +272,7 @@ delay={delay * 8}
        
           </Link>
           <Link
-              href="/login" 
+              href={name ? "/dashbord" : "/login"} 
             className={cn(
     
                 "md:text-lg  cursor-target   hover:scale-110 transition-all duration-300 ease-out text-sm  justify-center flex items-center py-3.5   gap-5 w-full font-semibold tracking-tight text-white bg-primary px-4  sm:px-5  md:px-6 md:py-4 lg:px-8  rounded-full z-20 shadow-2xl font-calendas")}

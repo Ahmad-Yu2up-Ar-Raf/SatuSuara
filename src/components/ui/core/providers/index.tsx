@@ -30,6 +30,7 @@ const PRELOAD_SESSION_KEY = 'website_preload_shown';
 // Daftar route yang tidak menampilkan header/footer normal
 const EXCLUDED_ROUTES = [
   "/masuk",
+  "/jelajahi-inovasi",
   '/daftar',
   '/daftar/sandi',
   '/daftar/lokasi',

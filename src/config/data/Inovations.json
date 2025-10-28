@@ -1,70 +1,272 @@
 [
   {
-    "name": "GeNose C19",
-    "summary": "Alat deteksi Covid-19 melalui hembusan napas karya UGM",
-    "description": "Alat skrining Covid-19 non-invasif berbasis sensor gas dan AI, dikembangkan oleh Universitas Gadjah Mada. Diperkenalkan tahun 2020, GeNose memperoleh izin Kemenkes dan digunakan di berbagai fasilitas publik:contentReference[oaicite:22]{index=22}.",
-    "date": "2020-12-28",
-    "votes": 10000,
-    "creator": { "name": "Tim Peneliti UGM", "organization": "Universitas Gadjah Mada" },
-    "imageUrl": "https://kompaspedia.kompas.id/wp-content/uploads/2021/07/20210303PO_FIK_genose-alat-deteksi-covid-19-buatan-ugm_thumb.jpg",
-    "category": "Kesehatan",
-    "tags": ["Covid-19", "skrining", "AI", "diagnostik"]
+    "id": "550e8400-e29b-41d4-a716-446655440001",
+    "slug": "genose-c19-deteksi-covid",
+    "judul": "GeNose C19 - Alat Deteksi Covid-19 Berbasis AI",
+    "ringkasanPendek": "Alat skrining Covid-19 non-invasif melalui hembusan napas menggunakan sensor gas dan kecerdasan buatan.",
+    "deskripsi": "GeNose C19 adalah inovasi terobosan dari Universitas Gadjah Mada yang mampu mendeteksi Covid-19 melalui hembusan napas dalam waktu kurang dari 2 menit. Alat ini menggunakan teknologi sensor gas yang dikombinasikan dengan algoritma machine learning untuk menganalisis pola napas pasien. Dengan tingkat akurasi hingga 95%, GeNose telah digunakan di berbagai bandara, stasiun, dan fasilitas umum di Indonesia. Inovasi ini menjadi solusi skrining massal yang lebih cepat, murah, dan nyaman dibanding metode PCR atau rapid test konvensional.",
+    "media": [
+      {
+        "kind": "image",
+        "url": "https://images.unsplash.com/photo-1584515933487-779824d29309",
+        "caption": "Tim peneliti UGM dengan alat GeNose C19",
+        "license": "Unsplash",
+        "source": "UGM Official"
+      }
+    ],
+    "pembuat": {
+      "id": "550e8400-e29b-41d4-a716-446655440101",
+      "nama": "Dr. Kuwat Triyana",
+      "peran": "Ketua Tim Peneliti",
+      "organisasi": "Universitas Gadjah Mada",
+      "avatarUrl": "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e"
+    },
+    "kategori": "Kesehatan",
+    "subKategori": "Diagnostik Medis",
+    "tag": ["covid-19", "AI", "diagnostik", "sensor", "kesehatan"],
+    "lokasi": {
+      "provinsi": "DI Yogyakarta",
+      "kabupatenKota": "Kota Yogyakarta"
+    },
+    "dibuatPada": "2020-12-28T00:00:00.000Z",
+    "diupdatePada": "2024-03-15T10:30:00.000Z",
+    "totalVote": 10234,
+    "status": "published",
+    "impactMetrics": {
+      "beneficiaries": 500000,
+      "fundsRaisedIdr": 15000000000,
+      "jobsCreated": 45
+    },
+    "sumber": [
+      {
+        "type": "article",
+        "title": "GeNose C19, Inovasi UGM untuk Deteksi Covid-19",
+        "url": "https://ugm.ac.id/id/berita/20443-genose-c19-inovasi-ugm-untuk-deteksi-covid-19",
+        "publishedAt": "2020-12-28"
+      },
+      {
+        "type": "official",
+        "title": "Izin Edar GeNose dari Kemenkes",
+        "url": "https://www.kemkes.go.id/article/view/21011100001/genose-kantongi-izin-edar.html",
+        "publishedAt": "2021-01-11"
+      }
+    ],
+    "confidence": "verified",
+    "license": "Proprietary - UGM"
   },
   {
-    "name": "PeduliLindungi",
-    "summary": "Aplikasi pemerintah untuk tracing dan vaksin digital Covid-19",
-    "description": "Aplikasi resmi tracing, tracking, dan sertifikat vaksin Covid-19 di Indonesia. Diluncurkan April 2020 oleh Kominfo dengan operator seluler:contentReference[oaicite:23]{index=23}, membantu memantau penyebaran virus dan mengelola data vaksinasi.",
-    "date": "2020-04-18",
-    "votes": 20000,
-    "creator": { "name": "Kemenkominfo", "organization": "Kementerian Komunikasi dan Informatika" },
-    "imageUrl": "https://cdn1-production-images-kly.akamaized.net/Uajw7pteBHKF-bno5OdhStnMdMs=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3571391/original/003178200_1631610459-0E6A5528-01.jpeg",
-    "category": "Kesehatan",
-    "tags": ["tracing", "Covid-19", "vaksin", "pemerintah"]
+    "id": "550e8400-e29b-41d4-a716-446655440002",
+    "slug": "efishery-feeder-otomatis-iot",
+    "judul": "eFishery - Pemberi Pakan Ikan Otomatis Berbasis IoT",
+    "ringkasanPendek": "Solusi teknologi IoT untuk pemberian pakan ikan otomatis yang menghemat biaya hingga 30% untuk petambak.",
+    "deskripsi": "eFishery menghadirkan revolusi dalam industri akuakultur Indonesia melalui alat pemberi pakan ikan otomatis yang terhubung dengan smartphone. Sistem ini dilengkapi sensor pintar yang dapat mendeteksi nafsu makan ikan dan menyesuaikan jumlah pakan secara real-time, mengurangi pemborosan pakan hingga 30%. Startup yang didirikan oleh Gibran Huzaifah ini telah membantu ribuan petambak di seluruh Indonesia meningkatkan produktivitas dan efisiensi operasional. Platform eFishery juga menyediakan akses ke pembiayaan, pasar, dan data analytics untuk mendukung pertumbuhan bisnis petambak.",
+    "media": [
+      {
+        "kind": "image",
+        "url": "https://images.unsplash.com/photo-1535591273668-578e31182c4f",
+        "caption": "Alat eFishery feeder di kolam tambak",
+        "license": "Unsplash",
+        "source": "eFishery"
+      }
+    ],
+    "pembuat": {
+      "id": "550e8400-e29b-41d4-a716-446655440102",
+      "nama": "Gibran Huzaifah",
+      "peran": "Founder & CEO",
+      "organisasi": "eFishery",
+      "avatarUrl": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d"
+    },
+    "kategori": "Agrikultur",
+    "subKategori": "Akuakultur",
+    "tag": ["IoT", "akuakultur", "pertanian", "startup", "teknologi"],
+    "lokasi": {
+      "provinsi": "Jawa Barat",
+      "kabupatenKota": "Kota Bandung"
+    },
+    "dibuatPada": "2013-10-15T00:00:00.000Z",
+    "diupdatePada": "2024-10-20T14:20:00.000Z",
+    "totalVote": 8954,
+    "status": "published",
+    "impactMetrics": {
+      "beneficiaries": 75000,
+      "co2SavedKg": 125000,
+      "fundsRaisedIdr": 450000000000,
+      "jobsCreated": 320
+    },
+    "sumber": [
+      {
+        "type": "official",
+        "title": "eFishery Official Website",
+        "url": "https://efishery.com/",
+        "publishedAt": "2024-01-01"
+      },
+      {
+        "type": "article",
+        "title": "eFishery Raih Pendanaan Rp 3 Triliun",
+        "url": "https://www.detik.com/edu/perguruan-tinggi/d-6827953/efishery-mendapatkan-pendanaan-rp-3-triliun",
+        "publishedAt": "2023-07-07"
+      }
+    ],
+    "confidence": "verified"
   },
   {
-    "name": "MAGMA Indonesia",
-    "summary": "Aplikasi mitigasi bencana geologi multi-platform",
-    "description": "MAGMA Indonesia adalah aplikasi web/mobil untuk mitigasi bencana geologi (gunungapi, gempa, tsunami) secara real-time:contentReference[oaicite:24]{index=24}. Dikembangkan sejak 2015 oleh PVMBG (Badan Geologi), menyediakan informasi interaktif dan API untuk mitigasi bencana di Indonesia.",
-    "date": "2015-08-10",
-    "votes": 7500,
-    "creator": { "name": "Pusat Vulkanologi & Mitigasi Bencana Geologi", "organization": "Badan Geologi (Kementerian ESDM)" },
-    "imageUrl": "https://mounture.com/wp-content/uploads/2022/01/272309213_1038887159993187_9005140951419333522_n.jpg",
-    "category": "Teknologi Bencana",
-    "tags": ["bencana", "gempa", "tsunami", "geologi"]
+    "id": "550e8400-e29b-41d4-a716-446655440003",
+    "slug": "ruangguru-platform-edukasi-online",
+    "judul": "Ruangguru - Platform Pembelajaran Online Terbesar",
+    "ringkasanPendek": "Platform edtech terdepan yang menyediakan video pembelajaran interaktif untuk jutaan pelajar Indonesia.",
+    "deskripsi": "Ruangguru adalah pionir platform pendidikan digital di Indonesia yang didirikan oleh Belva Devara dan Iman Usman pada 2014. Platform ini menawarkan ribuan video pembelajaran berkualitas tinggi yang disesuaikan dengan kurikulum nasional, latihan soal interaktif, dan fitur bimbingan belajar online. Dengan jangkauan lebih dari 22 juta pengguna, Ruangguru telah membantu demokratisasi akses pendidikan berkualitas ke seluruh pelosok Indonesia. Aplikasi ini juga menyediakan fitur try-out, konsultasi PR, dan kelas live teaching yang membuat pembelajaran lebih engaging dan efektif.",
+    "media": [
+      {
+        "kind": "image",
+        "url": "https://images.unsplash.com/photo-1501504905252-473c47e087f8",
+        "caption": "Siswa belajar menggunakan Ruangguru",
+        "license": "Unsplash",
+        "source": "Ruangguru"
+      }
+    ],
+    "pembuat": {
+      "id": "550e8400-e29b-41d4-a716-446655440103",
+      "nama": "Belva Devara & Iman Usman",
+      "peran": "Co-Founders",
+      "organisasi": "PT Ruang Raya Indonesia",
+      "avatarUrl": "https://images.unsplash.com/photo-1560250097-0b93528c311a"
+    },
+    "kategori": "Pendidikan",
+    "subKategori": "EdTech",
+    "tag": ["pendidikan", "edtech", "online learning", "startup", "teknologi"],
+    "lokasi": {
+      "provinsi": "DKI Jakarta",
+      "kabupatenKota": "Jakarta Selatan"
+    },
+    "dibuatPada": "2014-04-01T00:00:00.000Z",
+    "diupdatePada": "2024-09-10T09:15:00.000Z",
+    "totalVote": 15678,
+    "status": "published",
+    "impactMetrics": {
+      "beneficiaries": 22000000,
+      "fundsRaisedIdr": 2100000000000,
+      "jobsCreated": 850
+    },
+    "sumber": [
+      {
+        "type": "official",
+        "title": "Ruangguru Official Website",
+        "url": "https://www.ruangguru.com/",
+        "publishedAt": "2024-01-01"
+      },
+      {
+        "type": "article",
+        "title": "Ruangguru, Unicorn EdTech Indonesia",
+        "url": "https://www.pikiran-rakyat.com/pendidikan/pr-016163371/ruangguru-aplikasi-belajar-online",
+        "publishedAt": "2024-08-18"
+      }
+    ],
+    "confidence": "verified"
   },
- 
   {
-    "name": "eFishery",
-    "summary": "Startup IoT penyedia feeder otomatis untuk budidaya ikan",
-    "description": "eFishery mengembangkan alat pemberi pakan ikan/udang otomatis yang terhubung ke ponsel pintar. Dengan sensor cerdas, eFishery mengatur jadwal dan jumlah pakan secara optimal, menghemat hingga 20% biaya pakan:contentReference[oaicite:26]{index=26}. Berdiri sejak 2013, eFishery membantu ribuan petambak di Indonesia:contentReference[oaicite:27]{index=27}.",
-    "date": "2013-10-15",
-    "votes": 9000,
-    "creator": { "name": "Gibran Huzaifah", "organization": "eFishery" },
-    "imageUrl": "https://awsimages.detik.net.id/community/media/visual/2023/07/07/efishery-mendapatkan-pendanaan-rp-3-triliun_169.jpeg?w=600&q=90",
-    "category": "Pertanian & Akuakultur",
-    "tags": ["akuakultur", "IoT", "startup", "perikanan"]
+    "id": "550e8400-e29b-41d4-a716-446655440004",
+    "slug": "magma-indonesia-mitigasi-bencana",
+    "judul": "MAGMA Indonesia - Sistem Informasi Geologi Real-time",
+    "ringkasanPendek": "Aplikasi mitigasi bencana geologi multi-platform untuk monitoring gunung api, gempa, dan tsunami secara real-time.",
+    "deskripsi": "MAGMA Indonesia (Multi-platform Application for Geohazard Mitigation and Assessment) adalah sistem informasi geologi terintegrasi yang dikembangkan oleh Pusat Vulkanologi dan Mitigasi Bencana Geologi (PVMBG) sejak 2015. Aplikasi ini menyediakan data real-time tentang aktivitas gunung berapi, gempa bumi, dan potensi tsunami yang dapat diakses publik melalui web dan mobile. Dengan lebih dari 127 gunung api yang dimonitor, MAGMA Indonesia menjadi tools vital bagi pemerintah dan masyarakat dalam pengambilan keputusan evakuasi dan mitigasi bencana. Sistem ini juga menyediakan API terbuka untuk developer yang ingin mengintegrasikan data geologi ke aplikasi mereka.",
+    "media": [
+      {
+        "kind": "image",
+        "url": "https://images.unsplash.com/photo-1547036967-23d11aacaee0",
+        "caption": "Dashboard MAGMA Indonesia monitoring aktivitas vulkanik",
+        "license": "Unsplash",
+        "source": "PVMBG"
+      }
+    ],
+    "pembuat": {
+      "id": "550e8400-e29b-41d4-a716-446655440104",
+      "nama": "Tim PVMBG",
+      "peran": "Developer & Maintainer",
+      "organisasi": "Pusat Vulkanologi & Mitigasi Bencana Geologi",
+      "avatarUrl": "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7"
+    },
+    "kategori": "Keamanan",
+    "subKategori": "Mitigasi Bencana",
+    "tag": ["bencana", "geologi", "gempa", "tsunami", "early warning"],
+    "lokasi": {
+      "provinsi": "Jawa Barat",
+      "kabupatenKota": "Kota Bandung"
+    },
+    "dibuatPada": "2015-08-10T00:00:00.000Z",
+    "diupdatePada": "2024-10-15T16:45:00.000Z",
+    "totalVote": 7845,
+    "status": "published",
+    "impactMetrics": {
+      "beneficiaries": 150000000
+    },
+    "sumber": [
+      {
+        "type": "official",
+        "title": "MAGMA Indonesia Official",
+        "url": "https://magma.esdm.go.id/",
+        "publishedAt": "2024-01-01"
+      },
+      {
+        "type": "article",
+        "title": "MAGMA Indonesia: Sistem Mitigasi Bencana Geologi",
+        "url": "https://www.mounture.com/2022/01/magma-indonesia-sistem-informasi-kegunungapian.html",
+        "publishedAt": "2022-01-15"
+      }
+    ],
+    "confidence": "verified"
   },
- 
   {
-    "name": "PaDi UMKM",
-    "summary": "Platform pasar digital BUMN–UMKM untuk pengadaan barang/jasa",
-    "description": "Pasar Digital UMKM (PaDi) menghubungkan UMKM dengan kebutuhan belanja BUMN secara online:contentReference[oaicite:30]{index=30}. Diluncurkan 17 Agustus 2020, platform ini memudahkan UMKM menawarkan produk ke BUMN, sekaligus menyediakan akses pelatihan, pembiayaan, dan sertifikasi agar UMKM naik kelas.",
-    "date": "2020-08-17",
-    "votes": 5000,
-    "creator": { "name": "Loto Srinaita Ginting", "organization": "Kementerian BUMN" },
-    "imageUrl": "https://cyberlabs.co.id/wp-content/uploads/2023/01/21959139.jpeg",
-    "category": "Ekonomi Digital",
-    "tags": ["UMKM", "digital", "pengadaan", "ekonomi"]
-  },
-  {
-    "name": "Ruangguru",
-    "summary": "Platform edukasi daring berbasis video tutorial interaktif",
-    "description": "Ruangguru adalah startup edtech yang menawarkan video pembelajaran sesuai kurikulum sekolah:contentReference[oaicite:31]{index=31}. Didirikan April 2014, Ruangguru menyediakan kelas online, latihan soal, dan materi belajar interaktif melalui aplikasi seluler/komputer, menjangkau jutaan siswa SMP/SMA di Indonesia.",
-    "date": "2014-04-01",
-    "votes": 15000,
-    "creator": { "name": "Belva Devara & Iman Usman", "organization": "PT Ruang Raya Indonesia" },
-    "imageUrl": "https://assets.pikiran-rakyat.com/crop/0x0:0x0/720x0/webp/photo/2024/08/18/4294487934.jpg",
-    "category": "Pendidikan & Teknologi",
-    "tags": ["edtech", "pembelajaran", "startup", "video"]
+    "id": "550e8400-e29b-41d4-a716-446655440005",
+    "slug": "padi-umkm-marketplace-digital",
+    "judul": "PaDi UMKM - Pasar Digital untuk UMKM Indonesia",
+    "ringkasanPendek": "Platform marketplace yang menghubungkan UMKM dengan kebutuhan pengadaan BUMN secara digital dan transparan.",
+    "deskripsi": "Pasar Digital UMKM (PaDi UMKM) adalah inisiatif Kementerian BUMN yang diluncurkan pada 17 Agustus 2020 untuk memberdayakan UMKM Indonesia. Platform ini menghubungkan pelaku UMKM dengan kebutuhan belanja BUMN, memberikan akses pasar yang lebih luas dan transparan. PaDi UMKM tidak hanya menyediakan marketplace, tetapi juga ekosistem lengkap yang mencakup pelatihan digital, akses pembiayaan, sertifikasi produk, dan pendampingan bisnis. Hingga 2024, platform ini telah memfasilitasi transaksi senilai triliunan rupiah dan membantu ratusan ribu UMKM naik kelas menjadi vendor resmi BUMN.",
+    "media": [
+      {
+        "kind": "image",
+        "url": "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d",
+        "caption": "UMKM menggunakan platform PaDi",
+        "license": "Unsplash",
+        "source": "Kementerian BUMN"
+      }
+    ],
+    "pembuat": {
+      "id": "550e8400-e29b-41d4-a716-446655440105",
+      "nama": "Loto Srinaita Ginting",
+      "peran": "Project Lead",
+      "organisasi": "Kementerian BUMN",
+      "avatarUrl": "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2"
+    },
+    "kategori": "Ekonomi Kreatif",
+    "subKategori": "Digital Marketplace",
+    "tag": ["UMKM", "e-commerce", "digital", "ekonomi", "pemberdayaan"],
+    "lokasi": {
+      "provinsi": "DKI Jakarta",
+      "kabupatenKota": "Jakarta Pusat"
+    },
+    "dibuatPada": "2020-08-17T00:00:00.000Z",
+    "diupdatePada": "2024-08-17T12:00:00.000Z",
+    "totalVote": 5432,
+    "status": "published",
+    "impactMetrics": {
+      "beneficiaries": 250000,
+      "fundsRaisedIdr": 3500000000000,
+      "jobsCreated": 180
+    },
+    "sumber": [
+      {
+        "type": "official",
+        "title": "PaDi UMKM Official",
+        "url": "https://padiapps.id/",
+        "publishedAt": "2024-01-01"
+      },
+      {
+        "type": "article",
+        "title": "PaDi UMKM Fasilitasi Transaksi Triliunan",
+        "url": "https://cyberlabs.co.id/padi-umkm-platform-marketplace-bumn",
+        "publishedAt": "2023-01-10"
+      }
+    ],
+    "confidence": "verified"
   }
 ]

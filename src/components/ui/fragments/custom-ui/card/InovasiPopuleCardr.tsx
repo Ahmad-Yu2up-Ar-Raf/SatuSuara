@@ -7,15 +7,11 @@ import "swiper/css"
 import "swiper/css/effect-coverflow"
 import "swiper/css/pagination"
 import "swiper/css/navigation"
-import { SparklesIcon } from "lucide-react"
 
-import { Badge } from "../../shadcn-ui/badge"
-import { InovasiRingkas } from "@/schemas/inovasi.schema"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../shadcn-ui/card"
-
+import type { Inovasi } from "@/schemas/inovasi.schema";
 interface CarouselProps {
-  inovations: InovasiRingkas[]
+  inovations: Inovasi[]
   className?: string
 }
 

@@ -1,15 +1,15 @@
-import { cn } from "@/lib/utils";
-import { useState } from "react";
+
 
 import { ChartArea, Gift, SparkleIcon } from 'lucide-react';
-import Link from 'next/link';
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../shadcn-ui/card";
 import { Badge } from "../../shadcn-ui/badge";
 import {InovasiPopulerCard} from "../card/InovasiPopuleCardr";
 
-import { InovasiRingkas } from '@/schemas/inovasi.schema'
+import type { Inovasi } from "@/schemas/inovasi.schema";
+
 import inovations from '@/config/data/Inovations.json'
-import { BentoCard } from "../card/BentoCard";
+
 import VisualReportCard from "../card/VisualReport";
 import CommunityCard from "../card/CommunityCardBento";
 import VotingCard from "../card/VotingCard";
@@ -17,7 +17,7 @@ import BerkaryaBentoCard from "../card/BerkaryaBentoCard";
 import { TextAnimate } from "../animate-ui/text-animate";
 export const ColorfullBento = () => {
 
-const inovationsData = inovations.slice(0,4) as InovasiRingkas[]
+const inovationsData = inovations.slice(0,4) as Inovasi[]
 
   return (
     <Card id='free-tools' className='w-full max-w-7xl m-auto  gap-10  py-10 rounded-4xl  px-5 content-center'>

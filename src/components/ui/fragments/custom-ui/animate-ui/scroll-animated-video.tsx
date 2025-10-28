@@ -432,7 +432,7 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
               {overlay?.caption && (
                 <div 
                   ref={overlayCaptionRef}
-                  className="font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-primary mb-4"
+                  className="font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-accent mb-4"
                 >
                   {overlay.caption}
                 </div>

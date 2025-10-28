@@ -86,22 +86,10 @@ export default function NavbarDemo() {
         <MobileNavHeader>
           <NavbarLogo />
           <NavItems items={navItems} />
-          <div className="flex items-center gap-2">
-          {postBody == null ? (
-<>
-<NavbarButton  variant={'default'} className=" rounded-full" href="/masuk">Masuk</NavbarButton>
-<NavbarButton  variant={"secondary"} className=" rounded-full" href="/daftar">Daftar</NavbarButton>
-</>
-          ) : (
-            <NavbarButton  variant={'default'} className=" rounded-full" href="/dashboard">Dashboard</NavbarButton>
-          
-          )}
-          
-          
-          </div>
+        
         </MobileNavHeader>
 
-          <MobileNavMenu items={navItems} />
+          <MobileNavMenu name={postBody.name} items={navItems} />
         </MobileNav>
   
     </Navbar>

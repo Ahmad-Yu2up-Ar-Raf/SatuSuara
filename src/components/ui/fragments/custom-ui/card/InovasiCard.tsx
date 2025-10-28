@@ -1,347 +1,175 @@
-"use client";
+import React from 'react';
+import { ArrowRight, Star, Tag, MapPin, Calendar } from 'lucide-react';
+import { Badge } from '../../shadcn-ui/badge';
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from '../../shadcn-ui/card';
+import { Button, buttonVariants } from '../../shadcn-ui/button';
+import MediaItem from '../media/MediaItem';
+import type { Inovasi } from '@/schemas/inovasi.schema';
+import { cn } from '@/lib/utils';
+import { useInitials } from '@/hooks/use-initials';
+import Link from 'next/link';
 
-import React, { useState, useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import { Card, CardContent, CardHeader } from "../../shadcn-ui/card";
-import { Button } from "../../shadcn-ui/button";
-import MediaItem from "../media/MediaItem";
-import { ArrowLeft, ArrowRight, ArrowUp, Tag, ThumbsUp } from "lucide-react";
-import { Badge } from "../../shadcn-ui/badge";
+interface InovasiCardProps {
+  inovasi: Inovasi;
+  className?: string;
+  onClick?: (inovasi: Inovasi) => void;
+}
 
-const primary = "#63493f";
-const secondary = "#ffdfb1";
+function InovasiCard({ inovasi, className, onClick }: InovasiCardProps) {
+  // Get primary image
+  const primaryImage = inovasi.media.find((m) => m.kind === 'image')?.url;
+  
+  // Format date
+  const createdDate = new Date(inovasi.dibuatPada).toLocaleDateString('id-ID', {
+    year: 'numeric',
+    month: 'short',
+  });
 
-const kategoriList = [
-  "Semua",
-  "Pertanian (Agriculture)",
-  "Peternakan",
-  "Perikanan",
-  "Perdagangan (UMKM)",
-  "Pariwisata Desa",
-  "Kerajinan / Industri Rumah Tangga",
-  "Perkebunan",
-  "Jasa & Teknologi (Desa Digital)",
-];
-
-const inovasiData = [
-  {
-    id: 1,
-    title: "Digitalisasi UMKM Desa",
-    description: "Platform untuk membantu UMKM desa menjual produk ke pasar nasional.",
-    creator: "Rina Setiawan",
-    image:
-      "https://plus.unsplash.com/premium_photo-1682091805203-9013cef2ad1e?auto=format&fit=crop&q=60&w=600",
-    kategori: "Perdagangan (UMKM)",
-    votes: 123,
-  },
-  {
-    id: 2,
-    title: "Aplikasi Layanan Desa Pintar",
-    description: "Pelayanan administrasi warga secara online.",
-    creator: "Budi Santoso",
-    image:
-      "https://images.unsplash.com/photo-1548345680-f5475ea5df84?fm=jpg&q=60&w=600",
-    kategori: "Jasa & Teknologi (Desa Digital)",
-    votes: 98,
-  },
-  {
-    id: 3,
-    title: "Sistem Irigasi Otomatis",
-    description: "Sensor otomatis untuk sawah berdasarkan cuaca.",
-    creator: "Dewi Rahmawati",
-    image:
-      "https://plus.unsplash.com/premium_photo-1661884090131-77a0a87acd06?auto=format&fit=crop&q=80&w=1171",
-    kategori: "Pertanian (Agriculture)",
-    votes: 210,
-  },
-  {
-    id: 4,
-    title: "Pakan Ternak Fermentasi",
-    description: "Meningkatkan kualitas pakan ternak menggunakan fermentasi alami.",
-    creator: "Andi Saputra",
-    image:
-      "https://images.unsplash.com/photo-1607522370275-f14206abe5d3?auto=format&fit=crop&q=60&w=600",
-    kategori: "Peternakan",
-    votes: 77,
-  },
-  {
-    id: 5,
-    title: "Wisata Edukasi Sawah",
-    description: "Desa wisata berbasis edukasi pertanian.",
-    creator: "Siti Aminah",
-    image:
-      "https://images.unsplash.com/photo-1558199141-391e097568f1?auto=format&fit=crop&q=60&w=600",
-    kategori: "Pariwisata Desa",
-    votes: 164,
-  },
-  {
-    id: 6,
-    title: "Kerajinan Bambu Inovatif",
-    description: "Produk kerajinan ramah lingkungan dari bambu lokal.",
-    creator: "Joko Prabowo",
-    image:
-      "https://images.unsplash.com/photo-1588854437230-1c7f1e84d3e7?auto=format&fit=crop&q=60&w=600",
-    kategori: "Kerajinan / Industri Rumah Tangga",
-    votes: 82,
-  },
-  // === Tambahan baru di bawah ini ===
-  {
-    id: 7,
-    title: "Kopi Organik Perkebunan Rakyat",
-    description: "Inovasi pengolahan kopi organik hasil perkebunan rakyat lokal.",
-    creator: "Tono Wibisono",
-    image:
-      "https://images.unsplash.com/photo-1509042239860-f550ce710b93?auto=format&fit=crop&q=60&w=600",
-    kategori: "Perkebunan",
-    votes: 134,
-  },
-  {
-    id: 8,
-    title: "Budidaya Lele dengan Sistem Bioflok",
-    description: "Teknologi bioflok untuk meningkatkan efisiensi budidaya lele desa.",
-    creator: "Fitri Handayani",
-    image:
-      "https://images.unsplash.com/photo-1612538497638-05b3a12ab8be?auto=format&fit=crop&q=60&w=600",
-    kategori: "Perikanan",
-    votes: 96,
-  },
-  {
-    id: 9,
-    title: "Desa Wisata Ekologi",
-    description: "Program wisata berbasis kelestarian alam dan edukasi lingkungan.",
-    creator: "Agus Riyanto",
-    image:
-      "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?auto=format&fit=crop&q=60&w=600",
-    kategori: "Pariwisata Desa",
-    votes: 188,
-  },
-  {
-    id: 10,
-    title: "Sistem Informasi Pertanian Cerdas",
-    description: "Platform digital untuk prediksi cuaca dan harga hasil tani.",
-    creator: "Laila Karimah",
-    image:
-      "https://images.unsplash.com/photo-1599058917212-d750089bc07a?auto=format&fit=crop&q=60&w=600",
-    kategori: "Jasa & Teknologi (Desa Digital)",
-    votes: 201,
-  },
-  {
-    id: 11,
-    title: "Pupuk Organik dari Limbah Ternak",
-    description: "Pengolahan limbah peternakan menjadi pupuk ramah lingkungan.",
-    creator: "Rizal Maulana",
-    image:
-      "https://images.unsplash.com/photo-1618220179428-22790b461013?auto=format&fit=crop&q=60&w=600",
-    kategori: "Peternakan",
-    votes: 109,
-  },
-  {
-    id: 12,
-    title: "Anyaman Pandan Kreatif",
-    description: "Produk anyaman pandan modern yang punya nilai jual tinggi.",
-    creator: "Yuni Kartika",
-    image:
-      "https://images.unsplash.com/photo-1588854337231-4e4e4a7c7b3a?auto=format&fit=crop&q=60&w=600",
-    kategori: "Kerajinan / Industri Rumah Tangga",
-    votes: 87,
-  },
-  {
-    id: 13,
-    title: "Layanan Drone Mapping Lahan",
-    description: "Pemetaan lahan desa menggunakan drone untuk efisiensi pertanian.",
-    creator: "Deni Arifin",
-    image:
-      "https://images.unsplash.com/photo-1504198453319-5ce911bafcde?auto=format&fit=crop&q=60&w=600",
-    kategori: "Jasa & Teknologi (Desa Digital)",
-    votes: 145,
-  },
-  {
-    id: 14,
-    title: "Toko Online Hasil Perkebunan",
-    description: "Marketplace khusus produk hasil perkebunan lokal.",
-    creator: "Mega Lestari",
-    image:
-      "https://images.unsplash.com/photo-1590080875831-4a3b6b47ee39?auto=format&fit=crop&q=60&w=600",
-    kategori: "Perdagangan (UMKM)",
-    votes: 172,
-  },
-]
-;
-
-export default function ColorfullInovasiCardList() {
-  const [kategoriAktif, setKategoriAktif] = useState("Semua");
-  const [page, setPage] = useState(1);
-  const [showTop, setShowTop] = useState(false);
-  const gridRef = useRef<HTMLDivElement | null>(null);
-  const itemsPerPage = 6;
-
-  useEffect(() => {
-    const handleScroll = () => setShowTop(window.scrollY > 300);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    // Hanya animasi fade-in dan scale, tidak ganggu transform hover
-    gsap.fromTo(
-      ".colorfull-card",
-      { scale: 0.9, opacity: 0, y: 30 },
-      {
-        scale: 1,
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.1,
-        ease: "power3.out",
-        clearProps: "transform",
-      }
-    );
-  }, [page, kategoriAktif]);
-
-  const filteredData =
-    kategoriAktif === "Semua"
-      ? inovasiData
-      : inovasiData.filter((i) => i.kategori === kategoriAktif);
-
-  const totalPages = Math.ceil(filteredData.length / itemsPerPage);
-  const startIndex = (page - 1) * itemsPerPage;
-  const paginatedData = filteredData.slice(startIndex, startIndex + itemsPerPage);
-
-  const scrollToGridTop = () => {
-    if (gridRef.current) {
-      const top = gridRef.current.getBoundingClientRect().top + window.scrollY - 120;
-      window.scrollTo({ top, behavior: "smooth" });
-    }
+  // Kategori color mapping
+  const categoryColors: Record<string, string> = {
+    'Kesehatan': 'bg-red-100 text-red-700 border-red-200',
+    'Pendidikan': 'bg-blue-100 text-blue-700 border-blue-200',
+    'Lingkungan': 'bg-green-100 text-green-700 border-green-200',
+    'Pangan': 'bg-orange-100 text-orange-700 border-orange-200',
+    'Energi': 'bg-yellow-100 text-yellow-700 border-yellow-200',
+    'Transportasi': 'bg-purple-100 text-purple-700 border-purple-200',
+    'Agrikultur': 'bg-lime-100 text-lime-700 border-lime-200',
+    'Ekonomi Kreatif': 'bg-pink-100 text-pink-700 border-pink-200',
+    'Sosial': 'bg-indigo-100 text-indigo-700 border-indigo-200',
+    'Teknologi': 'bg-cyan-100 text-cyan-700 border-cyan-200',
+    'Keamanan': 'bg-slate-100 text-slate-700 border-slate-200',
   };
-
-  const handleNext = () => {
-    setPage((p) => Math.min(p + 1, totalPages));
-    setTimeout(scrollToGridTop, 0);
-  };
-  const handlePrev = () => {
-    setPage((p) => Math.max(p - 1, 1));
-    setTimeout(scrollToGridTop, 0);
-  };
-  const handleScrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
-
+  const initial = useInitials()
   return (
-    <section className="py-2 w-full">
-      <div className="container flex flex-col items-center gap-8">
-        {/* FILTER */}
-        <div className="flex flex-wrap gap-2 justify-center mb-8">
-          {kategoriList.map((kat) => (
-            <Button
-              key={kat}
-              variant={kategoriAktif === kat ? "default" : "outline"}
-              style={{
-                backgroundColor: kategoriAktif === kat ? primary : undefined,
-                color: kategoriAktif === kat ? "white" : undefined,
-              }}
-              onClick={() => {
-                setKategoriAktif(kat);
-                setPage(1);
-              }}
-            >
-              {kat}
-            </Button>
-          ))}
-        </div>
+    <Card
+      className={cn(
+        'relative cursor-target  shadow-none  border  rounded-2xl',
+        'transform transition-all duration-300 hover:scale-105 hover:rotate-1',
+        'pb-2 pt-0 overflow-hidden hover:shadow-2xl flex flex-col h-full',
+        'cursor-pointer',
+        className
+      )}
+      style={{ willChange: 'transform' }}
+      onClick={() => onClick?.(inovasi)}
+    >
+      <CardContent className="p-4.5 gap-6 flex flex-col flex-1">
+        {/* Category Badge */}
+        <Badge
+          variant="outline"
+          className={cn(
+            'mb-1 text-[9px] md:text-xs font-semibold w-fit',
+            categoryColors[inovasi.kategori] || 'bg-gray-100 text-gray-700'
+          )}
+        >
+          <Tag className="mr-1 size-3 md:size-4" />
+          {inovasi.kategori}
+        </Badge>
 
-        {/* GRID */}
-       <div ref={gridRef} className="grid gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full auto-rows-fr">
-  {paginatedData.length > 0 ? (
-    paginatedData.map((post) => (
-      <Card
-        key={post.id}
-        className="colorfull-card relative border-0  dark:bg-gray-800 shadow-md rounded-2xl overflow-visible transform transition-transform duration-300 hover:scale-105 hover:rotate-3 hover:shadow-2xl flex flex-col h-full"
-        style={{ willChange: "transform" }}
-      >
-        <CardHeader className="p-4 flex flex-col gap-3 flex-grow">
-          <Badge
-            className="inline-flex items-center gap-1 text-xs font-medium px-3 py-1 rounded-full"
-            style={{ backgroundColor: secondary, color: primary }}
-          >
-            <Tag className="w-3 h-3" /> {post.kategori}
-          </Badge>
-          <h3 className="text-xl md:text-2xl font-semibold" style={{ color: primary }}>
-            {post.title}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 flex-grow">{post.description}</p>
-          <p className="text-sm text-gray-500">
-            Pembuat: <span className="font-medium">{post.creator}</span>
-          </p>
+        {/* Header */}
+        <CardHeader className="p-0 space-y-0.5">
+          <CardTitle className="text-lg sm:text-xl md:text-2xl font-bold tracking-tighter leading-8 line-clamp-2">
+            {inovasi.judul}
+          </CardTitle>
+          
+          <CardDescription className="text-muted-foreground text-xs line-clamp-3 flex-grow">
+            {inovasi.ringkasanPendek}
+          </CardDescription>
+
+          {/* Meta Info */}
+          {/* <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+            <div className="flex items-center gap-1">
+              <MapPin className="size-3" />
+              <span>{inovasi.lokasi.provinsi || 'Indonesia'}</span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Calendar className="size-3" />
+              <span>{createdDate}</span>
+            </div>
+          </div> */}
         </CardHeader>
 
-        <CardContent className="p-0 flex flex-col flex-1">
-          <div className="aspect-[16/9] w-full overflow-hidden">
+        {/* Image */}
+        {primaryImage && (
+          <div className="aspect-[16/9] w-full rounded-xl overflow-hidden">
             <MediaItem
-              webViewLink={post.image}
-              className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              webViewLink={primaryImage}
+              className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
             />
           </div>
-          <div className="flex items-center justify-between p-4 mt-auto">
-            <Button
-              style={{ backgroundColor: primary, color: "white", borderRadius: "8px" }}
-              className="hover:opacity-90 transition-transform hover:scale-105"
-              onClick={() => alert(`Lihat detail: ${post.title}`)}
-            >
-              Lihat Detail <ArrowRight className="ml-2 w-4 h-4" />
-            </Button>
-            <div className="flex items-center gap-1 text-sm text-gray-500">
-              <ThumbsUp className="w-4 h-4" /> {post.votes} voting
-            </div>
+        )}
+
+        {/* Creator Info */}
+        <div className="space-y-4">
+<div className=" flex w-full justify-between">
+
+        <div className="flex  w-full items-start  justify-between gap-2 text-xs">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-white font-semibold">
+            {initial(inovasi.pembuat.nama)}
           </div>
-        </CardContent>
-      </Card>
-    ))
-  ) : (
-    <div className="col-span-full flex justify-center items-center min-h-[300px] animate-fadeIn">
-      <p className="text-gray-500 text-lg text-center">
-        Wah sepertinya belum ada ide di kategori ini 
-      </p>
-    </div>
-  )}
+          <div className="flex-1 min-w-0">
+            <p className="font-medium truncate">{inovasi.pembuat.nama}</p>
+            {inovasi.pembuat.organisasi && (
+              <p className="text-muted-foreground text-[10px] truncate">
+                {inovasi.pembuat.organisasi}
+              </p>
+            )}
+          </div>
+        </div>
+        <Badge variant="outline" className="text-accent-foreground text-[10px] w-fit border-0 p-0">
+            <Star className="size-4 fill-primary text-primary mr-1" />
+            <span className="font-semibold ">{inovasi.totalVote.toLocaleString('id-ID')}</span>
+          </Badge>
 </div>
 
-
-        {/* PAGINATION */}
-        {filteredData.length > 0 && (
-          <div className="flex gap-4 items-center mt-6">
-            <Button
-              variant="outline"
-              disabled={page === 1}
-              onClick={handlePrev}
-              style={{ borderColor: primary, color: primary }}
+        {/* Tags */}
+        <div className="flex flex-wrap gap-1.5">
+          {inovasi.tag.slice(0, 3).map((tag, idx) => (
+            <span
+              key={idx}
+              className="px-2 py-0.5 bg-primary/10 text-primary rounded-full text-[10px] font-medium"
             >
-              <ArrowLeft className="w-4 h-4 mr-2" />
-              Sebelumnya
-            </Button>
-            <span className="text-sm font-medium text-gray-600">
-              Halaman {page} dari {totalPages}
+              #{tag}
             </span>
-            <Button
-              variant="outline"
-              disabled={page === totalPages}
-              onClick={handleNext}
-              style={{ borderColor: primary, color: primary }}
-            >
-              Selanjutnya
-              <ArrowRight className="w-4 h-4 ml-2" />
-            </Button>
-          </div>
-        )}
+          ))}
+          {inovasi.tag.length > 3 && (
+            <span className="px-2 py-0.5 bg-gray-100 text-gray-600 rounded-full text-[10px]">
+              +{inovasi.tag.length - 3}
+            </span>
+          )}
+        </div>
 
-        {/* BACK TO TOP */}
-        {showTop && (
-          <Button
-            onClick={handleScrollTop}
-            className="fixed bottom-6 right-6 rounded-full p-3 shadow-lg transition-all"
-            style={{ backgroundColor: primary, color: secondary }}
+        
+        </div>
+
+        {/* Footer */}
+        <CardFooter className="flex border-t py-3 items-center justify-between p-0 mt-auto">
+          <Link
+             href={"#"}
+            className={cn( buttonVariants({variant: "default"}),"hover:opacity-90 transition-transform hover:scale-105 text-xs md:text-sm")}
+         
           >
-            <ArrowUp className="w-5 h-5" />
-          </Button>
-        )}
-      </div>
-    </section>
+            Lihat Detail <ArrowRight className="ml-2 w-3 h-3 md:w-4 md:h-4" />
+          </Link>
+          
+        
+        </CardFooter>
+      </CardContent>
+
+      {/* Confidence Badge */}
+      {inovasi.confidence === 'verified' && (
+        <div className="absolute top-2 right-2 bg-green-500 text-white text-[8px] px-2 py-1 rounded-full font-bold">
+          ✓ Verified
+        </div>
+      )}
+    </Card>
   );
 }
+
+export default InovasiCard;
