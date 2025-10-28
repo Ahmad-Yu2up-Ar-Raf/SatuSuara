@@ -38,7 +38,6 @@ export default function Leaderboard() {
   const sorted = [...categoryFiltered].sort((a, b) => b.votes - a.votes);
   const topThree = sorted.slice(0, 3);
   const others = sorted.slice(3);
-
   const filtered = others.filter((item) =>
     item.name.toLowerCase().includes(search.toLowerCase())
   );
@@ -59,7 +58,7 @@ export default function Leaderboard() {
         </p>
       </motion.div>
 
-      {/* === FILTERS CARD === */}
+      {/* === FILTER SECTION === */}
       <div className="w-full max-w-3xl mb-10 sm:mb-14">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -90,13 +89,13 @@ export default function Leaderboard() {
         </motion.div>
       </div>
 
-      {/* === TOP 3 === */}
+      {/* === PODIUM === */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
         viewport={{ once: true }}
-        className="grid grid-cols-3 gap-3 sm:gap-6 items-end mb-14 sm:mb-20 max-w-full sm:max-w-4xl">
+        className="grid grid-cols-3 gap-3 sm:gap-6 items-end mb-10 sm:mb-14 max-w-full sm:max-w-4xl">
         {topThree.map((item, index) => {
           const rank = index + 1;
           const isFirst = rank === 1;
@@ -111,7 +110,7 @@ export default function Leaderboard() {
               className={`relative flex flex-col items-center ${orderClasses}`}>
               <div
                 className={`rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white/60 backdrop-blur-lg 
-                            w-full max-w-[110px] sm:max-w-[220px] md:max-w-[250px]
+                            w-full max-w-[140px] sm:max-w-[260px] md:max-w-[290px]
                             ${
                               isFirst
                                 ? "h-44 sm:h-64 md:h-72"
@@ -145,8 +144,18 @@ export default function Leaderboard() {
           );
         })}
       </motion.div>
-
-      {/* === TABLE === */}
+      {/* === MINI SUMMARY === */}
+      <div className="w-full max-w-3xl text-center sm:text-left mb-3 sm:mb-4 px-3 flex justify-center">
+        <p className="text-xs sm:text-sm text-gray-600 bg-white/70 backdrop-blur-sm py-2 px-3 rounded-lg border border-gray-200 inline-block shadow-sm">
+          Menampilkan{" "}
+          <span className="font-semibold text-gray-800">{filtered.length}</span>{" "}
+          inovasi{" "}
+          {category === "all"
+            ? "dari semua kategori"
+            : `dalam kategori ${category}`}
+        </p>
+      </div>
+      {/* === TABLE SECTION === */}
       <AnimatePresence mode="wait">
         <motion.div
           key={category + search}
@@ -154,17 +163,17 @@ export default function Leaderboard() {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
-          className="w-full max-w-[95%] sm:max-w-3xl bg-white/80 backdrop-blur-lg rounded-2xl 
-                     shadow-lg overflow-hidden border border-gray-200 px-2 sm:px-4">
-          <div className="overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm md:text-base">
+          className="w-full  sm:max-w-3xl bg-white/80 backdrop-blur-lg rounded-2xl 
+                     shadow-lg overflow-hidden border border-gray-200 px-0 sm:px-2">
+          <div className="overflow-x-auto w-full">
+            <table className="min-w-full text-left text-xs sm:text-sm md:text-base">
               <thead className="bg-gray-50 border-b">
                 <tr>
                   <th className="py-3 px-3 sm:px-4 w-[70px] sm:w-[90px]">
                     Ranking
                   </th>
                   <th className="py-3 px-3 sm:px-4">Inovasi</th>
-                  <th className="py-3 px-3 sm:px-4 text-right w-[100px] sm:w-[120px]">
+                  <th className="py-3 px-3 sm:px-4 text-right w-[100px] sm:w-[130px]">
                     Suara
                   </th>
                 </tr>
@@ -181,15 +190,15 @@ export default function Leaderboard() {
                     <td className="py-3 px-3 font-medium text-gray-700 whitespace-nowrap">
                       #{index + 4}
                     </td>
-                    <td className="py-3 px-3 flex items-center gap-3 min-w-[150px] sm:min-w-[220px]">
+                    <td className="py-3 px-3 flex items-center gap-3 min-w-[160px] sm:min-w-[220px]">
                       <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden shadow-sm shrink-0">
                         <MediaItem
                           webViewLink={item.imageUrl}
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div>
-                        <span className="text-gray-800 font-medium block truncate max-w-[100px] sm:max-w-none">
+                      <div className="truncate max-w-[120px] sm:max-w-none">
+                        <span className="text-gray-800 font-medium block truncate">
                           {item.name}
                         </span>
                         <Badge
@@ -202,7 +211,7 @@ export default function Leaderboard() {
                     <td className="py-3 px-3 text-right text-gray-700 font-semibold whitespace-nowrap">
                       <div className="flex flex-col items-end">
                         <span>{item.votes.toLocaleString()}</span>
-                        <div className="w-full sm:w-[80px] bg-gray-200 h-1.5 rounded-full mt-1 overflow-hidden">
+                        <div className="w-[70px] sm:w-[90px] bg-gray-200 h-1.5 rounded-full mt-1 overflow-hidden">
                           <div
                             className="h-full bg-blue-400 rounded-full"
                             style={{
