@@ -7,9 +7,10 @@ import {
   NavbarLogo,
   NavbarButton,
   MobileNavHeader,
-  MobileNavToggle,
+
   MobileNavMenu,
 } from "@/components/ui/fragments/custom-ui/animate-ui/resizable-navbar";
+import { useOnboardingStore } from "@/hooks/use-store-signup";
 
 
 export default function NavbarDemo() {
@@ -28,7 +29,28 @@ export default function NavbarDemo() {
       link: "/leaderboard",
     },
   ];
+  const name = useOnboardingStore((state) => state.name);
+  const email = useOnboardingStore((state) => state.email);
+  const password = useOnboardingStore((state) => state.password);
+  const password_confirmation = useOnboardingStore((state) => state.password_confirmation);
+  const hasHydrated = useOnboardingStore((state) => state._hasHydrated);
+    const country = useOnboardingStore((state) => state.country); 
+    const province = useOnboardingStore((state) => state.province); 
+    const phone = useOnboardingStore((state) => state.phone);
 
+   const postBody = {
+  
+      name,
+      email,
+      password,
+      phone,
+      country,
+      province,
+      password_confirmation,
+    }
+
+  
+    
   return (
     <Navbar className=" z-40">
       {/* Desktop Navigation */}
@@ -36,13 +58,26 @@ export default function NavbarDemo() {
         <NavbarLogo />
         <NavItems items={navItems} />
         <div className="flex items-center gap-4">
-          <NavbarButton
-            variant={"default"}
-            className=" rounded-full"
-            href="/login">
-            Login
-          </NavbarButton>
-          {/* <NavbarButton variant="primary">Book a call</NavbarButton> */}
+          {postBody.name == null ? (
+<>
+<NavbarButton
+  variant={"default"}
+  className=" rounded-full"
+  href="/masuk">
+  Masuk
+</NavbarButton>
+<NavbarButton  variant={"secondary"}
+  className=" rounded-full"
+  href="/masuk">Daftar</NavbarButton>
+</>
+          ) : (
+            <NavbarButton
+  variant={"default"}
+  className=" rounded-full"
+  href="/dashboard">
+  Dashboard
+</NavbarButton>
+          )}
         </div>
       </NavBody>
 
@@ -52,15 +87,23 @@ export default function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-2">
-            <NavbarButton  variant={'default'} className=" rounded-full" href="/masuk">Masuk</NavbarButton>
-            <NavbarButton  variant={"secondary"} className=" rounded-full" href="/daftar">Daftar</NavbarButton>
-            {/* <NavbarButton variant="primary">Book a call</NavbarButton> */}
+          {postBody == null ? (
+<>
+<NavbarButton  variant={'default'} className=" rounded-full" href="/masuk">Masuk</NavbarButton>
+<NavbarButton  variant={"secondary"} className=" rounded-full" href="/daftar">Daftar</NavbarButton>
+</>
+          ) : (
+            <NavbarButton  variant={'default'} className=" rounded-full" href="/dashboard">Dashboard</NavbarButton>
+          
+          )}
+          
+          
           </div>
-        </NavBody>
+        </MobileNavHeader>
 
           <MobileNavMenu items={navItems} />
-        </MobileNavHeader>
-      </MobileNav>
+        </MobileNav>
+  
     </Navbar>
   );
 }
