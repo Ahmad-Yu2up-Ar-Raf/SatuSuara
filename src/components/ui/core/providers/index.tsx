@@ -29,11 +29,12 @@ const PRELOAD_SESSION_KEY = 'website_preload_shown';
 
 // Daftar route yang tidak menampilkan header/footer normal
 const EXCLUDED_ROUTES = [
-  "/login",
-  '/register',
-  '/register/password',
-  '/register/location',
-  '/register/occupasion',
+  "/masuk",
+  '/daftar',
+  '/daftar/sandi',
+  '/daftar/lokasi',
+  '/daftar/pekerjaan',
+  '/dashboard',
   '/_error'
 ];
 

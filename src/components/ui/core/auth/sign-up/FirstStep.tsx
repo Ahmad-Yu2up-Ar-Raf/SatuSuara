@@ -62,11 +62,11 @@ const router = useRouter()
       setLoading(true)
       startTransition(async () => { 
         setData(input);
-        router.push("/register/password" );
+        router.push("/daftar/sandi" );
       })
     } catch (error) {
       console.error("Form submission error", error);
-      toast.error("Failed to submit the form. Please try again." ,  {id:" register"});
+      toast.error("Failed to submit the form. Please try again." ,  {id:" daftar"});
     } 
   }
 

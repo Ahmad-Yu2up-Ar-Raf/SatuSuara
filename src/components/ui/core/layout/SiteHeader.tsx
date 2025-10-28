@@ -14,10 +14,10 @@ import {
 
 export default function NavbarDemo() {
   const navItems = [
-    //     {
-    //   name: "Tentang Kami",
-    //   link: "/tentang-kami",
-    // },
+        {
+      name: "Tentang Kami",
+      link: "/tentang-kami",
+    },
   
     {
       name: "Inovasi",
@@ -41,8 +41,8 @@ export default function NavbarDemo() {
           <NavbarLogo />
           <NavItems items={navItems} />
           <div className="flex items-center gap-2">
-            <NavbarButton  variant={'default'} className=" rounded-full" href="/login">Masuk</NavbarButton>
-            <NavbarButton  variant={"secondary"} className=" rounded-full" href="/register">Daftar</NavbarButton>
+            <NavbarButton  variant={'default'} className=" rounded-full" href="/masuk">Masuk</NavbarButton>
+            <NavbarButton  variant={"secondary"} className=" rounded-full" href="/daftar">Daftar</NavbarButton>
             {/* <NavbarButton variant="primary">Book a call</NavbarButton> */}
           </div>
         </NavBody>

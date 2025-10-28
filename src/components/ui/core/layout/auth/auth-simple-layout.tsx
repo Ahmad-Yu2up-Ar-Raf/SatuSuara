@@ -29,7 +29,7 @@ const AuthLayoutTemplate = ({
   ...props
 }: AuthLayoutProps) => {
   const formTypeLabel = formType == "register" ? "masuk" : "daftar";
-  const formTypeLink = formType == "register" ? "login" : "register";
+  const formTypeLink = formType == "register" ? "masuk" : "daftar";
     
       const lottieOptions = {
         loop: true,
