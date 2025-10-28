@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { Input } from "@/components/ui/fragments/shadcn-ui/input";
 import {
   Select,
@@ -59,30 +59,38 @@ export default function Leaderboard() {
         </p>
       </motion.div>
 
-      {/* === FILTERS === */}
-      <div className="flex flex-col sm:flex-row items-center gap-3 mb-10 sm:mb-14 w-full max-w-3xl">
-        <Input
-          placeholder="Cari inovasi..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full sm:flex-1 shadow-sm focus:ring-2 focus:ring-blue-300 transition text-sm md:text-base"
-        />
-        <Select value={category} onValueChange={setCategory}>
-          <SelectTrigger className="w-full sm:w-[200px] shadow-sm">
-            <SelectValue placeholder="Kategori" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="all">🌐 Semua Kategori</SelectItem>
-            {[...new Set(validData.map((i) => i.category))].map((cat) => (
-              <SelectItem key={cat} value={cat}>
-                {cat}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
+      {/* === FILTERS CARD === */}
+      <div className="w-full max-w-3xl mb-10 sm:mb-14">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className="bg-white/70 backdrop-blur-md rounded-2xl shadow-md p-4 sm:p-6 border border-gray-200">
+          <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
+            <Input
+              placeholder="Cari inovasi..."
+              value={search}
+              onChange={(e) => setSearch(e.target.value)}
+              className="w-full sm:flex-1 shadow-sm focus:ring-2 focus:ring-blue-300 transition text-sm md:text-base"
+            />
+            <Select value={category} onValueChange={setCategory}>
+              <SelectTrigger className="w-full sm:w-[200px] shadow-sm">
+                <SelectValue placeholder="Kategori" />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">🌐 Semua Kategori</SelectItem>
+                {[...new Set(validData.map((i) => i.category))].map((cat) => (
+                  <SelectItem key={cat} value={cat}>
+                    {cat}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+        </motion.div>
       </div>
 
-      {/* === TOP 3 (tetap seperti semula) === */}
+      {/* === TOP 3 === */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -138,66 +146,81 @@ export default function Leaderboard() {
         })}
       </motion.div>
 
-      {/* === TABLE (diperlebar & diberi padding aman di mobile) === */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="w-full max-w-[95%] sm:max-w-3xl bg-white/80 backdrop-blur-lg rounded-2xl 
-                   shadow-lg overflow-hidden border border-gray-200 px-2 sm:px-4">
-        <div className="overflow-x-auto">
-          <table className="w-full text-left text-xs sm:text-sm md:text-base">
-            <thead className="bg-gray-50 border-b">
-              <tr>
-                <th className="py-3 px-3 sm:px-4 w-[70px] sm:w-[90px]">
-                  Ranking
-                </th>
-                <th className="py-3 px-3 sm:px-4">Inovasi</th>
-                <th className="py-3 px-3 sm:px-4 text-right w-[90px] sm:w-[120px]">
-                  Suara
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {filtered.map((item, index) => (
-                <motion.tr
-                  key={item.name}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: index * 0.03 }}
-                  className="border-t hover:bg-blue-50/40 transition cursor-pointer"
-                  onClick={() => setSelected(item)}>
-                  <td className="py-3 px-3 font-medium text-gray-700">
-                    #{index + 4}
-                  </td>
-                  <td className="py-3 px-3 flex items-center gap-3 min-w-[150px] sm:min-w-[220px]">
-                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden shadow-sm shrink-0">
-                      <MediaItem
-                        webViewLink={item.imageUrl}
-                        className="w-full h-full object-cover"
-                      />
-                    </div>
-                    <div>
-                      <span className="text-gray-800 font-medium block truncate max-w-[100px] sm:max-w-none">
-                        {item.name}
-                      </span>
-                      <Badge
-                        variant="secondary"
-                        className="mt-1 text-[10px] sm:text-xs bg-gray-100">
-                        {item.category}
-                      </Badge>
-                    </div>
-                  </td>
-                  <td className="py-3 px-3 text-right text-gray-700 font-semibold whitespace-nowrap">
-                    {item.votes.toLocaleString()}
-                  </td>
-                </motion.tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-      </motion.div>
+      {/* === TABLE === */}
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={category + search}
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -20 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-[95%] sm:max-w-3xl bg-white/80 backdrop-blur-lg rounded-2xl 
+                     shadow-lg overflow-hidden border border-gray-200 px-2 sm:px-4">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs sm:text-sm md:text-base">
+              <thead className="bg-gray-50 border-b">
+                <tr>
+                  <th className="py-3 px-3 sm:px-4 w-[70px] sm:w-[90px]">
+                    Ranking
+                  </th>
+                  <th className="py-3 px-3 sm:px-4">Inovasi</th>
+                  <th className="py-3 px-3 sm:px-4 text-right w-[100px] sm:w-[120px]">
+                    Suara
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {filtered.map((item, index) => (
+                  <motion.tr
+                    key={item.name}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3, delay: index * 0.02 }}
+                    className="border-t hover:bg-blue-50/40 transition cursor-pointer"
+                    onClick={() => setSelected(item)}>
+                    <td className="py-3 px-3 font-medium text-gray-700 whitespace-nowrap">
+                      #{index + 4}
+                    </td>
+                    <td className="py-3 px-3 flex items-center gap-3 min-w-[150px] sm:min-w-[220px]">
+                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden shadow-sm shrink-0">
+                        <MediaItem
+                          webViewLink={item.imageUrl}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <span className="text-gray-800 font-medium block truncate max-w-[100px] sm:max-w-none">
+                          {item.name}
+                        </span>
+                        <Badge
+                          variant="secondary"
+                          className="mt-1 text-[10px] sm:text-xs bg-gray-100">
+                          {item.category}
+                        </Badge>
+                      </div>
+                    </td>
+                    <td className="py-3 px-3 text-right text-gray-700 font-semibold whitespace-nowrap">
+                      <div className="flex flex-col items-end">
+                        <span>{item.votes.toLocaleString()}</span>
+                        <div className="w-full sm:w-[80px] bg-gray-200 h-1.5 rounded-full mt-1 overflow-hidden">
+                          <div
+                            className="h-full bg-blue-400 rounded-full"
+                            style={{
+                              width: `${Math.min(
+                                (item.votes / sorted[0].votes) * 100,
+                                100
+                              )}%`,
+                            }}></div>
+                        </div>
+                      </div>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </motion.div>
+      </AnimatePresence>
 
       {/* === MODAL === */}
       <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
