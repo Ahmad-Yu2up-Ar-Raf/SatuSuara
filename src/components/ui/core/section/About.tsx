@@ -4,6 +4,7 @@ import {
   type FloatingIconsHeroProps,
 } from '@/components/ui/fragments/custom-ui/animate-ui/floating-icon'; // Adjust path as needed
 import  { Gojek , RuangGuru, Traveloka } from '../../fragments/svg/icon-brand-logo';
+import HeroScrollVideo from '../../fragments/custom-ui/animate-ui/scroll-animated-video';
 
 // --- Original Stylized Company Logo SVG Components ---
 
@@ -86,13 +87,27 @@ const demoIcons: FloatingIconsHeroProps['icons'] = [
 
 export default function About() {
   return (
-    <FloatingIconsHero
-      title="A World of Innovation"
-      subtitle="Dunia Inovasi
-Jelajahi beragam kemungkinan dengan platform kami, yang menghubungkan Anda dengan perangkat dan teknologi yang membentuk masa depan."
-      ctaText="Join the Revolution"
-      ctaHref="#"
-      icons={demoIcons}
-    />
+    <>
+      <section className=' min-h-[40lvh] md:min-h-lvh content-center w-full'>
+
+        <FloatingIconsHero
+          title="A World of Innovation"
+          subtitle="Dunia Inovasi
+    Jelajahi beragam kemungkinan dengan platform kami, yang menghubungkan Anda dengan perangkat dan teknologi yang membentuk masa depan."
+          ctaText="Join the Revolution"
+          ctaHref="#"
+          icons={demoIcons}
+        />
+      </section>
+       <HeroScrollVideo
+        title="Scroll Animated Video"
+        subtitle="Subtitle"
+        meta="Q3 • 2025"
+        media="https://www.pexels.com/id-id/download/video/6153453/"
+      
+        // Force dark theme with custom palette
+       
+      />
+    </>
   );
 }

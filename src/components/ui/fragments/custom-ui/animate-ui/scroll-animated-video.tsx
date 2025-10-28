@@ -9,56 +9,42 @@ type Source = { mp4?: string; webm?: string; ogg?: string };
 type VideoLike = string | Source;
 
 type Eases = {
-  container?: string; // e.g. "expo.out"
-  overlay?: string;   // e.g. "expo.out"
-  text?: string;      // e.g. "power3.inOut"
+  container?: string;
+  overlay?: string;
+  text?: string;
 };
 
 export type HeroScrollVideoProps = {
-  // Top headline area
   title?: ReactNode;
   subtitle?: ReactNode;
-  meta?: ReactNode;          // e.g., date or small label
+  meta?: ReactNode;
   credits?: ReactNode;
-
-  // Media
-  media?: VideoLike;         // string URL or {mp4, webm, ogg}
+  media?: VideoLike;
   poster?: string;
   mediaType?: "video" | "image";
   muted?: boolean;
   loop?: boolean;
   playsInline?: boolean;
   autoPlay?: boolean;
-
-  // Overlay content (shown over sticky media on scroll)
   overlay?: {
     caption?: ReactNode;
     heading?: ReactNode;
     paragraphs?: ReactNode[];
-    extra?: ReactNode;       // slot for buttons, links, etc.
+    extra?: ReactNode;
   };
-
-  // Layout and animation tuning
-  initialBoxSize?: number;   // px, starting square size (default 360)
+  initialBoxSize?: number;
   targetSize?: { widthVw: number; heightVh: number; borderRadius?: number } | "fullscreen";
-  scrollHeightVh?: number;   // total scroll height for sticky section (default 280)
-  showHeroExitAnimation?: boolean; // headline roll-away (default true)
-  sticky?: boolean;          // keep media sticky (default true)
-  overlayBlur?: number;      // px blur for overlay content at start (default 10)
-  overlayRevealDelay?: number; // seconds offset inside main timeline (default 0.35)
+  scrollHeightVh?: number;
+  showHeroExitAnimation?: boolean;
+  sticky?: boolean;
+  overlayBlur?: number;
+  overlayRevealDelay?: number;
   eases?: Eases;
-
-  // Smooth scrolling
-  smoothScroll?: boolean;    // initialize Lenis (default true)
+  smoothScroll?: boolean;
   lenisOptions?: Record<string, unknown>;
-
   className?: string;
   style?: CSSProperties;
 };
-
-/* =========================
-   Defaults
-========================= */
 
 const DEFAULTS = {
   initialBoxSize: 360,
@@ -73,26 +59,18 @@ const DEFAULTS = {
   } as Eases,
 };
 
-/* =========================
-   Helpers
-========================= */
-
 function isSourceObject(m?: VideoLike): m is Source {
   return !!m && typeof m !== "string";
 }
 
-/* =========================
-   Component
-========================= */
-
 export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
-  title = "Future Forms",
-  subtitle = "Design in Motion",
+  title = "SatuSuara",
+  subtitle = "Platform Inovasi Indonesia",
   meta = "2025",
   credits = (
     <>
-      <p>Crafted by</p>
-      <p>Scott Clayton</p>
+      <p>Wujudkan Inovasi</p>
+      <p>Bersama Komunitas</p>
     </>
   ),
 
@@ -105,11 +83,11 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
   autoPlay = false,
 
   overlay = {
-    caption: "PROJECT • 07",
-    heading: "Clarity in Motion",
+    caption: "KOLABORASI • INOVASI",
+    heading: "Dari Ide Menjadi Aksi",
     paragraphs: [
-      "Scroll to expand the frame and reveal the story.",
-      "Built with GSAP ScrollTrigger and optional Lenis smooth scroll.",
+      "Bagikan inovasimu, dapatkan dukungan dari komunitas, dan wujudkan perubahan nyata untuk Indonesia. Voting dari sesama inovator membuat ide terbaikmu semakin terlihat dan berdampak",
+
     ],
     extra: null,
   },
@@ -138,7 +116,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
 
   const isClient = typeof window !== "undefined";
 
-  // Inline CSS variables for tuning (non-theme)
   const cssVars: CSSProperties = useMemo(
     () => ({
       ["--initial-size" as any]: `${initialBoxSize}px`,
@@ -147,7 +124,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
     [initialBoxSize, overlayBlur]
   );
 
-  // Scroll + GSAP wiring
   useEffect(() => {
     if (!isClient) return;
 
@@ -156,13 +132,10 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
     let CustomEase: any;
     let LenisCtor: any;
     let lenis: any;
-
     let heroTl: any;
     let mainTl: any;
     let overlayDarkenEl: HTMLDivElement | null = null;
-
     let rafCb: ((t: number) => void) | null = null;
-
     let cancelled = false;
 
     (async () => {
@@ -219,7 +192,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
       const overlayContent = overlayContentRef.current!;
       const headline = headlineRef.current!;
 
-      // Darkening overlay inside the media box
       if (container) {
         overlayDarkenEl = document.createElement("div");
         overlayDarkenEl.setAttribute("data-auto-darken", "true");
@@ -231,7 +203,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
         container.appendChild(overlayDarkenEl);
       }
 
-      // Headline roll-away
       if (showHeroExitAnimation && headline) {
         heroTl = gsap.timeline({
           scrollTrigger: {
@@ -261,7 +232,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
           });
       }
 
-      // Main sticky expansion timeline
       const triggerEl = rootRef.current?.querySelector(
         "[data-sticky-scroll]"
       ) as HTMLElement;
@@ -277,7 +247,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
         },
       });
 
-      // Target size
       const target = (() => {
         if (targetSize === "fullscreen") {
           return { width: "92vw", height: "92vh", borderRadius: 0 };
@@ -289,7 +258,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
         };
       })();
 
-      // Initial states
       gsap.set(container, {
         width: initialBoxSize,
         height: initialBoxSize,
@@ -304,7 +272,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
       });
       gsap.set([overlayContent, overlayCaption], { y: 30 });
 
-      // Animate the container to expand
       mainTl
         .to(
           container,
@@ -316,7 +283,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
           },
           0
         )
-        // Darken as it expands
         .to(
           overlayDarkenEl,
           {
@@ -325,7 +291,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
           },
           0
         )
-        // Reveal overlay panel
         .to(
           overlayEl,
           {
@@ -335,7 +300,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
           },
           overlayRevealDelay
         )
-        // Content slides in and unblurs
         .to(overlayCaption, { y: 0, ease: overlayEase }, overlayRevealDelay + 0.05)
         .to(
           overlayContent,
@@ -348,7 +312,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
           overlayRevealDelay + 0.05
         );
 
-      // Try to play video
       const videoEl = container.querySelector("video") as HTMLVideoElement | null;
       if (videoEl) {
         const tryPlay = () => videoEl.play().catch(() => {});
@@ -406,7 +369,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
     JSON.stringify(lenisOptions),
   ]);
 
-  // Media rendering
   const renderMedia = () => {
     if (mediaType === "image") {
       const src = typeof media === "string" ? media : media?.mp4 || "";
@@ -414,11 +376,10 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
         <img
           src={src}
           alt=""
-          style={{ width: "100%", height: "100%", objectFit: "cover" }}
+          className="w-full h-full object-cover"
         />
       );
     }
-    // video
     const sources: JSX.Element[] = [];
     if (typeof media === "string") {
       sources.push(<source key="mp4" src={media} type="video/mp4" />);
@@ -435,7 +396,7 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
         loop={loop}
         playsInline={playsInline}
         autoPlay={autoPlay || muted}
-        style={{ width: "100%", height: "100%", objectFit: "cover" }}
+        className="w-full h-full object-cover"
       >
         {sources}
       </video>
@@ -445,19 +406,9 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
   return (
     <div
       ref={rootRef}
-      className={["", className].filter(Boolean).join(" ")}
+      className={`${className || ""}`}
       style={{ ...cssVars, ...style }}
     >
-      {/* Headline/hero area */}
-      <div className="  min-h-lvh content-center items-center " ref={headlineRef}>
-        <div className="hsv-headline">
-          <h1 className="hsv-title">{title}</h1>
-          {subtitle ? <h2 className="hsv-subtitle">{subtitle}</h2> : null}
-          {meta ? <div className="hsv-meta">{meta}</div> : null}
-          {credits ? <div className="hsv-credits">{credits}</div> : null}
-        </div>
-      </div>
-
       {/* Sticky scroll section */}
       <div
         className="hsv-scroll"
@@ -468,18 +419,45 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
           <div className="hsv-media" ref={containerRef}>
             {renderMedia()}
 
-            {/* overlay that reveals */}
-            <div className="hsv-overlay" ref={overlayRef}>
-              {overlay?.caption ? (
-                <div className="hsv-caption" ref={overlayCaptionRef}>
+            {/* Overlay dengan Tailwind */}
+            <div 
+              className="absolute inset-0 flex flex-col items-center justify-center text-center p-4 md:p-10 z-10"
+              ref={overlayRef}
+              style={{
+                clipPath: "inset(100% 0 0 0)",
+                backdropFilter: `blur(${overlayBlur}px)`,
+                background: "rgba(0, 0, 0, 0.3)"
+              }}
+            >
+              {overlay?.caption && (
+                <div 
+                  ref={overlayCaptionRef}
+                  className="font-mono text-xs md:text-sm uppercase tracking-[0.14em] text-primary mb-4"
+                >
                   {overlay.caption}
                 </div>
-              ) : null}
-              <div className="hsv-overlay-content" ref={overlayContentRef}>
-                {overlay?.heading ? <h3>{overlay.heading}</h3> : null}
+              )}
+              
+              <div 
+                ref={overlayContentRef}
+                className="max-w-[68ch] space-y-4"
+              >
+                {overlay?.heading && (
+                  <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white mb-4">
+                    {overlay.heading}
+                    <div className="w-18 h-1 bg-gradient-to-r from-primary to-primary/60 rounded-full mx-auto mt-3" />
+                  </h3>
+                )}
+                
                 {overlay?.paragraphs?.map((p, i) => (
-                  <p key={i}>{p}</p>
+                  <p 
+                    key={i} 
+                    className="text-xs md:text-base lg:text-lg leading-relaxed text-gray-100/75"
+                  >
+                    {p}
+                  </p>
                 ))}
+                
                 {overlay?.extra}
               </div>
             </div>
@@ -487,82 +465,8 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
         </div>
       </div>
 
-      {/* Styles (scoped) */}
+      {/* Minimal scoped styles */}
       <style>{`
-   
-
-        .hsv-container {
-          height: 100vh;
-          display: grid;
-          place-items: center;
-          padding: clamp(16px, 3vw, 40px);
-          perspective: 900px;
-        }
-
-        .hsv-headline { 
-          text-align: center;
-          transform-style: preserve-3d;
-          max-width: min(100%, 1100px);
-        }
-        .hsv-headline > * {
-          transform-style: preserve-3d;
-          backface-visibility: hidden;
-          transform-origin: center top;
-        }
-
-        .hsv-title {
-          margin: 0 0 .6rem 0;
-          font-size: clamp(40px, 8vw, 96px);
-          line-height: 0.98;
-          font-weight: 900;
-          letter-spacing: -0.02em;
-          text-wrap: balance;
-          background: linear-gradient(90deg, var(--text) 0%, var(--text) 50%, var(--accent) 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-          filter: drop-shadow(0 2px 0 rgba(0,0,0,0.05));
-        }
-        .hsv-subtitle {
-          margin: 0 0 1.25rem 0;
-          font-size: clamp(18px, 3.5vw, 28px);
-          font-weight: 600;
-          letter-spacing: 0.06em;
-          text-transform: uppercase;
-          color: var(--muted);
-        }
-        .hsv-meta {
-          display: inline-flex;
-          align-items: center;
-          gap: .5rem;
-          padding: .4rem .7rem;
-          border-radius: 999px;
-          font-size: .9rem;
-          font-weight: 600;
-          letter-spacing: .02em;
-          background: var(--muted-bg);
-          border: 1px solid var(--muted-border);
-          box-shadow: var(--shadow);
-          color: var(--text);
-          margin: 1rem 0 0 0;
-        }
-        .hsv-meta::before {
-          content: "";
-          width: 8px;
-          height: 8px;
-          border-radius: 999px;
-          background: linear-gradient(135deg, var(--accent), var(--accent-2));
-          display: inline-block;
-        }
-        .hsv-credits {
-          margin-top: 1.1rem;
-          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-          font-size: 0.85rem;
-          text-transform: uppercase;
-          letter-spacing: 0.12em;
-          color: var(--muted);
-        }
-
         .hsv-scroll { position: relative; }
         .hsv-sticky.is-sticky {
           position: sticky;
@@ -571,7 +475,6 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
           display: grid;
           place-items: center;
         }
-
         .hsv-media {
           position: relative;
           width: var(--initial-size);
@@ -582,76 +485,7 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
           display: grid;
           place-items: center;
           transition: border-radius 0.3s ease;
-          box-shadow: var(--shadow);
-        }
-
-        .hsv-overlay {
-          position: absolute;
-          inset: 0;
-          background: var(--overlay-bg);
-          color: var(--overlay-text);
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-          padding: clamp(16px, 4vw, 40px);
-          clip-path: inset(100% 0 0 0);
-          backdrop-filter: blur(var(--overlay-blur));
-          z-index: 2;
-        }
-
-        .hsv-caption {
-          font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono","Courier New", monospace;
-          font-size: 0.85rem;
-          text-transform: uppercase;
-          letter-spacing: 0.14em;
-          position: absolute;
-          top: clamp(8px, 3vw, 24px);
-          left: 0;
-          width: 100%;
-          text-align: center;
-          opacity: 0.95;
-        }
-
-        .hsv-overlay-content {
-          margin-top: 1.2rem;
-          max-width: 68ch;
-          display: grid;
-          gap: 0.9rem;
-        }
-        .hsv-overlay-content h3 {
-          font-size: clamp(26px, 5vw, 50px);
-          line-height: 1.02;
-          margin: 0;
-          font-weight: 900;
-          letter-spacing: -0.01em;
-          background: linear-gradient(90deg, #fff 0%, #fff 40%, var(--accent-2) 100%);
-          -webkit-background-clip: text;
-          background-clip: text;
-          color: transparent;
-          text-wrap: balance;
-          position: relative;
-        }
-        .hsv-overlay-content h3::after {
-          content: "";
-          display: block;
-          width: 72px;
-          height: 3px;
-          border-radius: 999px;
-          margin: 10px auto 0 auto;
-          background: linear-gradient(90deg, var(--accent), var(--accent-2));
-          opacity: 0.9;
-        }
-        .hsv-overlay-content p {
-          font-size: clamp(15px, 2.1vw, 19px);
-          line-height: 1.75;
-          margin: 0;
-          color: #f3f4f6; /* better contrast over video */
-          opacity: 0.95;
-        }
-
-        @media (max-width: 900px) {
-          .hsv-overlay-content { max-width: 40ch; }
+          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
         }
       `}</style>
     </div>

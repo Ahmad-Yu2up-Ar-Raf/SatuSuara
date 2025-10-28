@@ -92,7 +92,7 @@ function Hero() {
   return (
     <section 
  
-    className="w-full m-auto    lg:pt-20 min-h-lvh overflow-visible flex flex-col items-center justify-center relative">
+    className="w-full m-auto   overflow-hidden md:mb-25  lg:pt-20 min-h-lvh md:overflow-visible flex flex-col items-center justify-center relative">
       <Floating sensitivity={-0.5} className="h-full">
         {/* <FloatingElement
           depth={0.5}
@@ -206,31 +206,29 @@ delay={delay * 6}
       </motion.span>
 
       <TextRotate
-        texts={[
-         "terwujudkan",
-  "dikonversi",
-  "diterapkan",
-  "dikomersialkan",
-  "dipromosikan",
-  "didukung",
-  "digunakan",
-          "inspiratif",
-  "relevan",
-  "skalabel",
-  "solutif",
-  "teruji",
-  "dapat-diandalkan",
-  "menginspirasi",
-        "nyata",
-  "bermanfaat",
-  "berdampak",
-  "dikenal",
-  "terwujud",
-  "terukur",
-  "siap-pakai",
-  "berkelanjutan"
+       texts={[
+          "terwujud",
+          "nyata",
+          "berdampak",
+          "terdengar",
+          "didukung",
+          "dikenal",
+          "berkembang",
+          "diperhitungkan",
+          "diapresiasi",
+          "tersebar",
+          "menginspirasi",
+          "berpengaruh",
+          "dimulai",
+          "terlaksana",
+          "bermakna",
+          "tervalidasi",
+          "dipercaya",
+          "meluas",
+          "berkelanjutan",
+          "transformatif"
         ]}
-        mainClassName="overflow-hidden pr-3 text-primary py-0 pb-2 md:pb-4 rounded-xl"
+        mainClassName="overflow-hidden bg-primary pr-3 text-primary-foreground py-0 pb-2 px-4 rounded-xl"
         staggerDuration={0.03}
         staggerFrom="last"
         rotationInterval={2800}
@@ -246,7 +244,7 @@ delay={delay * 6}
 
 
 delay={delay * 7}
-  className=" text-base md:text-lg lg:text-xl  text-balance text-muted-foreground   text-center "
+  className=" text-base md:text-lg lg:text-xl   text-balance text-muted-foreground   text-center "
 
 >
 <p>
@@ -263,7 +261,7 @@ delay={delay * 8}
         direction="up"
          className="flex w-full flex-col md:flex-row justify-center md:space-x-4  md:space-y-0 space-y-2.5 items-center ">
           <Link
-            className="  hover:scale-110 transition-all duration-300 ease-out text-sm md:text-lg w-full  justify-center flex items-center  gap-5   font-semibold tracking-tight text-background bg-foreground px-4 py-3.5 sm:px-5  md:px-6 md:py-4 lg:px-8 rounded-full z-20 shadow-2xl "
+            className=" cursor-target  hover:scale-110 transition-all duration-300 ease-out text-sm md:text-lg w-full  justify-center flex items-center  gap-5   font-semibold tracking-tight text-background bg-foreground px-4 py-3.5 sm:px-5  md:px-6 md:py-4 lg:px-8 rounded-full z-20 shadow-2xl "
             href="/jelajahi-inovasi"
           >
       
@@ -274,7 +272,7 @@ delay={delay * 8}
               href="/login" 
             className={cn(
     
-                "md:text-lg  hover:scale-110 transition-all duration-300 ease-out text-sm  justify-center flex items-center py-3.5   gap-5 w-full font-semibold tracking-tight text-white bg-primary px-4  sm:px-5  md:px-6 md:py-4 lg:px-8  rounded-full z-20 shadow-2xl font-calendas")}
+                "md:text-lg  cursor-target   hover:scale-110 transition-all duration-300 ease-out text-sm  justify-center flex items-center py-3.5   gap-5 w-full font-semibold tracking-tight text-white bg-primary px-4  sm:px-5  md:px-6 md:py-4 lg:px-8  rounded-full z-20 shadow-2xl font-calendas")}
             
           >
            
@@ -283,6 +281,7 @@ delay={delay * 8}
           </Link>
         </BlurFade>
       </div>
+     
     </section>
   )
 }

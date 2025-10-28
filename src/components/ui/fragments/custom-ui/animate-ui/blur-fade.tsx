@@ -27,7 +27,7 @@ interface BlurFadeProps extends MotionProps {
   inViewMargin?: MarginType;
   blur?: string;
   show?: boolean;
-  initial?: "hidden" | ""
+  initial?: "hidden" | "";
 }
 
 export function BlurFade({
@@ -37,7 +37,7 @@ export function BlurFade({
   duration = 0.4,
   delay = 0,
   offset = 6,
-  initial ="hidden",
+  initial = "hidden",
   direction = "down",
   inView = false,
   inViewMargin = "-50px",
@@ -47,9 +47,6 @@ export function BlurFade({
 }: BlurFadeProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
-
-  // Visible hanya jika parent ingin show **dan** (tidak memaksa inView OR sudah inView)
-  const isVisible = show && (!inView || inViewResult);
 
   const defaultVariants: Variants = {
     hidden: {
@@ -67,26 +64,27 @@ export function BlurFade({
 
   const combinedVariants = variant || defaultVariants;
 
+  // FIX: Kalau inView = true, tunggu sampai element masuk viewport
+  // Kalau inView = false, langsung animate
+  const shouldAnimate = show && (!inView || inViewResult);
+
+  // CRITICAL FIX: Render element selalu, tapi control animationnya
+  // Jangan pakai conditional render di AnimatePresence
   return (
-    <AnimatePresence mode="wait">
-      {isVisible && (
-        <motion.div
-          ref={ref}
-          initial={initial}
-          animate="visible"
-          exit="hidden"
-          variants={combinedVariants}
-          transition={{
-            delay: 0.04 + delay,
-            duration,
-            ease: "easeOut",
-          }}
-          className={className}
-          {...props}
-        >
-          {children}
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <motion.div
+      ref={ref}
+      initial={initial}
+      animate={shouldAnimate ? "visible" : "hidden"}
+      variants={combinedVariants}
+      transition={{
+        delay: 0.04 + delay,
+        duration,
+        ease: "easeOut" as const,
+      }}
+      className={className}
+      {...props}
+    >
+      {children}
+    </motion.div>
   );
 }

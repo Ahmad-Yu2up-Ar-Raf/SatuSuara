@@ -1,7 +1,11 @@
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MediaItem from '../media/MediaItem';
 import { InovasiRingkas } from '@/schemas/inovasi.schema';
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 interface BounceCardsProps {
   className?: string;
@@ -32,17 +36,36 @@ export default function BounceCards({
   ],
   enableHover = false
 }: BounceCardsProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    gsap.fromTo(
-      '.card',
-      { scale: 0 },
-      {
-        scale: 1,
-        stagger: animationStagger,
-        ease: easeType,
-        delay: animationDelay
-      }
-    );
+    if (!containerRef.current) return;
+
+    // Setup ScrollTrigger animation
+    const ctx = gsap.context(() => {
+      gsap.fromTo(
+        '.card',
+        { scale: 0 },
+        {
+          scale: 1,
+          stagger: animationStagger,
+          ease: easeType,
+          delay: animationDelay,
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: 'top 80%', // Trigger ketika top container mencapai 80% dari viewport
+            once: true, // Animasi cuma jalan sekali
+            // markers: true // Uncomment untuk debug
+          }
+        }
+      );
+    }, containerRef);
+
+    // Cleanup function
+    return () => {
+      ctx.revert(); // Revert semua animasi di context
+      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+    };
   }, [animationDelay, animationStagger, easeType]);
 
   const getNoRotationTransform = (transformStr: string): string => {
@@ -122,6 +145,7 @@ export default function BounceCards({
 
   return (
     <div
+      ref={containerRef}
       className={`relative flex items-center justify-center ${className}`}
       style={{
         width: containerWidth,
@@ -131,7 +155,7 @@ export default function BounceCards({
       {images.map((src, idx) => (
         <div
           key={idx}
-          className={`card card-${idx} h-[15lvh] md:h-[18lvh] absolute w-[25dvw] sm:w-[9em] aspect-square border-4 border-white rounded-[30px] overflow-hidden  `}
+          className={`card card-${idx} h-[15lvh] md:h-[20lvh] absolute w-[25dvw] sm:w-[9em] aspect-square border-4 border-white rounded-[30px] overflow-hidden  `}
           style={{
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             transform: transformStyles[idx] || 'none'

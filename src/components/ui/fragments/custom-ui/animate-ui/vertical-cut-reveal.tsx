@@ -47,6 +47,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
         type: "spring",
         stiffness: 190,
         damping: 22,
+        delay: 50
       },
       splitBy = "words",
       staggerDuration = 0.2,
@@ -147,7 +148,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
         y: 0,
         transition: {
           ...transition,
-          delay: ((transition?.delay as number) || 0) + getStaggerDelay(i),
+          delay:  0.3 + getStaggerDelay(i),
         },
       }),
     };
@@ -156,7 +157,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
       <span
         className={cn(
           containerClassName,
-          "flex flex-wrap whitespace-pre-wrap",
+          "flex flex-wrap  whitespace-pre-wrap",
           splitBy === "lines" && "flex-col",
         )}
         onClick={onClick}
@@ -180,7 +181,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
             <span
               key={wordIndex}
               aria-hidden="true"
-              className={cn("inline-flex overflow-hidden", wordLevelClassName)}
+              className={cn("inline-flex  overflow-hidden", wordLevelClassName)}
             >
               {wordObj.characters.map((char, charIndex) => (
                 <span
@@ -193,7 +194,7 @@ const VerticalCutReveal = forwardRef<VerticalCutRevealRef, TextProps>(
                   <motion.span
                     custom={previousCharsCount + charIndex}
                     initial="hidden"
-                    animate={isAnimating ? "visible" : "hidden"}
+                    whileInView={isAnimating ? "visible" : "hidden"}
                     variants={variants}
                     onAnimationComplete={
                       wordIndex === elements.length - 1 &&

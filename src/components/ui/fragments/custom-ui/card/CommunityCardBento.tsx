@@ -1,6 +1,6 @@
 import React from 'react'
 import { BentoCard } from './BentoCard'
-import animationData from "@/config/assets/animations/Team ecommerce.json";
+import animationData from "@/config/assets/animations/Global Network.json";
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useLottie } from 'lottie-react';
 
@@ -23,7 +23,7 @@ function CommunityCard({  className} : { className?: string}) {
    borderBottom className={className}>
  
       
-     <div className="  m-auto  w-full h-50  ">
+     <div className="  m-auto  w-90 h-full  ">
               {  View}
               </div> 
 

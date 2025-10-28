@@ -63,7 +63,7 @@ const router = useRouter()
     if (!isClient || !hasHydrated) return;
 
     if (!useName || !userEmail) {
-      router.push("/register");
+      router.push("/daftar");
     }
   }, [isClient, hasHydrated, useName, userEmail, router]);
 
@@ -73,11 +73,11 @@ const router = useRouter()
       setLoading(true)
       startTransition(async () => { 
         setData(input);
-          router.push("/register/location" );
+          router.push("/daftar/lokasi" );
       })
     } catch (error) {
       console.error("Form submission error", error);
-      toast.error("Failed to submit the form. Please try again." , {id: "register"});
+      toast.error("Failed to submit the form. Please try again." , {id: "daftar"});
     }
   }
   const [isTyping, setIsTyping] = useState(false);
@@ -93,7 +93,7 @@ const router = useRouter()
   }
 
   return (
-    <AuthLayoutTemplate isTyping={isTyping} loading={loading} title='Buat kata sandi Anda' description='Buat kata sandi yang kuat - untuk melindungi akun Anda' className=' lg:max-w-none h-lvh '>
+    <AuthLayoutTemplate  loading={loading} title='Buat kata sandi Anda' description='Buat kata sandi yang kuat - untuk melindungi akun Anda' className=' lg:max-w-none h-lvh '>
       <SignUpFormSecondStep setIsTyping={setIsTyping} form={form} isPending={isPending || loading} onSubmit={onSubmit}>
           <div className=" w-full space-y-5">
 
@@ -111,7 +111,7 @@ const router = useRouter()
                        
                 <Link
                aria-disabled={(isPending || loading)}  tabIndex={!(isPending || loading) ? -1 : undefined} 
-                                       href={'/register/'}
+                                       href={'/daftar/'}
                                            className={cn(buttonVariants({ variant: "link"} ,
                                           
                                            ), 'w-full  transition-colors' ,      (isPending || loading) && 'pointer-events-none cursor-none text-foreground/50' ,)}

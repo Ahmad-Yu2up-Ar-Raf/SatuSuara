@@ -62,7 +62,7 @@ const router = useRouter()
     if (!isClient || !hasHydrated) return;
 
     if (!name || !email || !password || !password_confirmation || !country || !province || !phone) {
-      router.push("/register");
+      router.push("/masuk");
     }
   }, [isClient, hasHydrated, name, email, password, password_confirmation, router, province, country, phone ]);
 
@@ -94,7 +94,7 @@ const router = useRouter()
              toast.loading("Loading...", { id: "register"});
  
 
-  router.push("/register/dashboard" );
+  router.push("/dashboard" );
   
   
     } catch (error) {
@@ -140,7 +140,7 @@ const router = useRouter()
                 <Link
                 
                       aria-disabled={(isPending || loading)}  tabIndex={!(isPending || loading) ? -1 : undefined} 
-                            href={'/register/location'}
+                            href={'/masuk/lokasi'}
                              className={cn(buttonVariants({ variant: "link"} ,
                             
                              ), 'w-full  transition-colors' ,      (isPending || loading) && 'pointer-events-none cursor-none text-foreground/50' ,)}

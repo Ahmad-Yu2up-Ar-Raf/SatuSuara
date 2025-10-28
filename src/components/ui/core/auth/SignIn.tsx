@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 
 import { Loader } from 'lucide-react';
 import AuthLayoutTemplate from '../layout/auth/auth-simple-layout';
+import { useRouter } from 'next/navigation';
 
 
 
@@ -36,7 +37,7 @@ function SignIn() {
   const [errors, setErrors] = useState<string[]>([])
   const [status, setStatus] = useState<string | null>(null)
 
-
+const router = useRouter()
   async function onSubmit(input: LoginSchema) {
     try {
       setLoading(true)
@@ -53,6 +54,8 @@ function SignIn() {
       // } else {
       //   toast.error(result.message || "Login failed", { id: "login" })
       // }
+      
+  router.push("/dashboard" );
     } catch (error) {
       console.error("Form submission error", error)
       toast.error("Network error. Please check your connection.", { id: "login" })

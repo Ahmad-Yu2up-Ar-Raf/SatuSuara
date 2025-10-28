@@ -70,7 +70,7 @@ function ThirdStep() {
     if (!isClient || !hasHydrated) return;
 
     if (!useName || !userEmail || !password || !password_confirmation) {
-      router.push("/register/password");
+      router.push("/daftar/sandi");
     }
   }, [isClient, hasHydrated, useName, userEmail, router]);
 
@@ -80,11 +80,11 @@ function ThirdStep() {
       setLoading(true)
       startTransition(async () => { 
         setData(input);
-          router.push("/register/occupasion" );
+          router.push("/daftar/pekerjaan" );
       })
     } catch (error) {
       console.error("Form submission error", error);
-      toast.error("Failed to submit the form. Please try again." , {id: "register"});
+      toast.error("Failed to submit the form. Please try again." , {id: "daftar"});
     }
   }
   const [isTyping, setIsTyping] = useState(false);
@@ -100,7 +100,7 @@ function ThirdStep() {
   }
 
   return (
-    <AuthLayoutTemplate isTyping={isTyping} loading={loading} title='Asalmu dari mana?' description='Isi negara, provinsi, dan nomor telepon Anda.' className=' lg:max-w-none h-lvh '>
+    <AuthLayoutTemplate  loading={loading} title='Asalmu dari mana?' description='Isi negara, provinsi, dan nomor telepon Anda.' className=' lg:max-w-none h-lvh '>
       <SignUpFormThirdStep setIsTyping={setIsTyping} form={form} isPending={isPending || loading} onSubmit={onSubmit}>
           <div className=" w-full space-y-5">
 
@@ -118,7 +118,7 @@ function ThirdStep() {
                        
                 <Link
                  aria-disabled={(isPending || loading)}  tabIndex={!(isPending || loading) ? -1 : undefined} 
-                                                       href={'/register/password'}
+                                                       href={'/daftar/sandi'}
                                                            className={cn(buttonVariants({ variant: "link"} ,
                                                           
                                                            ), 'w-full  transition-colors' ,      (isPending || loading) && 'pointer-events-none cursor-none text-foreground/50' ,)}

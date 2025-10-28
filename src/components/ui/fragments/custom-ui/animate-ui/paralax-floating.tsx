@@ -126,7 +126,7 @@ export const FloatingElement = ({
   return (
     <div
       ref={elementRef}
-      className={cn("absolute will-change-transform", className)}
+      className={cn("absolute cursor-target will-change-transform", className)}
     >
       {children}
     </div>

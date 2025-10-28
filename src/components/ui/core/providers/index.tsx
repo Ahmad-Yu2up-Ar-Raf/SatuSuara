@@ -14,7 +14,8 @@ import SmoothFollower from '../../fragments/custom-ui/cursor';
 import SignInModal from '../auth/components/SignInModal';
 import Preload from '../../fragments/custom-ui/animate-ui/Preload';
 import { useEffect, useState } from 'react';
-import MarqueeAlongSvgPathDemo from '../section/marquee-along-svg-path';
+import MarqueeAlongSvgPathDemo from '../../fragments/custom-ui/animate-ui/marquee-along';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 /**
  * ========================================
@@ -28,11 +29,12 @@ const PRELOAD_SESSION_KEY = 'website_preload_shown';
 
 // Daftar route yang tidak menampilkan header/footer normal
 const EXCLUDED_ROUTES = [
-  "/login",
-  '/register',
-  '/register/password',
-  '/register/location',
-  '/register/occupasion',
+  "/masuk",
+  '/daftar',
+  '/daftar/sandi',
+  '/daftar/lokasi',
+  '/daftar/pekerjaan',
+  '/dashboard',
   '/_error'
 ];
 
@@ -56,7 +58,7 @@ const EXCLUDED_ROUTES = [
 const Providers = ({ children }: { children: React.ReactNode }) => {
 
   const pathname = usePathname();
-
+  const isMobile = useIsMobile()
   // ========================================
   // STATE MANAGEMENT
   // ========================================
@@ -178,6 +180,10 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
           }}
           shallowRouting
         >
+          {(!isMobile && contentReady) && (
+
+          <SmoothFollower/>
+          )}
           {/* ==================== PRELOAD LAYER ==================== */}
           {/* 
             Preload ditampilkan sebagai layer terpisah
@@ -209,7 +215,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                 <div
                   key={`main-content-${pathname}`}
                   className={cn(
-                    "mx-auto z-10 content-center  items-center justify-center overflow-x-hidden relative w-full min-h-dvh h-full",
+                    "mx-auto z-10 content-center  items-center justify-center relative w-full min-h-dvh h-full",
                     !EXCLUDED_ROUTES.includes(pathname) && "flex flex-col gap-30  pb-20 "
                   )}
                 >
