@@ -10,11 +10,8 @@ import "swiper/css/navigation"
 
 
 import type { Inovasi } from "@/schemas/inovasi.schema";
-interface CarouselProps {
-  inovations: Inovasi[]
-  className?: string
-}
 
+import inovations from '@/config/data/Inovations.json'
 const transformStyles = [
   "rotate(5deg) translate(-100px)",
   "rotate(0deg) translate(-30px)",
@@ -25,19 +22,13 @@ const transformStyles = [
 import BounceCards from "./BounceCard"
 import { cn } from "@/lib/utils"
 import { BentoCard } from "./BentoCard"
-export const InovasiPopulerCard: React.FC<CarouselProps> = ({
-  inovations,
-  className,
-}) => {
- 
+export const InovasiPopulerCard = () => {
+  const inovationsData = inovations.slice(0, 4) as Inovasi[]
   return (
-    <BentoCard  SubTitle="Inovasi Terpopuler"  className={className} descripcions="Lihat inovasi yang paling banyak dibicarakan komunitas." title="Lihat Yang Lagi Naik Daun 🌿">
 
-     
-         
 <BounceCards
   className="custom-bounceCards "
-  images={inovations}
+  images={inovationsData}
   containerWidth={500}
   containerHeight={150}
   animationDelay={1}
@@ -48,7 +39,7 @@ export const InovasiPopulerCard: React.FC<CarouselProps> = ({
 />
        
         
-    </BentoCard>
+
   )
 }
 

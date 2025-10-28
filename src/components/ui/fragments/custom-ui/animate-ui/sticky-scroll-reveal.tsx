@@ -44,30 +44,7 @@ export const StickyScroll = () => {
           reverse: true,
         className : "w-70   md:w-110"
         },
-        // {
-        //   id: 4,
-        //   title: "Inkubator & Pendanaan",
-        //   description:
-        //     "Ajukan ide ke program inkubasi dan cari pendanaan; dashboard membantu tracking progres, milestone, dan alokasi dukungan.",
-        //   LottieFilesData: animationData4,
-        //   reverse: true,
-        // },
-        // {
-        //   id: 5,
-        //   title: "Pelaporan Dampak",
-        //   description:
-        //     "Laporkan hasil dan metrik dampak proyek sehingga komunitas dan pemberi dana bisa melihat bukti nyata dari dukungan mereka.",
-        //   LottieFilesData: animationData5,
-        //   reverse: false,
-        // },
-        // {
-        //   id: 6,
-        //   title: "Integrasi & API",
-        //   description:
-        //     "Integrasikan data dan proses lewat API — tarik data proyek, statistik voting, atau embed leaderboard ke situs/portal lain.",
-        //   LottieFilesData: animationData6,
-        //   reverse: true,
-        // },
+  
       ];
       
     // Create refs and animations for each section
@@ -97,7 +74,7 @@ export const StickyScroll = () => {
     <section className=" min-h-lvh content-center items-center container md:min-h-dvh ">
     
       {/* <ScrollSection /> */}
-       <div className="flex flex-col  md:gap-20  md:px-0 px-10">
+       <div className="flex flex-col  md:gap-0  md:px-0 px-10">
             {sections.map((section, index) => {
     const lottieOptions = {
         loop: true,

@@ -24,7 +24,7 @@ interface TaskFormProps<T extends FieldValues, >
   form: UseFormReturn<T>;
   onSubmit: (data: T) => void;
   isPending: boolean;
-   setIsTyping: React.Dispatch<React.SetStateAction<boolean>>
+
 }
 
 function SignInForm<T extends FieldValues, >({
@@ -53,8 +53,7 @@ function SignInForm<T extends FieldValues, >({
                  className=''
                 type="email"
                 {...field} 
-                  onBlur={() => props.setIsTyping(false)}
-                        onFocus={() => props.setIsTyping(true)} 
+                
                         
                 />
               </FormControl>
@@ -78,8 +77,7 @@ function SignInForm<T extends FieldValues, >({
               <FormControl>
                 <PasswordInput placeholder="sandi"  {...field} 
                
-                  onBlur={() => props.setIsTyping(false)}
-                        onFocus={() => props.setIsTyping(true)} 
+             
                 />
               </FormControl>
               <FormDescription className=' sr-only'>Enter your password.</FormDescription>
