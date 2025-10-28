@@ -1,10 +1,10 @@
-import { z } from 'zod';
+import { z } from "zod";
 
-const inovasiSchema = z.object({
+export const inovasiSchema = z.object({
   name: z.string(),
   summary: z.string().max(120),
   description: z.string(),
-  date: z.string(),             // tanggal peluncuran/publikasi (YYYY-MM-DD)
+  date: z.string(), // format YYYY-MM-DD
   votes: z.number(),
   creator: z.object({
     name: z.string(),

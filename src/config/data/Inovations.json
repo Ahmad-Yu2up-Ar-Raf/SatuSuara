@@ -2,10 +2,13 @@
   {
     "name": "GeNose C19",
     "summary": "Alat deteksi Covid-19 melalui hembusan napas karya UGM",
-    "description": "Alat skrining Covid-19 non-invasif berbasis sensor gas dan AI, dikembangkan oleh Universitas Gadjah Mada. Diperkenalkan tahun 2020, GeNose memperoleh izin Kemenkes dan digunakan di berbagai fasilitas publik:contentReference[oaicite:22]{index=22}.",
+    "description": "Alat skrining Covid-19 non-invasif berbasis sensor gas dan AI, dikembangkan oleh Universitas Gadjah Mada. Diperkenalkan tahun 2020, GeNose memperoleh izin Kemenkes dan digunakan di berbagai fasilitas publik.",
     "date": "2020-12-28",
     "votes": 10000,
-    "creator": { "name": "Tim Peneliti UGM", "organization": "Universitas Gadjah Mada" },
+    "creator": {
+      "name": "Tim Peneliti UGM",
+      "organization": "Universitas Gadjah Mada"
+    },
     "imageUrl": "https://kompaspedia.kompas.id/wp-content/uploads/2021/07/20210303PO_FIK_genose-alat-deteksi-covid-19-buatan-ugm_thumb.jpg",
     "category": "Kesehatan",
     "tags": ["Covid-19", "skrining", "AI", "diagnostik"]
@@ -13,10 +16,13 @@
   {
     "name": "PeduliLindungi",
     "summary": "Aplikasi pemerintah untuk tracing dan vaksin digital Covid-19",
-    "description": "Aplikasi resmi tracing, tracking, dan sertifikat vaksin Covid-19 di Indonesia. Diluncurkan April 2020 oleh Kominfo dengan operator seluler:contentReference[oaicite:23]{index=23}, membantu memantau penyebaran virus dan mengelola data vaksinasi.",
+    "description": "Aplikasi resmi tracing, tracking, dan sertifikat vaksin Covid-19 di Indonesia. Diluncurkan April 2020 oleh Kominfo dengan operator seluler, membantu memantau penyebaran virus dan mengelola data vaksinasi.",
     "date": "2020-04-18",
     "votes": 20000,
-    "creator": { "name": "Kemenkominfo", "organization": "Kementerian Komunikasi dan Informatika" },
+    "creator": {
+      "name": "Kemenkominfo",
+      "organization": "Kementerian Komunikasi dan Informatika"
+    },
     "imageUrl": "https://cdn1-production-images-kly.akamaized.net/Uajw7pteBHKF-bno5OdhStnMdMs=/1200x675/smart/filters:quality(75):strip_icc():format(jpeg)/kly-media-production/medias/3571391/original/003178200_1631610459-0E6A5528-01.jpeg",
     "category": "Kesehatan",
     "tags": ["tracing", "Covid-19", "vaksin", "pemerintah"]
@@ -24,19 +30,21 @@
   {
     "name": "MAGMA Indonesia",
     "summary": "Aplikasi mitigasi bencana geologi multi-platform",
-    "description": "MAGMA Indonesia adalah aplikasi web/mobil untuk mitigasi bencana geologi (gunungapi, gempa, tsunami) secara real-time:contentReference[oaicite:24]{index=24}. Dikembangkan sejak 2015 oleh PVMBG (Badan Geologi), menyediakan informasi interaktif dan API untuk mitigasi bencana di Indonesia.",
+    "description": "MAGMA Indonesia adalah aplikasi web/mobil untuk mitigasi bencana geologi (gunungapi, gempa, tsunami) secara real-time. Dikembangkan sejak 2015 oleh PVMBG (Badan Geologi), menyediakan informasi interaktif dan API untuk mitigasi bencana di Indonesia.",
     "date": "2015-08-10",
     "votes": 7500,
-    "creator": { "name": "Pusat Vulkanologi & Mitigasi Bencana Geologi", "organization": "Badan Geologi (Kementerian ESDM)" },
+    "creator": {
+      "name": "Pusat Vulkanologi & Mitigasi Bencana Geologi",
+      "organization": "Badan Geologi (Kementerian ESDM)"
+    },
     "imageUrl": "https://mounture.com/wp-content/uploads/2022/01/272309213_1038887159993187_9005140951419333522_n.jpg",
     "category": "Teknologi Bencana",
     "tags": ["bencana", "gempa", "tsunami", "geologi"]
   },
- 
   {
     "name": "eFishery",
     "summary": "Startup IoT penyedia feeder otomatis untuk budidaya ikan",
-    "description": "eFishery mengembangkan alat pemberi pakan ikan/udang otomatis yang terhubung ke ponsel pintar. Dengan sensor cerdas, eFishery mengatur jadwal dan jumlah pakan secara optimal, menghemat hingga 20% biaya pakan:contentReference[oaicite:26]{index=26}. Berdiri sejak 2013, eFishery membantu ribuan petambak di Indonesia:contentReference[oaicite:27]{index=27}.",
+    "description": "eFishery mengembangkan alat pemberi pakan ikan/udang otomatis yang terhubung ke ponsel pintar. Dengan sensor cerdas, eFishery mengatur jadwal dan jumlah pakan secara optimal, menghemat hingga 20% biaya pakan. Berdiri sejak 2013, eFishery membantu ribuan petambak di Indonesia.",
     "date": "2013-10-15",
     "votes": 9000,
     "creator": { "name": "Gibran Huzaifah", "organization": "eFishery" },
@@ -44,14 +52,16 @@
     "category": "Pertanian & Akuakultur",
     "tags": ["akuakultur", "IoT", "startup", "perikanan"]
   },
- 
   {
     "name": "PaDi UMKM",
     "summary": "Platform pasar digital BUMN–UMKM untuk pengadaan barang/jasa",
-    "description": "Pasar Digital UMKM (PaDi) menghubungkan UMKM dengan kebutuhan belanja BUMN secara online:contentReference[oaicite:30]{index=30}. Diluncurkan 17 Agustus 2020, platform ini memudahkan UMKM menawarkan produk ke BUMN, sekaligus menyediakan akses pelatihan, pembiayaan, dan sertifikasi agar UMKM naik kelas.",
+    "description": "Pasar Digital UMKM (PaDi) menghubungkan UMKM dengan kebutuhan belanja BUMN secara online. Diluncurkan 17 Agustus 2020, platform ini memudahkan UMKM menawarkan produk ke BUMN, sekaligus menyediakan akses pelatihan, pembiayaan, dan sertifikasi agar UMKM naik kelas.",
     "date": "2020-08-17",
     "votes": 5000,
-    "creator": { "name": "Loto Srinaita Ginting", "organization": "Kementerian BUMN" },
+    "creator": {
+      "name": "Loto Srinaita Ginting",
+      "organization": "Kementerian BUMN"
+    },
     "imageUrl": "https://cyberlabs.co.id/wp-content/uploads/2023/01/21959139.jpeg",
     "category": "Ekonomi Digital",
     "tags": ["UMKM", "digital", "pengadaan", "ekonomi"]
@@ -59,12 +69,113 @@
   {
     "name": "Ruangguru",
     "summary": "Platform edukasi daring berbasis video tutorial interaktif",
-    "description": "Ruangguru adalah startup edtech yang menawarkan video pembelajaran sesuai kurikulum sekolah:contentReference[oaicite:31]{index=31}. Didirikan April 2014, Ruangguru menyediakan kelas online, latihan soal, dan materi belajar interaktif melalui aplikasi seluler/komputer, menjangkau jutaan siswa SMP/SMA di Indonesia.",
+    "description": "Ruangguru adalah startup edtech yang menawarkan video pembelajaran sesuai kurikulum sekolah. Didirikan April 2014, Ruangguru menyediakan kelas online, latihan soal, dan materi belajar interaktif melalui aplikasi seluler/komputer, menjangkau jutaan siswa SMP/SMA di Indonesia.",
     "date": "2014-04-01",
     "votes": 15000,
-    "creator": { "name": "Belva Devara & Iman Usman", "organization": "PT Ruang Raya Indonesia" },
+    "creator": {
+      "name": "Belva Devara & Iman Usman",
+      "organization": "PT Ruang Raya Indonesia"
+    },
     "imageUrl": "https://assets.pikiran-rakyat.com/crop/0x0:0x0/720x0/webp/photo/2024/08/18/4294487934.jpg",
     "category": "Pendidikan & Teknologi",
     "tags": ["edtech", "pembelajaran", "startup", "video"]
+  },
+  {
+    "name": "Green AgroTech Indonesia",
+    "summary": "Inovasi biotek pertanian untuk produksi pangan berkelanjutan",
+    "description": "Green AgroTech Indonesia mengembangkan solusi biotek untuk meningkatkan produktivitas tanaman pangan secara berkelanjutan dan ramah lingkungan. Didirikan 2018, memanfaatkan sensor tanah, big-data, dan otomatisasi irigasi untuk menekan penggunaan air hingga 30%.",
+    "date": "2018-05-20",
+    "votes": 6200,
+    "creator": {
+      "name": "Dr. Maya Rizki",
+      "organization": "Green AgroTech Indonesia"
+    },
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS1dA_UQkVUnXaCbe1Z-bRwaYS0CMkDbi9RXQ&s",
+    "category": "Pertanian & Akuakultur",
+    "tags": ["biotek", "pertanian berkelanjutan", "IoT", "green tech"]
+  },
+  {
+    "name": "M-Smile Digital Platform",
+    "summary": "Platform keuangan inklusif untuk UMKM di Indonesia",
+    "description": "M-Smile Digital Platform menghubungkan UMKM dengan pembiayaan, pemasaran online dan logistik melalui solusi end-to-end berbasis cloud & AI. Diluncurkan tahun 2022 dan sudah membantu 15.000+ UMKM naik kelas.",
+    "date": "2022-06-10",
+    "votes": 8300,
+    "creator": {
+      "name": "PT M-Smile Teknologi",
+      "organization": "PT M-Smile Teknologi"
+    },
+    "imageUrl": "https://play-lh.googleusercontent.com/eUmwWqylUKv2vze5zjQ384qYLInvTQiSf5KAepBhJaly7ByMvLrYfO1N179IL4fgVLE=s256-rw",
+    "category": "Ekonomi Digital",
+    "tags": ["UMKM", "fintech", "digital marketing", "logistik"]
+  },
+  {
+    "name": "Edunex Learning Hub",
+    "summary": "Platform edukasi adaptif berbasis video & interaktif untuk siswa SMA",
+    "description": "Edunex Learning Hub menghadirkan kurikulum interaktif, video, kuis adaptif dan tracking otomatis untuk meningkatkan hasil belajar siswa. Beroperasi sejak 2021 dan sudah dipakai lebih dari 500 sekolah di Indonesia.",
+    "date": "2021-03-15",
+    "votes": 9400,
+    "creator": {
+      "name": "Edunex Indonesia",
+      "organization": "Edunex Indonesia"
+    },
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSy-p5PowIkD80DFHW89TGStnSSCE1MmJb0bA&s=",
+    "category": "Pendidikan & Teknologi",
+    "tags": ["edtech", "video pembelajaran", "adaptive learning", "siswa"]
+  },
+  {
+    "name": "rekosistem",
+    "summary": "Sistem teknologi untuk pengolahan sampah elektronik secara otomatis",
+    "description": "rekosistem mengintegrasikan IoT, sensor dan blockchain untuk pelacakan dan pengolahan limbah elektronik (e-waste) di perkotaan Indonesia. Dimulai tahun 2023 dengan kerja sama tiga kota besar.",
+    "date": "2023-09-22",
+    "votes": 6200,
+    "creator": {
+      "name": "GreenTech Solutions",
+      "organization": "GreenTech Solutions"
+    },
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsHwq0vuNdExG7iCISyvROOT62ikZQiaFzLA&s",
+    "category": "Lingkungan & Energi",
+    "tags": ["e-waste", "IoT", "smart city", "lingkungan"]
+  },
+  {
+    "name": "TENPINA VR",
+    "summary": "Simulasi realitas virtual untuk edukasi mitigasi bencana",
+    "description": "TENPINA VR adalah aplikasi realitas virtual yang dikembangkan oleh ITS dan BPBD Jawa Timur untuk mensimulasikan tiga jenis bencana utama: banjir, kebakaran, dan gempa bumi. Pengguna dapat belajar mitigasi bencana secara interaktif dan realistis.",
+    "date": "2022-11-10",
+    "votes": 4800,
+    "creator": {
+      "name": "Institut Teknologi Sepuluh Nopember (ITS)",
+      "organization": "ITS & BPBD Jawa Timur"
+    },
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT75xmkZdyfsH9u_m4DvWLCJqA31ZSYB3K45w&s",
+    "category": "Teknologi Bencana",
+    "tags": ["bencana", "VR", "edukasi", "simulasi"]
+  },
+  {
+    "name": "HarukaEdu AI Tutor",
+    "summary": "Platform pembelajaran berbasis AI untuk siswa Indonesia",
+    "description": "HarukaEdu AI Tutor adalah sistem pembelajaran berbasis AI yang dapat menyesuaikan materi dan latihan sesuai kemampuan siswa. Dikembangkan oleh HarukaEdu sejak 2021, digunakan oleh berbagai sekolah untuk meningkatkan efektivitas belajar online.",
+    "date": "2021-08-05",
+    "votes": 5300,
+    "creator": {
+      "name": "HarukaEdu",
+      "organization": "HarukaEdu Indonesia"
+    },
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQ0cSYVFvMmsuveMlV3gh_33fy6JxNH-Hp_g&s",
+    "category": "Pendidikan & Teknologi",
+    "tags": ["AI", "edtech", "pembelajaran adaptif", "siswa"]
+  },
+  {
+    "name": "PLTSa Tangerang",
+    "summary": "Pembangkit listrik tenaga sampah pertama di Indonesia",
+    "description": "PLTSa Tangerang adalah fasilitas pengolahan sampah menjadi listrik yang menghasilkan energi bersih untuk kebutuhan listrik lokal. Diresmikan pada 2022, menjadi inovasi penting dalam energi terbarukan dan pengelolaan sampah di Indonesia.",
+    "date": "2022-05-12",
+    "votes": 4100,
+    "creator": {
+      "name": "Pemerintah Kota Tangerang",
+      "organization": "PLN & Pemerintah Kota Tangerang"
+    },
+    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSof98Nx2xg-7NhiDzJ51v9Xep7spFKSp09VQ&s",
+    "category": "Lingkungan & Energi",
+    "tags": ["energi terbarukan", "sampah", "PLTSa", "lingkungan"]
   }
 ]

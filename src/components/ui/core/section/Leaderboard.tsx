@@ -1,169 +1,240 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
+import { Input } from "@/components/ui/fragments/shadcn-ui/input";
+import {
+  Select,
+  SelectTrigger,
+  SelectValue,
+  SelectContent,
+  SelectItem,
+} from "@/components/ui/fragments/shadcn-ui/select";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/fragments/shadcn-ui/dialog";
+import { Badge } from "@/components/ui/fragments/shadcn-ui/badge";
 import MediaItem from "@/components/ui/fragments/custom-ui/media/MediaItem";
-
-const leaderboardData = [
-  {
-    id: 1,
-    name: "Inovasi Air Bersih Desa",
-    votes: 980,
-    image:
-      "https://images.unsplash.com/photo-1599719500062-67e093c79e4d?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: 2,
-    name: "Sistem Sampah Pintar",
-    votes: 870,
-    image:
-      "https://images.unsplash.com/photo-1616734191324-5201d79d5b68?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: 3,
-    name: "Pertanian Digital Terpadu",
-    votes: 760,
-    image:
-      "https://images.unsplash.com/photo-1581092334663-1e7a2b1a3c4e?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: 4,
-    name: "Bank Sampah Sekolah",
-    votes: 540,
-    image:
-      "https://images.unsplash.com/photo-1611224885990-ab7363d1cf7b?q=80&w=1200&auto=format&fit=crop",
-  },
-  {
-    id: 5,
-    name: "Energi Surya Mini",
-    votes: 480,
-    image:
-      "https://images.unsplash.com/photo-1509395176047-4a66953fd231?q=80&w=1200&auto=format&fit=crop",
-  },
-];
+import inovations from "@/config/data/Inovations.json";
+import { inovasiSchema } from "@/schemas/inovasi.schema";
 
 export default function Leaderboard() {
-  // urutan podium (biar #1 di tengah)
-  const topThree = [leaderboardData[1], leaderboardData[0], leaderboardData[2]];
-  const others = leaderboardData.slice(3);
+  const validData = inovations.filter(
+    (item: any) => inovasiSchema.safeParse(item).success
+  );
+
+  const [search, setSearch] = useState("");
+  const [category, setCategory] = useState("all");
+  const [selected, setSelected] = useState<any | null>(null);
+
+  const categoryFiltered =
+    category === "all"
+      ? validData
+      : validData.filter((item) => item.category === category);
+
+  const sorted = [...categoryFiltered].sort((a, b) => b.votes - a.votes);
+  const topThree = sorted.slice(0, 3);
+  const others = sorted.slice(3);
+
+  const filtered = others.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <section className="container mx-auto px-6 py-16 flex flex-col items-center">
-      {/* === TITLE === */}
-      <motion.h1
+    <section className="container mx-auto px-5 sm:px-6 py-10 md:py-16 flex flex-col items-center">
+      {/* === HEADER === */}
+      <motion.div
         initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        viewport={{ once: true }}
-        className="text-4xl md:text-5xl font-bold text-center mb-10 text-[#3b2f2f]">
-        Leaderboard Inovasi
-      </motion.h1>
+        className="text-center mb-8 md:mb-10">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
+          🏆 Leaderboard Inovasi
+        </h1>
+        <p className="text-gray-500 mt-2 text-sm md:text-base">
+          Lihat peringkat inovasi digital terbaik di Indonesia
+        </p>
+      </motion.div>
 
-      {/* === TOP 3 PODIUM (FIX MOBILE LAYOUT) === */}
+      {/* === FILTERS === */}
+      <div className="flex flex-col sm:flex-row items-center gap-3 mb-10 sm:mb-14 w-full max-w-3xl">
+        <Input
+          placeholder="Cari inovasi..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="w-full sm:flex-1 shadow-sm focus:ring-2 focus:ring-blue-300 transition text-sm md:text-base"
+        />
+        <Select value={category} onValueChange={setCategory}>
+          <SelectTrigger className="w-full sm:w-[200px] shadow-sm">
+            <SelectValue placeholder="Kategori" />
+          </SelectTrigger>
+          <SelectContent>
+            <SelectItem value="all">🌐 Semua Kategori</SelectItem>
+            {[...new Set(validData.map((i) => i.category))].map((cat) => (
+              <SelectItem key={cat} value={cat}>
+                {cat}
+              </SelectItem>
+            ))}
+          </SelectContent>
+        </Select>
+      </div>
+
+      {/* === TOP 3 (tetap seperti semula) === */}
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8 }}
+        viewport={{ once: true }}
+        className="grid grid-cols-3 gap-3 sm:gap-6 items-end mb-14 sm:mb-20 max-w-full sm:max-w-4xl">
+        {topThree.map((item, index) => {
+          const rank = index + 1;
+          const isFirst = rank === 1;
+          const orderClasses =
+            rank === 1 ? "order-2" : rank === 2 ? "order-1" : "order-3";
+
+          return (
+            <motion.div
+              key={item.name}
+              whileHover={{ scale: 1.04 }}
+              transition={{ type: "spring", stiffness: 300 }}
+              className={`relative flex flex-col items-center ${orderClasses}`}>
+              <div
+                className={`rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white/60 backdrop-blur-lg 
+                            w-full max-w-[110px] sm:max-w-[220px] md:max-w-[250px]
+                            ${
+                              isFirst
+                                ? "h-44 sm:h-64 md:h-72"
+                                : "h-36 sm:h-52 md:h-60"
+                            } 
+                            flex items-center justify-center`}>
+                <MediaItem
+                  webViewLink={item.imageUrl}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+
+              <div
+                className={`absolute -top-4 px-4 py-1 text-xs sm:text-sm font-bold text-white rounded-full shadow-md ${
+                  isFirst
+                    ? "bg-yellow-400"
+                    : rank === 2
+                    ? "bg-gray-400"
+                    : "bg-amber-700"
+                }`}>
+                #{rank}
+              </div>
+
+              <p className="mt-3 font-semibold text-gray-800 text-center text-xs sm:text-sm md:text-base">
+                {item.name}
+              </p>
+              <p className="text-[11px] sm:text-xs text-gray-500">
+                {item.votes.toLocaleString()} suara
+              </p>
+            </motion.div>
+          );
+        })}
+      </motion.div>
+
+      {/* === TABLE (diperlebar & diberi padding aman di mobile) === */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
-        className="w-full flex justify-center mb-14">
-        <div className="grid grid-cols-3 gap-3 items-end max-w-md w-full">
-          {topThree.map((item, index) => {
-            const rank = index === 1 ? 1 : index === 0 ? 2 : 3;
-            const isFirst = rank === 1;
-
-            const height =
-              rank === 1
-                ? "h-40 sm:h-54"
-                : rank === 2
-                ? "h-36 sm:h-48"
-                : "h-32 sm:h-44";
-
-            const lift =
-              rank === 1
-                ? "-translate-y-2 sm:-translate-y-3"
-                : "translate-y-1 sm:translate-y-2";
-
-            return (
-              <motion.div
-                key={item.id}
-                whileHover={{ scale: 1.05 }}
-                className={`relative flex flex-col items-center ${lift}`}>
-                <div
-                  className={`rounded-xl overflow-hidden shadow-lg border border-[#d9cbb5] bg-[#fff9f3] w-full ${height} flex items-center justify-center`}>
-                  <MediaItem
-                    webViewLink={item.image}
-                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                  />
-                </div>
-
-                {/* Badge */}
-                <div
-                  className={`absolute -top-3 ${
-                    isFirst
-                      ? "bg-yellow-400"
-                      : rank === 2
-                      ? "bg-gray-400"
-                      : "bg-amber-600"
-                  } text-white font-bold rounded-full px-3 py-1 text-xs shadow-lg`}>
-                  #{rank}
-                </div>
-
-                <p className="mt-2 font-semibold text-center text-[#3b2f2f] text-xs sm:text-sm">
-                  {item.name}
-                </p>
-                <p className="text-[11px] sm:text-xs text-gray-600">
-                  {item.votes} suara
-                </p>
-              </motion.div>
-            );
-          })}
+        className="w-full max-w-[95%] sm:max-w-3xl bg-white/80 backdrop-blur-lg rounded-2xl 
+                   shadow-lg overflow-hidden border border-gray-200 px-2 sm:px-4">
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-xs sm:text-sm md:text-base">
+            <thead className="bg-gray-50 border-b">
+              <tr>
+                <th className="py-3 px-3 sm:px-4 w-[70px] sm:w-[90px]">
+                  Ranking
+                </th>
+                <th className="py-3 px-3 sm:px-4">Inovasi</th>
+                <th className="py-3 px-3 sm:px-4 text-right w-[90px] sm:w-[120px]">
+                  Suara
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {filtered.map((item, index) => (
+                <motion.tr
+                  key={item.name}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.4, delay: index * 0.03 }}
+                  className="border-t hover:bg-blue-50/40 transition cursor-pointer"
+                  onClick={() => setSelected(item)}>
+                  <td className="py-3 px-3 font-medium text-gray-700">
+                    #{index + 4}
+                  </td>
+                  <td className="py-3 px-3 flex items-center gap-3 min-w-[150px] sm:min-w-[220px]">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden shadow-sm shrink-0">
+                      <MediaItem
+                        webViewLink={item.imageUrl}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <span className="text-gray-800 font-medium block truncate max-w-[100px] sm:max-w-none">
+                        {item.name}
+                      </span>
+                      <Badge
+                        variant="secondary"
+                        className="mt-1 text-[10px] sm:text-xs bg-gray-100">
+                        {item.category}
+                      </Badge>
+                    </div>
+                  </td>
+                  <td className="py-3 px-3 text-right text-gray-700 font-semibold whitespace-nowrap">
+                    {item.votes.toLocaleString()}
+                  </td>
+                </motion.tr>
+              ))}
+            </tbody>
+          </table>
         </div>
       </motion.div>
 
-      {/* === RANK 4+ === */}
-      <motion.div
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.7 }}
-        viewport={{ once: true }}
-        className="w-full max-w-3xl bg-[#fff9f3] rounded-2xl shadow-md overflow-hidden border border-[#e4d6c1]">
-        <table className="w-full text-left">
-          <thead className="bg-[#f5eee4] text-[#4a3c2f]">
-            <tr>
-              <th className="py-3 px-4">Ranking</th>
-              <th className="py-3 px-4">Inovasi</th>
-              <th className="py-3 px-4 text-right">Jumlah Suara</th>
-            </tr>
-          </thead>
-          <tbody>
-            {others.map((item, index) => (
-              <motion.tr
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="border-t border-[#e9e0d2] hover:bg-[#fcf7f1] transition-colors">
-                <td className="py-3 px-4 font-medium text-gray-700">
-                  #{index + 4}
-                </td>
-                <td className="py-3 px-4 flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-lg overflow-hidden md:w-10 md:h-10">
-                    <MediaItem
-                      webViewLink={item.image}
-                      className="w-full h-full object-cover"
-                    />
-                  </div>
-                  <span className="text-gray-800">{item.name}</span>
-                </td>
-                <td className="py-3 px-4 text-right text-gray-600 font-semibold">
-                  {item.votes}
-                </td>
-              </motion.tr>
-            ))}
-          </tbody>
-        </table>
-      </motion.div>
+      {/* === MODAL === */}
+      <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
+        <DialogContent className="max-w-[90vw] sm:max-w-lg rounded-xl">
+          {selected && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-lg font-semibold text-center sm:text-left">
+                  {selected.name}
+                </DialogTitle>
+              </DialogHeader>
+              <div className="space-y-4">
+                <div className="rounded-xl overflow-hidden shadow">
+                  <MediaItem
+                    webViewLink={selected.imageUrl}
+                    className="w-full h-52 sm:h-60 object-cover"
+                  />
+                </div>
+                <p className="text-gray-600 text-sm leading-relaxed text-justify">
+                  {selected.description}
+                </p>
+                <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
+                  {selected.tags?.map((tag: string) => (
+                    <Badge key={tag} variant="outline">
+                      #{tag}
+                    </Badge>
+                  ))}
+                </div>
+                <div className="text-xs text-gray-500 text-center sm:text-left">
+                  Dibuat oleh: <b>{selected.creator.name}</b> (
+                  {selected.creator.organization || "Independen"})
+                </div>
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </section>
   );
 }
