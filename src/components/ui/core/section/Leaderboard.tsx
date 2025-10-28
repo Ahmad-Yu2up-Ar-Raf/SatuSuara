@@ -2,8 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-
-import MediaItem from "@/components/ui/fragments/custom-ui/media/MediaItem"; // pastiin path-nya bener
+import MediaItem from "@/components/ui/fragments/custom-ui/media/MediaItem";
 
 const leaderboardData = [
   {
@@ -44,12 +43,13 @@ const leaderboardData = [
 ];
 
 export default function Leaderboard() {
-  const topThree = leaderboardData.slice(0, 3);
+  // urutan podium (biar #1 di tengah)
+  const topThree = [leaderboardData[1], leaderboardData[0], leaderboardData[2]];
   const others = leaderboardData.slice(3);
 
   return (
     <section className="container mx-auto px-6 py-16 flex flex-col items-center">
-      {/* title */}
+      {/* === TITLE === */}
       <motion.h1
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -59,54 +59,68 @@ export default function Leaderboard() {
         Leaderboard Inovasi
       </motion.h1>
 
-      {/* ranking*/}
+      {/* === TOP 3 PODIUM (FIX MOBILE LAYOUT) === */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
         viewport={{ once: true }}
-        className="flex flex-col md:flex-row justify-center items-end gap-6 mb-14">
-        {topThree.map((item, index) => {
-          const rank = index + 1;
-          const isFirst = rank === 1;
-          const heightClass = isFirst ? "h-64" : rank === 2 ? "h-56" : "h-48";
+        className="w-full flex justify-center mb-14">
+        <div className="grid grid-cols-3 gap-3 items-end max-w-md w-full">
+          {topThree.map((item, index) => {
+            const rank = index === 1 ? 1 : index === 0 ? 2 : 3;
+            const isFirst = rank === 1;
 
-          return (
-            <motion.div
-              key={item.id}
-              whileHover={{ scale: 1.05 }}
-              className={`relative flex flex-col items-center ${heightClass} w-48 md:w-56`}>
-              <div
-                className={`rounded-2xl overflow-hidden shadow-xl border border-[#d9cbb5] bg-[#fff9f3] w-full h-4/5 flex items-center justify-center`}>
-                <MediaItem
-                  webViewLink={item.image}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
+            const height =
+              rank === 1
+                ? "h-40 sm:h-54"
+                : rank === 2
+                ? "h-36 sm:h-48"
+                : "h-32 sm:h-44";
 
-              {/* badge */}
-              <div
-                className={`absolute -top-4 ${
-                  isFirst
-                    ? "bg-yellow-400"
-                    : rank === 2
-                    ? "bg-gray-400"
-                    : "bg-amber-600"
-                } text-white font-bold rounded-full px-4 py-1 text-sm shadow-lg`}>
-                #{rank}
-              </div>
+            const lift =
+              rank === 1
+                ? "-translate-y-2 sm:-translate-y-3"
+                : "translate-y-1 sm:translate-y-2";
 
-              {/* NAME + VOTES */}
-              <p className="mt-4 font-semibold text-center text-[#3b2f2f]">
-                {item.name}
-              </p>
-              <p className="text-sm text-gray-600">{item.votes} suara</p>
-            </motion.div>
-          );
-        })}
+            return (
+              <motion.div
+                key={item.id}
+                whileHover={{ scale: 1.05 }}
+                className={`relative flex flex-col items-center ${lift}`}>
+                <div
+                  className={`rounded-xl overflow-hidden shadow-lg border border-[#d9cbb5] bg-[#fff9f3] w-full ${height} flex items-center justify-center`}>
+                  <MediaItem
+                    webViewLink={item.image}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+
+                {/* Badge */}
+                <div
+                  className={`absolute -top-3 ${
+                    isFirst
+                      ? "bg-yellow-400"
+                      : rank === 2
+                      ? "bg-gray-400"
+                      : "bg-amber-600"
+                  } text-white font-bold rounded-full px-3 py-1 text-xs shadow-lg`}>
+                  #{rank}
+                </div>
+
+                <p className="mt-2 font-semibold text-center text-[#3b2f2f] text-xs sm:text-sm">
+                  {item.name}
+                </p>
+                <p className="text-[11px] sm:text-xs text-gray-600">
+                  {item.votes} suara
+                </p>
+              </motion.div>
+            );
+          })}
+        </div>
       </motion.div>
 
-      {/*rangking 4 kebawah*/}
+      {/* === RANK 4+ === */}
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +148,7 @@ export default function Leaderboard() {
                   #{index + 4}
                 </td>
                 <td className="py-3 px-4 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-lg overflow-hidden">
+                  <div className="w-12 h-12 rounded-lg overflow-hidden md:w-10 md:h-10">
                     <MediaItem
                       webViewLink={item.image}
                       className="w-full h-full object-cover"
