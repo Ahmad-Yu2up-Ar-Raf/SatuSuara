@@ -2,94 +2,115 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Input } from "@/components/ui/fragments/shadcn-ui/input";
 import {
-  Select,
-  SelectTrigger,
-  SelectValue,
-  SelectContent,
-  SelectItem,
-} from "@/components/ui/fragments/shadcn-ui/select";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/fragments/shadcn-ui/dialog";
-import { Badge } from "@/components/ui/fragments/shadcn-ui/badge";
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableFooter,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/fragments/shadcn-ui/table"
 import MediaItem from "@/components/ui/fragments/custom-ui/media/MediaItem";
 import inovations from "@/config/data/Inovations.json";
-import { inovasiSchema } from "@/schemas/inovasi.schema";
-
+import { Inovasi, inovasiSchema } from "@/schemas/inovasi.schema";
+import animationData from "@/config/assets/animations/Winner Trophy Emoji.json";
+import { useLottie } from "lottie-react";
+import { Badge } from "../../fragments/shadcn-ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "../../fragments/shadcn-ui/avatar";
+import { useInitials } from "@/hooks/use-initials";
+import { cn } from "@/lib/utils";
+import { categoryColors } from "@/lib/utils/getCategory";
+import { ArrowLeft, Tag } from "lucide-react";
+import { batasiHuruf } from "@/hooks/use-worldMax";
+import { Button } from "../../fragments/shadcn-ui/button";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
 export default function Leaderboard() {
-  const validData = inovations.filter(
-    (item: any) => inovasiSchema.safeParse(item).success
-  );
+  const validData = inovations.map((item) => {
+    // Truncate ringkasanPendek if it's too long
+    if (item.ringkasanPendek && item.ringkasanPendek.length > 120) {
+      item.ringkasanPendek = item.ringkasanPendek.substring(0, 117) + '...';
+    }
+    
+    const result = inovasiSchema.safeParse(item);
+    if (!result.success) {
+      console.log('Invalid item:', item.judul, result.error);
+      return null;
+    }
+    return item;
+  }).filter(item => item !== null);
 
+  console.log('Total valid items:', validData.length);
   const [search, setSearch] = useState("");
+  const [hovered, setHovered] = useState<number | null>(null);
+  const [HoveredTableColom, setHoveredTableColom] = useState<number | null>(null);
   const [category, setCategory] = useState("all");
-  const [selected, setSelected] = useState<any | null>(null);
+
 
   // === FILTER & SORT ===
   const categoryFiltered =
     category === "all"
       ? validData
-      : validData.filter((item) => item.category === category);
+      : validData.filter((item) => item.kategori === category);
 
   const searched = categoryFiltered.filter((item) =>
-    item.name.toLowerCase().includes(search.toLowerCase())
+    item.judul.toLowerCase().includes(search.toLowerCase())
   );
 
-  const sorted = [...searched].sort((a, b) => b.votes - a.votes);
+  const sorted = [...searched].sort((a, b) => b.totalVote - a.totalVote);
   const topThree = sorted.slice(0, 3);
   const others = sorted.slice(3);
+  const lottieOptions = {
+    loop: true,
+    autoplay: true,
+    animationData: animationData,
+    rendererSettings: {
+      preserveAspectRatio: "xMidYMid slice",
+    },
+  };
+  const getInitial = useInitials()
 
+  const style = { width: "100%", height: "100%", margin: "auto" }; // atur sesuai kebutuhan
+  const { View } = useLottie(lottieOptions, style);
   return (
-    <section className="container mx-auto px-5 sm:px-6 py-10 md:py-16 flex flex-col items-center">
+    <section className="max-w-5xl mx-auto px-5 sm:px-6 py-4 flex flex-col items-center">
+      <section className=" pt-9 relative w-full h-full md:min-h-lvh content-start">
+  <nav className='z-50 top-0  absolute bg-background/95 backdrop-blur flex items-center justify-between'>
+        <Button  
+        variant={"link"}
+         onClick={() => {window.history.back}}
+          className={cn(
+            'flex has-[>svg]:px-0  text-xs md:text-sm w-fit py-2 md:flex items-center gap-2 px-0 group transition-colors'
+          )}
+        >
+          <ArrowLeft className="size-4 md:size-5 group-hover:-translate-x-1 group-hover:transform transition-all ease-out duration-300" />
+          <span>Kembali</span>
+        </Button>
+      </nav>
       {/* === HEADER === */}
       <motion.div
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-8 md:mb-10">
-        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
-          🏆 Leaderboard Inovasi
+        className="text-center pb-3 border-b gap-4 flex flex-col relative mb-8 md:mb-10">
+            <div className="   m-auto  md:w-40 md:h-35   w-27 h-40 ">
+              {  View}
+              </div> 
+              <header className="">
+
+        <h1 className="text-2xl sm:text-4xl  font-bold text-gray-800">
+         Leaderboard Inovasi
         </h1>
         <p className="text-gray-500 mt-2 text-sm md:text-base">
           Lihat peringkat inovasi digital terbaik di Indonesia
         </p>
+              </header>
       </motion.div>
 
       {/* === FILTER SECTION === */}
-      <div className="w-full max-w-3xl mb-10 sm:mb-14">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4 }}
-          className="bg-white/70 backdrop-blur-md rounded-2xl shadow-md p-4 sm:p-6 border border-gray-200">
-          <div className="flex flex-col sm:flex-row items-center gap-3 w-full">
-            <Input
-              placeholder="Cari inovasi..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="w-full sm:flex-1 shadow-sm focus:ring-2 focus:ring-blue-300 transition text-sm md:text-base"
-            />
-            <Select value={category} onValueChange={setCategory}>
-              <SelectTrigger className="w-full sm:w-[200px] shadow-sm">
-                <SelectValue placeholder="Kategori" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">🌐 Semua Kategori</SelectItem>
-                {[...new Set(validData.map((i) => i.category))].map((cat) => (
-                  <SelectItem key={cat} value={cat}>
-                    {cat}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-          </div>
-        </motion.div>
-      </div>
+ 
 
       {/* === PODIUM === */}
       {topThree.length > 0 && (
@@ -98,7 +119,7 @@ export default function Leaderboard() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
-          className="grid grid-cols-3 gap-2 sm:gap-6 items-end mb-12 sm:mb-16 w-full max-w-[420px] sm:max-w-4xl">
+          className="grid grid-cols-3 gap-1.5 sm:gap-6 items-end mb-12 sm:mb-16 w-full  sm:max-w-4xl">
           {topThree.map((item, index) => {
             const rank = index + 1;
             const isFirst = rank === 1;
@@ -106,12 +127,20 @@ export default function Leaderboard() {
               rank === 1 ? "order-2" : rank === 2 ? "order-1" : "order-3";
 
             return (
-              <motion.div
-                key={item.name}
+              <motion.a
+                onMouseEnter={() => setHovered(index)}
+    onMouseLeave={() => setHovered(null)}
+                key={item.id}
+              href={`/jelajahi-inovasi/${item.slug}`}
                 whileHover={{ scale: 1.04 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                onClick={() => setSelected(item)}
-                className={`relative flex flex-col items-center cursor-pointer ${orderClasses}`}>
+            
+                className={cn(`relative  transition-all duration-300 ease-out flex flex-col items-center cursor-pointer ${orderClasses}` ,
+    !isFirst && "  translate-y-2.5",
+        hovered !== null && hovered !== index && "blur-sm scale-[0.98]",
+
+                )}>
+                  
                 <motion.div
                   animate={{
                     y: [0, -5, 0],
@@ -122,21 +151,23 @@ export default function Leaderboard() {
                     ease: "easeInOut",
                     delay: index * 0.3,
                   }}
-                  className={`rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white/60 backdrop-blur-lg 
-                              w-full max-w-[130px] sm:max-w-[240px] md:max-w-[280px]
+                  className={cn(`rounded-2xl overflow-hidden shadow-xl border border-gray-200 bg-white/60 backdrop-blur-lg 
+                              w-full md:max-w-[280px]
                               ${
                                 isFirst
                                   ? "h-48 sm:h-64 md:h-72"
                                   : "h-40 sm:h-56 md:h-64"
                               } 
-                              flex items-center justify-center`}>
+                              flex items-center justify-center` , 
+                          
+                              )}>
                   <MediaItem
-                    webViewLink={item.imageUrl}
-                    className="w-full h-full object-cover"
+                    webViewLink={item.media[0]?.url}
+                    className="w-full cursor-target h-full object-cover"
                   />
                 </motion.div>
 
-                <div
+                <Badge 
                   className={`absolute -top-4 px-4 py-1 text-xs sm:text-sm font-bold text-white rounded-full shadow-md ${
                     isFirst
                       ? "bg-yellow-400"
@@ -145,140 +176,158 @@ export default function Leaderboard() {
                       : "bg-amber-700"
                   }`}>
                   #{rank}
-                </div>
+                </Badge>
 
-                <p className="mt-3 font-semibold text-gray-800 text-center text-xs sm:text-sm md:text-base">
-                  {item.name}
+                <p className="mt-3 font-medium  text-center text-sm tracking-tighter sm:text-sm md:text-base">
+                  {item.judul.split(' - ')[0]}
                 </p>
-                <p className="text-[11px] sm:text-xs text-gray-500">
-                  {item.votes.toLocaleString()} suara
+                <p className="text-[10px] text-muted-foreground  sm:text-xs ">
+                  {item.totalVote.toLocaleString()} suara
                 </p>
-              </motion.div>
+                
+              </motion.a>
             );
           })}
         </motion.div>
       )}
+      </section>
 
       {/* === TABLE SECTION === */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={category + search}
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.5 }}
-          className="w-full sm:max-w-3xl bg-white/80 backdrop-blur-lg rounded-2xl 
-                     shadow-lg overflow-hidden border border-gray-200 px-0 sm:px-2">
-          <div className="overflow-x-auto w-full">
-            <table className="min-w-full text-left text-xs sm:text-sm md:text-base">
-              <thead className="bg-gray-50 border-b">
-                <tr>
-                  <th className="py-3 px-3 sm:px-4 w-[70px] sm:w-[90px]">
-                    Ranking
-                  </th>
-                  <th className="py-3 px-3 sm:px-4">Inovasi</th>
-                  <th className="py-3 px-3 sm:px-4 text-right w-[100px] sm:w-[130px]">
-                    Suara
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {others.map((item, index) => (
-                  <motion.tr
-                    key={item.name}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.02 }}
-                    className="border-t hover:bg-blue-50/40 transition cursor-pointer"
-                    onClick={() => setSelected(item)}>
-                    <td className="py-3 px-3 font-medium text-gray-700 whitespace-nowrap">
-                      #{index + 4}
-                    </td>
-                    <td className="py-3 px-3 flex items-center gap-3 min-w-[160px] sm:min-w-[220px]">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg overflow-hidden shadow-sm shrink-0">
-                        <MediaItem
-                          webViewLink={item.imageUrl}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      <div className="truncate max-w-[120px] sm:max-w-none">
-                        <span className="text-gray-800 font-medium block truncate">
-                          {item.name}
-                        </span>
-                        <Badge
-                          variant="secondary"
-                          className="mt-1 text-[10px] sm:text-xs bg-gray-100">
-                          {item.category}
-                        </Badge>
-                      </div>
-                    </td>
-                    <td className="py-3 px-3 text-right text-gray-700 font-semibold whitespace-nowrap">
-                      <div className="flex flex-col items-end">
-                        <span>{item.votes.toLocaleString()}</span>
-                        <div className="w-[70px] sm:w-[90px] bg-gray-200 h-1.5 rounded-full mt-1 overflow-hidden">
-                          <div
-                            className="h-full bg-blue-400 rounded-full"
-                            style={{
-                              width: `${Math.min(
-                                (item.votes / sorted[0].votes) * 100,
-                                100
-                              )}%`,
-                            }}></div>
-                        </div>
-                      </div>
-                    </td>
-                  </motion.tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
-        </motion.div>
-      </AnimatePresence>
+
+           <main className="overflow-hidden w-full rounded-xl border">
+
+      <Table className="">
+        <TableCaption className=" sr-only">A list of your recent inovasis.</TableCaption>
+        <TableHeader className="bg-accent/15   [&_th]:text-sm [&_th]:bg-accent/15">
+          <TableRow>
+            <TableHead className="">   
+              No
+            </TableHead>
+            {others.length >= 1 && (
+              <>
+            <TableHead className=" ">Inovasi</TableHead>
+                    <TableHead>Suara</TableHead>
+            <TableHead className=" ">Pencipta</TableHead>
+            <TableHead className=" ">Organisasi</TableHead>
+            {/* <TableHead className=" ">Price</TableHead> */}
+
+          
+            <TableHead>Kategori</TableHead>
+            {/* <TableHead>Status</TableHead>
+            <TableHead>Avg Rating</TableHead> */}
+            {/* <TableHead>Product Di Pinjam</TableHead> */}
+            {/* <TableHead>Stock</TableHead>
+            <TableHead>Sold</TableHead> */}
+      
+  
+            {/* <TableHead className="">action</TableHead> */}
+              </>
+            )
+              
+            }
+          </TableRow>
+        </TableHeader>
+        <TableBody>
+          {others.length > 0 ?  others.slice(0,10).map((inovasi , index) =>{ 
+    const titleSingkat = batasiHuruf(inovasi.judul.split(' - ')[0], 15); 
+    const titlePenciptaSingkat = batasiHuruf(inovasi.pembuat.nama, 15); 
+    const titleOrganisasiSingkat = batasiHuruf(inovasi.pembuat.organisasi, 15); 
+                   const rank = index + 4;
+
+      //  const status = inovasi.status as ProductStatus
+      //  const category = inovasi.category as CategoryProductsStatus
+      //  const IconStatus = getProductStatusIcon(status );
+      //  const IconProduct = getCategoryIcon(category );
+
+          // const price = inovasi.price_formatted
+          return(
+   
+            <TableRow 
+                   onMouseEnter={() => setHoveredTableColom(index)}
+    onMouseLeave={() => setHoveredTableColom(null)}
+            key={inovasi.id} className={cn(" transition-all duration-300 ease-out cursor-target",
+
+                     HoveredTableColom !== null && HoveredTableColom !== index && "blur-sm scale-[0.98]",
+            )}>
+              {/* <TableCell className="font-medium sticky right-0 ">
+                 <Checkbox
+                checked={selectedIds.includes(inovasi.id!)}
+                        onCheckedChange={() => HandleSelect(inovasi.id!)}
+              aria-label="Select row"
+              className="translate-y-0.5  mx-3   mr-4"
+            /></TableCell> */}
+             <TableCell className=" text-muted-foreground">  
+           
+         
+          #{rank}
+     
+  
+          
+     </TableCell>
+         <TableCell className="   w-50 overflow-hidden flex items-center gap-5" 
+              
+   
+              > 
+              
+                 <Avatar className=" rounded-full  relative flex size-12 shrink-0 overflow-hidden">
+                                          <AvatarImage src={`${inovasi?.media[0].url!}`} alt={inovasi.judul} />
+                                          <AvatarFallback className="rounded-xl  bg-neutral-200 text-black dark:bg-neutral-700 dark:text-white">
+                                              {getInitial(inovasi.judul)}
+                                          </AvatarFallback>
+                                      </Avatar>
+              <h3 className=" text-xs font-medium">
+                {titleSingkat}
+                </h3>
+              </TableCell>
+                 <TableCell className=" text-xs text-muted-foreground">{inovasi.totalVote.toLocaleString()}</TableCell>
+                     <TableCell className=" text-xs text-muted-foreground">{titlePenciptaSingkat}</TableCell>
+                     <TableCell className=" text-xs text-muted-foreground">{titleOrganisasiSingkat}</TableCell>
+      <TableCell className="">  
+                <Badge
+          variant="outline"
+          className={cn(
+            'mb-1 text-[9px] md:text-xs font-semibold w-fit',
+            categoryColors[inovasi.kategori] || 'bg-gray-100 text-gray-700'
+          )}
+        >
+          <Tag className="mr-1 size-3 md:size-4" />
+          {inovasi.kategori}
+        </Badge>
+  
+          
+     </TableCell>
+     
+     
+         
+
+  
+            </TableRow>
+         
+      
+          )}
+        
+        ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={others.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
+                </TableRow>
+          )}
+            
+        </TableBody>
+      
+  
+      </Table>
+        </main>
+ 
+
+
 
       {/* === MODAL === */}
-      <Dialog open={!!selected} onOpenChange={() => setSelected(null)}>
-        <DialogContent className="max-w-[95vw] sm:max-w-lg rounded-xl p-0 max-h-screen overflow-y-auto">
-          {selected && (
-            <div className="flex flex-col">
-              {/* Gambar di atas */}
-              <div>
-                <img
-                  src={selected.imageUrl}
-                  className="w-full h-60 object-cover rounded-t-xl shadow-md"
-                />
-              </div>
 
-              {/* Konten */}
-              <div className="px-4 py-4 space-y-4">
-                <DialogHeader className="px-0 pt-0 pb-2">
-                  <DialogTitle className="text-lg font-semibold text-center sm:text-left">
-                    {selected.name}
-                  </DialogTitle>
-                </DialogHeader>
-
-                <p className="text-gray-600 text-sm leading-relaxed text-justify">
-                  {selected.description}
-                </p>
-
-                {selected.tags?.length > 0 && (
-                  <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-                    {selected.tags.map((tag: string) => (
-                      <Badge key={tag} variant="outline" className="text-xs">
-                        #{tag}
-                      </Badge>
-                    ))}
-                  </div>
-                )}
-
-                <div className="text-xs text-gray-500 text-center sm:text-left">
-                  Dibuat oleh: <b>{selected.creator.name}</b> (
-                  {selected.creator.organization || "Independen"})
-                </div>
-              </div>
-            </div>
-          )}
-        </DialogContent>
-      </Dialog>
     </section>
   );
 }

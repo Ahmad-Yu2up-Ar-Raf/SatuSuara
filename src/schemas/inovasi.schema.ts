@@ -16,7 +16,7 @@ const mediaSchema = z.object({
 
 // Creator/Pembuat schema
 const pembuatSchema = z.object({
-  id: z.string().uuid(),
+  id: z.string(),
   nama: z.string().min(1),
   peran: z.string().optional(),
   organisasi: z.string().optional(),
@@ -47,12 +47,12 @@ const sumberSchema = z.object({
 
 // Main innovation schema
 export const inovasiSchema = z.object({
-  id: z.string().uuid(),
+  id: z.string(),
   slug: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/, 'Must be kebab-case'),
   judul: z.string().min(1).max(200),
   ringkasanPendek: z.string().min(10).max(120),
   deskripsi: z.string().min(50).max(2000),
-  media: z.array(mediaSchema).min(1),
+  media: z.array(mediaSchema).default([]),
   pembuat: pembuatSchema,
   kategori: z.enum([
     'Kesehatan',
@@ -68,6 +68,7 @@ export const inovasiSchema = z.object({
     'Keamanan'
   ]),
   subKategori: z.string().optional(),
+  rank: z.string().optional(),
   tag: z.array(z.string()).min(3).max(8),
   lokasi: lokasiSchema,
   dibuatPada: z.string().datetime(),

@@ -14,9 +14,7 @@ import InovasiCard from "../card/InovasiCard";
 import type { Inovasi } from "@/schemas/inovasi.schema";
 import inovationsData from "@/config/data/Inovations.json";
 import HeaderInovasi from "@/components/ui/core/layout/header/jelajahiInovasiHeader";
-
 const primary = "#63493f";
-
 const kategoriList = [
   "Semua",
   "Kesehatan",

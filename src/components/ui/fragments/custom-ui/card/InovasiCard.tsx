@@ -16,6 +16,8 @@ import { cn } from '@/lib/utils';
 import { useInitials } from '@/hooks/use-initials';
 import Link from 'next/link';
 import { batasiHuruf, batasiKata } from '@/hooks/use-worldMax';
+import { categoryColors } from '@/lib/utils/getCategory';
+import { Avatar, AvatarFallback, AvatarImage } from '../../shadcn-ui/avatar';
 
 interface InovasiCardProps {
   inovasi: Inovasi;
@@ -32,26 +34,9 @@ function InovasiCard({ inovasi, className, onClick  ,  index,
   // Get primary image
   const primaryImage = inovasi.media.find((m) => m.kind === 'image')?.url;
 
-  // Format date
-  const createdDate = new Date(inovasi.dibuatPada).toLocaleDateString('id-ID', {
-    year: 'numeric',
-    month: 'short',
-  });
 
   // Kategori color mapping
-  const categoryColors: Record<string, string> = {
-    'Kesehatan': 'bg-red-100 text-red-700 border-red-200',
-    'Pendidikan': 'bg-blue-100 text-blue-700 border-blue-200',
-    'Lingkungan': 'bg-green-100 text-green-700 border-green-200',
-    'Pangan': 'bg-orange-100 text-orange-700 border-orange-200',
-    'Energi': 'bg-yellow-100 text-yellow-700 border-yellow-200',
-    'Transportasi': 'bg-purple-100 text-purple-700 border-purple-200',
-    'Agrikultur': 'bg-lime-100 text-lime-700 border-lime-200',
-    'Ekonomi Kreatif': 'bg-pink-100 text-pink-700 border-pink-200',
-    'Sosial': 'bg-indigo-100 text-indigo-700 border-indigo-200',
-    'Teknologi': 'bg-cyan-100 text-cyan-700 border-cyan-200',
-    'Keamanan': 'bg-slate-100 text-slate-700 border-slate-200',
-  };
+
   const initial = useInitials()
     const teksSingkat = batasiHuruf(inovasi.pembuat.organisasi!, 10); 
     const titleSingkat = batasiHuruf(inovasi.pembuat.nama!, 15); 
@@ -120,13 +105,16 @@ function InovasiCard({ inovasi, className, onClick  ,  index,
         )}
 
         {/* Creator Info */}
-        <div className="space-y-4">
-          <div className=" gap-20 flex w-full justify-between">
+        <div className="space-y-4 w-full">
+          <div className="  gap-20  flex w-full justify-between">
 
-            <div className="flex   w-full items-start  justify-between  gap-2 text-xs">
-              <div className="w-8 h-8 rounded-full from-primary to-primary/60 flex items-center justify-center text-white font-semibold">
-                {initial(inovasi.pembuat.nama)}
-              </div>
+            <div className="flex  gap-3  w-full items-start  justify-between   text-xs">
+              <Avatar className="">
+                  {inovasi.pembuat.avatarUrl && (
+                    <AvatarImage src={inovasi.pembuat.avatarUrl} alt={inovasi.pembuat.nama} />
+                  )}
+                  <AvatarFallback>{inovasi.pembuat.nama.charAt(0)}</AvatarFallback>
+                </Avatar>
               <div className="flex-1">
                 <p className="font-medium truncate">{titleSingkat}</p>
                 {inovasi.pembuat.organisasi && (

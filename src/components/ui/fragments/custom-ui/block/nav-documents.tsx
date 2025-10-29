@@ -32,8 +32,8 @@ export function NavDocuments({
           <SidebarMenuItem key={item.name}>
             <SidebarMenuButton asChild>
               <Link href={item.url}>
-              <item.icon />
-              <span>{item.name}</span>
+                <item.icon />
+                <span>{item.name}</span>
               </Link>
             </SidebarMenuButton>
             <DropdownMenu>
