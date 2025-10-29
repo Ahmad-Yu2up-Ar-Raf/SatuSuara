@@ -95,7 +95,7 @@ function Hero() {
   return (
     <section 
  
-    className="w-full m-auto   overflow-hidden md:mb-25  lg:pt-20 min-h-lvh md:overflow-visible flex flex-col items-center justify-center relative">
+    className="w-full m-auto mb-0.5   overflow-hidden md:mb-25 lg:mb-40  lg:pt-20 min-h-lvh md:overflow-visible flex flex-col items-center justify-center relative">
       <Floating sensitivity={-0.5} className="h-full">
         {/* <FloatingElement
           depth={0.5}
@@ -116,7 +116,7 @@ function Hero() {
           depth={1}
           className="top-[0%] left-[3%]"
         >
-            <BlurFade
+            <BlurFade  isPreload             
 delay={delay }
 
                    key={exampleImages[1].url}
@@ -131,7 +131,7 @@ delay={delay }
           depth={4}
           className="top-[90%] left-[6%] md:top-[80%] md:left-[8%]"
         >
-               <BlurFade
+               <BlurFade  isPreload             
 delay={delay * 2}
           key={exampleImages[2].url}
 
@@ -146,7 +146,7 @@ delay={delay * 2}
           depth={2}
           className="top-[0%] left-[87%] md:top-[2%] md:left-[83%]"
         >
-          <BlurFade
+          <BlurFade  isPreload             
  delay={delay * 3}
           key={exampleImages[3].url}
             className="w-40 h-36 overflow-hidden sm:w-48 sm:h-44 md:w-60 md:h-52 lg:w-64 lg:h-70 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform shadow-2xl rotate-[6deg] rounded-xl"
@@ -160,7 +160,7 @@ delay={delay * 2}
           depth={1}
           className="top-[78%] left-[83%] md:top-[68%] md:left-[83%]"
         >
-          <BlurFade
+          <BlurFade  isPreload             
           key={exampleImages[4].url}
 delay={delay * 4}
    
@@ -177,7 +177,7 @@ delay={delay * 4}
         <div className=" space-y-4">
         
 
- <BlurFade
+ <BlurFade  isPreload             
 delay={delay * 5}
      direction="up"
      duration={1}
@@ -187,7 +187,7 @@ delay={delay * 5}
     </BlurFade>
       
     
-    <BlurFade
+    <BlurFade  isPreload             
 delay={delay * 6}
      direction="up"
     >
@@ -242,7 +242,7 @@ delay={delay * 6}
 </motion.h1>
       </BlurFade>    
 
-<BlurFade 
+<BlurFade  isPreload              
         direction="up"
 
 
@@ -259,7 +259,7 @@ delay={delay * 7}
 
         </div>
 
-        <BlurFade
+        <BlurFade  isPreload             
 delay={delay * 8}
         direction="up"
          className="flex w-full flex-col md:flex-row justify-center md:space-x-4  md:space-y-0 space-y-2.5 items-center ">

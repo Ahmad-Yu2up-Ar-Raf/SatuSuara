@@ -11,10 +11,10 @@ import { cn } from '@/lib/utils';
 import { ModalProvider } from './ContextProvider';
 import SiteHeader from '../layout/SiteHeader';
 import SmoothFollower from '../../fragments/custom-ui/cursor';
-import SignInModal from '../auth/components/SignInModal';
+
 import Preload from '../../fragments/custom-ui/animate-ui/Preload';
 import { useEffect, useState } from 'react';
-import MarqueeAlongSvgPathDemo from '../../fragments/custom-ui/animate-ui/marquee-along';
+
 import { useIsMobile } from '@/hooks/use-mobile';
 
 /**
@@ -28,15 +28,14 @@ import { useIsMobile } from '@/hooks/use-mobile';
 const PRELOAD_SESSION_KEY = 'website_preload_shown';
 
 // Daftar route yang tidak menampilkan header/footer normal
+const EXCLUDED_ROUTES_FOOTER = [
+  "/",
+  "jelajahi-inovasi",
+  "/jelajahi-inovasi/[slug]"
+];
 const EXCLUDED_ROUTES = [
-  "/masuk",
-  "/jelajahi-inovasi",
-  '/daftar',
-  '/daftar/sandi',
-  '/daftar/lokasi',
-  '/daftar/pekerjaan',
-  '/dashboard',
-  '/_error'
+  "/",
+
 ];
 
 /**
@@ -159,7 +158,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
    */
   if (isInitializing) {
     return (
-      <div className="fixed inset-0 bg-background z-[9999]" />
+      <div className="fixed inset-0 bg-background " />
     );
   }
 
@@ -205,7 +204,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
           {contentReady && (
             <main className=' relative'>
               {/* Header - tidak ditampilkan di route tertentu */}
-              {!EXCLUDED_ROUTES.includes(pathname) && (
+              {EXCLUDED_ROUTES.includes(pathname) && (
                 <AnimatePresence mode="wait">
                   <SiteHeader key="site-header" />
                 </AnimatePresence>
@@ -217,7 +216,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                   key={`main-content-${pathname}`}
                   className={cn(
                     "mx-auto z-10 content-center  items-center justify-center relative w-full min-h-dvh h-full",
-                    !EXCLUDED_ROUTES.includes(pathname) && "flex flex-col gap-30  pb-20 "
+                    EXCLUDED_ROUTES.includes(pathname) && "flex flex-col gap-30  pb-20 "
                   )}
                 >
                   {children}
@@ -228,7 +227,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
               </AnimatePresence>
 
               {/* Footer - hanya ditampilkan di route tertentu */}
-              {!EXCLUDED_ROUTES.includes(pathname) && (
+              {EXCLUDED_ROUTES_FOOTER.includes(pathname) && (
                 <>
             
                  <AnimatePresence mode="wait">

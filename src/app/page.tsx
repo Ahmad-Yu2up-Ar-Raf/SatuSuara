@@ -15,16 +15,18 @@ export default function HomePage() {
   return (
     <>
 
+<section className=" w-full   h-full">
 
       <Hero />
 
       <Marque />
-
-
       <About />
+</section>
+
+
       <Features />
-      <InovasiCarousel href="/jelajahi-inovasi" label="Inovasi Terbaru" />
-      {/* <Bento/> */}
+      <InovasiCarousel href="/jelajahi-inovasi" label="Terpopuler" />
+      <Bento/>
     </>
   );
 }

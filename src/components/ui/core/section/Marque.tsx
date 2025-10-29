@@ -6,9 +6,9 @@ function Marque() {
   const isMobile = useIsMobile()
 
   return (
-    <section        className="relative     mb-20  w-full content-center">
+    <section        className="relative     mb-20  md:mb-26 w-full content-center">
 
-        <div className='w-[120dvw] absolute top-0 -left-20   -rotate-7  md:-rotate-3 bg-secondary text-primary text-xl py-2  inline-flex flex-nowrap overflow-hidden '>
+        <div className='w-[120dvw] absolute top-0    right-0   -rotate-7  md:-rotate-3 bg-secondary text-primary text-xl py-2  inline-flex flex-nowrap overflow-hidden '>
               {Array.from({ length: 2 }, (_, i: number) => (
         <ul  key={i.toString()}  className='flex items-center justify-center md:justify-start  [&_li]:mx-3.5 [&_img]:max-w-none animate-infinite-scroll'>
       {Array.from({ length: 8 }, (_, j: number) => {
@@ -36,7 +36,7 @@ return(
         </ul>
              ))}
       </div>
-        <div className='w-[120dvw] absolute top-0 -left-20 rotate-7  md:rotate-3 bg-primary text-primary-foreground text-5xl py-2  inline-flex flex-nowrap overflow-hidden '>
+        <div className='w-[120dvw] absolute top-0 right-0  rotate-7  md:rotate-3 bg-primary text-primary-foreground text-5xl py-2  inline-flex flex-nowrap overflow-hidden '>
               {Array.from({ length: 2 }, (_, i: number) => (
         <ul  key={i.toString()}  className='flex items-center justify-center md:justify-start  [&_li]:mx-3.5 [&_img]:max-w-none animate-infinite-scroll'>
       {Array.from({ length: 8 }, (_, j: number) => {

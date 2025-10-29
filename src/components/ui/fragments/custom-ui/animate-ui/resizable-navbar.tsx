@@ -19,7 +19,7 @@ import {
 import Link from "next/link";
 
 import React, { useRef, useState } from "react";
-import { Logo, LogoDark, LogoWhiter } from "../../svg/logo";
+import { Logo } from "../../svg/logo";
 import { Button, buttonVariants } from "../../shadcn-ui/button";
 import MediaItem from "../media/MediaItem";
 import { VariantProps } from "class-variance-authority";
@@ -124,9 +124,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
           duration: delay ?  0.6 : 0.2,
           delay: delay ? 4 : 0,
         }}
-      className={cn("   inset-x-0 top-[20] md:top-[36] z-40 w-full",
-        pathName == "/" ? "  sticky md:fixed " : "sticky"
-        , className ,)}
+      className={cn("  fixed inset-x-0 top-[20] md:top-[36] z-40 w-full",
+         className ,)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -154,9 +153,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
           duration:  0.6 ,
           delay: 4 
         }}
-      className={cn("   inset-x-0 top-[20] md:top-[25] z-40 w-full",
-        pathName == "/" ? "  sticky md:fixed " : "sticky"
-        , className ,)}
+      className={cn("  fixed inset-x-0 top-[20] md:top-[25] z-40 w-full",
+className ,)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -390,7 +388,7 @@ export const NavbarLogo = () => {
                 >  
       <MediaItem webViewLink="/assets/logo/dark-logo.png" className=" size-20 "/>
                   </div>
-              <LogoWhiter className=" hidden lg:inline-flex  size-7"  />
+              <Logo className=" hidden lg:inline-flex  size-7"  />
 
       <span className="font-semibold    text-accent-foreground">SatuSuara</span>
     </Link>

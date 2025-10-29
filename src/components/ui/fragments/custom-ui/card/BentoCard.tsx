@@ -17,6 +17,7 @@ export interface BentoProps {
   BadgeIcon?: LucideIcon
   children: React.ReactNode
   borderBottom?: boolean
+   contentClassName?: string
 }
 
 interface componentProps {
@@ -24,7 +25,7 @@ interface componentProps {
   index: number;
   hovered: number | null;
   setHovered: React.Dispatch<React.SetStateAction<number | null>>;
-
+ 
 }
 
 import { cn } from "@/lib/utils"
@@ -73,7 +74,7 @@ export const BentoCard: React.FC<componentProps> = ({
               <BadgeIcon className="fill-secondary stroke-1 md:size-6 text-neutral-800" />{" "}
               {SubTitle}
             </Badge>
-            <CardTitle className=" md:text-xl  text-lg   opacity-85 font-bold tracking-tighter">
+            <CardTitle className=" md:text-xl  text-lg   line-clamp-1 opacity-85 font-bold tracking-tighter">
               <TextAnimate as={"span"} delay={delay}>
                 {title}
               </TextAnimate>
@@ -86,9 +87,11 @@ export const BentoCard: React.FC<componentProps> = ({
 
           </CardHeader>
 
-          <BlurFade delay={title != "Lihat Yang Lagi Naik Daun 🌿" ? delay * 3 : 0} inView className="flex w-full h-full content-center relative items-center justify-center gap-4">
+          <BlurFade delay={title != "Lihat Yang Lagi Naik Daun 🌿" ? delay * 3 : 0} inView className="flex w-full h-full content-center relative items-center md:max-h-40 p-0 justify-center gap-4">
+          <div className={cn(bentoItem.contentClassName , "  ")}>
 
             {children}
+          </div>
           </BlurFade>
         </CardContent>
       </Card>

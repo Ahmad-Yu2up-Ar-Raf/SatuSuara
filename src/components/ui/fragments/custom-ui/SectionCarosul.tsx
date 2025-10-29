@@ -26,6 +26,8 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { ChevronRight } from 'lucide-react';
 
 
+import Autoplay from "embla-carousel-autoplay"
+
 
 
 
@@ -42,16 +44,16 @@ type componentsProps = {
 }
 
 
-function InovasiCarousel({ linkLabel = "Explore more", data = inovationsData as Inovasi[], title = "Newest Products", ...props }: componentsProps) {
+function InovasiCarousel({ linkLabel = "Jelajahi lebih lanjut", data = inovationsData as Inovasi[], title = "Inovasi Terbaik", ...props }: componentsProps) {
 
 
 
   const [hovered, setHovered] = useState<number | null>(null);
   return (
-    <section className='container space-y-10 '>
+    <section className='container    space-y-10 '>
 
       <header className='  px-4    flex-row flex justify-between items-end'>
-        <h1 className=' pr-3 text-2xl md:text-3xl lg:items-center  flex-col gap-1 lg:gap-1 flex lg:flex-row  font-bold'>
+        <h1 className=' pr-3 text-2xl md:text-3xl lg:text-4xl lg:items-center  flex-col gap-1 lg:gap-1 flex lg:flex-row  font-bold'>
           {title}
           {props.label && (
 
@@ -65,18 +67,23 @@ function InovasiCarousel({ linkLabel = "Explore more", data = inovationsData as 
           <Link
             className={cn(
               buttonVariants({ variant: "secondary" })
-              , '  text-xs px-3 py-0 text-black dark:text-white')}
+              , '  has-[>svg]:py-0 text-[2dvw] sm:text-xs px-3 py-0 text-black dark:text-white')}
             href={props.href}
           >
             {linkLabel}
-            <ChevronRight />
+            <ChevronRight  className=' size-3'/>
           </Link>
         )}
       </header>
 
 
       <Carousel
-
+      className=''
+ plugins={[
+        Autoplay({
+          delay: 2000,
+        }),
+      ]}
         opts={{
           align: "start",
           breakpoints: {
@@ -87,12 +94,12 @@ function InovasiCarousel({ linkLabel = "Explore more", data = inovationsData as 
         }}
       >
         <CarouselContent className="mx-4 relative cursor-grab overflow-y-visible  2xl:mr-[max(0rem,calc(50vw-700px))]">
-          {data.map((inovasi: Inovasi, i: number) => {
+          {data.slice(0, 5).map((inovasi: Inovasi, i: number) => {
 
             return (
               <CarouselItem
                 key={i}
-                className={cn("min-w-[80vw] sm:min-w-[44vw] md:min-w-[33.333vw] lg:min-w-[28rem] shrink-0",
+                className={cn(" w-fit  shrink-0",
 
                   i > 0 ? 'pl-3' : 'pl-0',
                 )}
@@ -103,7 +110,7 @@ function InovasiCarousel({ linkLabel = "Explore more", data = inovationsData as 
                   key={inovasi.id}
                   inovasi={inovasi}
 
-                  className="" />
+                  className=" w-fit" />
               </CarouselItem>
             )
           }

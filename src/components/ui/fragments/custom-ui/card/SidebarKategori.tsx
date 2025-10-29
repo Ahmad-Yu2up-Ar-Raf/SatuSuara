@@ -42,7 +42,7 @@ export default function SidebarKategori({
       <aside
         className={`
           z-40 flex flex-col border-r  dark:bg-gray-800 transition-transform duration-300
-          fixed top-0 left-0 h-screen w-72 md:relative md:translate-x-0
+          fixed top-0 left-0 h-lvh w-72 md:relative md:translate-x-0
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
         `}
       >

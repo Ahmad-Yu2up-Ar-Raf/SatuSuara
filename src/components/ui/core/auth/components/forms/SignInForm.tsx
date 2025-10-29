@@ -71,7 +71,7 @@ function SignInForm<T extends FieldValues, >({
             <FormItem>
               <FormLabel className=' flex w-full justify-between'><span>Sandi</span> 
               <Link
-              className=' underline text-muted-foreground hover:text-accent-foreground'
+              className=' underline sr-only text-muted-foreground hover:text-accent-foreground'
               href={'/forgot-password'}
               >Lupa Sandi?</Link></FormLabel>
               <FormControl>

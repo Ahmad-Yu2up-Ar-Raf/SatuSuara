@@ -1,5 +1,5 @@
 import React from 'react';
-import { ArrowRight, Star, Tag, MapPin, Calendar } from 'lucide-react';
+import { ArrowRight, Star, Tag, MapPin, Calendar, ThumbsUp } from 'lucide-react';
 import { Badge } from '../../shadcn-ui/badge';
 import {
   Card,
@@ -15,6 +15,7 @@ import type { Inovasi } from '@/schemas/inovasi.schema';
 import { cn } from '@/lib/utils';
 import { useInitials } from '@/hooks/use-initials';
 import Link from 'next/link';
+import { batasiHuruf, batasiKata } from '@/hooks/use-worldMax';
 
 interface InovasiCardProps {
   inovasi: Inovasi;
@@ -52,13 +53,16 @@ function InovasiCard({ inovasi, className, onClick  ,  index,
     'Keamanan': 'bg-slate-100 text-slate-700 border-slate-200',
   };
   const initial = useInitials()
+    const teksSingkat = batasiHuruf(inovasi.pembuat.organisasi!, 10); 
+    const titleSingkat = batasiHuruf(inovasi.pembuat.nama!, 15); 
   return (
     <Card
     onMouseEnter={() => setHovered(index)}
     onMouseLeave={() => setHovered(null)}
       className={cn(
-        'relative cursor-target w-full  m-auto px-1 py-3 md:px-4 md:py-7  shadow-none  border  rounded-2xl',
-        'transform transition-all duration-300 hover:scale-105 hover:rotate-1',
+        'relative   cursor-target w-full  m-auto  md:px-4 md:py-4  shadow-none  border  rounded-2xl',
+        'transform transition-all duration-300 hover:scale-105 hover:rotate-1 ',
+        "mx-auto cursor-target content-center w-full  p-3   border border-black/5  shadow-sm  rounded-[30px]",
         ' overflow-hidden hover:shadow-2xl flex flex-col h-full',
         'cursor-pointer',
            hovered !== null && hovered !== index && "blur-sm scale-[0.98]",
@@ -67,13 +71,24 @@ function InovasiCard({ inovasi, className, onClick  ,  index,
       style={{ willChange: 'transform' }}
       onClick={() => onClick?.(inovasi)}
     >
-      <CardContent className="p-4.5 gap-8 flex flex-col flex-1">
+      <CardContent className=" rounded-[30px] content-center justify-center gap-6 flex flex-col flex-1 relative mx-auto  px-5 w-full   border border-black/5 bg-neutral-800/5 py-3 md:py-7  h-full  overflow-hidden shadow-sm md:items-start   ">
         {/* Category Badge */}
   
 
+
         {/* Header */}
-        <CardHeader className="p-0 space-y-1 md:space-y-2">
-          <CardTitle className="text-2xl font-bold tracking-tighter md:leading-8 line-clamp-2">
+        <CardHeader className="p-0 w-full max-w-[15em] gap-2.5">
+            <Badge
+          variant="outline"
+          className={cn(
+            'mb-1 text-[9px] md:text-xs font-semibold w-fit',
+            categoryColors[inovasi.kategori] || 'bg-gray-100 text-gray-700'
+          )}
+        >
+          <Tag className="mr-1 size-3 md:size-4" />
+          {inovasi.kategori}
+        </Badge>
+          <CardTitle className="text-lg w-full  leading-6 font-bold tracking-tighter md:leading-6 line-clamp-2">
             {inovasi.judul}
           </CardTitle>
 
@@ -82,7 +97,7 @@ function InovasiCard({ inovasi, className, onClick  ,  index,
           </CardDescription>
 
           {/* Meta Info */}
-          <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
+          {/* <div className="flex flex-wrap gap-2 text-xs text-muted-foreground">
             <div className="flex items-center gap-1">
               <MapPin className="size-3" />
               <span>{inovasi.lokasi.provinsi || 'Indonesia'}</span>
@@ -91,12 +106,12 @@ function InovasiCard({ inovasi, className, onClick  ,  index,
               <Calendar className="size-3" />
               <span>{createdDate}</span>
             </div>
-          </div>
+          </div> */}
         </CardHeader>
 
         {/* Image */}
         {primaryImage && (
-          <div className=" aspect-video w-full rounded-xl overflow-hidden">
+          <div className="  h-40 w-full rounded-xl overflow-hidden">
             <MediaItem
               webViewLink={primaryImage}
               className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
@@ -106,23 +121,23 @@ function InovasiCard({ inovasi, className, onClick  ,  index,
 
         {/* Creator Info */}
         <div className="space-y-4">
-          <div className=" flex w-full justify-between">
+          <div className=" gap-20 flex w-full justify-between">
 
-            <div className="flex  w-full items-start  justify-between gap-2 text-xs">
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-primary to-primary/60 flex items-center justify-center text-white font-semibold">
+            <div className="flex   w-full items-start  justify-between  gap-2 text-xs">
+              <div className="w-8 h-8 rounded-full from-primary to-primary/60 flex items-center justify-center text-white font-semibold">
                 {initial(inovasi.pembuat.nama)}
               </div>
-              <div className="flex-1 min-w-0">
-                <p className="font-medium truncate">{inovasi.pembuat.nama}</p>
+              <div className="flex-1">
+                <p className="font-medium truncate">{titleSingkat}</p>
                 {inovasi.pembuat.organisasi && (
                   <p className="text-muted-foreground text-[10px] truncate">
-                    {inovasi.pembuat.organisasi}
+                    {teksSingkat}
                   </p>
                 )}
               </div>
             </div>
             <Badge variant="outline" className="text-accent-foreground text-[10px] w-fit border-0 p-0">
-              <Star className="size-4 fill-primary text-primary mr-1" />
+              <ThumbsUp className="size-4 fill-primary text-primary mr-1" />
               <span className="font-semibold ">{inovasi.totalVote.toLocaleString('id-ID')}</span>
             </Badge>
           </div>
@@ -148,10 +163,10 @@ function InovasiCard({ inovasi, className, onClick  ,  index,
         </div>
 
         {/* Footer */}
-        <CardFooter className="flex border-t py-3 items-center justify-between p-0 mt-auto">
+        <CardFooter className="flex mt-0  w-full border-t py-1 items-center justify-between  px-0 ">
           <Link
-            href={"#"}
-            className={cn(buttonVariants({ variant: "default" }), "hover:opacity-90 transition-transform w-full hover:scale-105 text-xs md:text-sm")}
+            href={"/jelajahi-inovasi/" + inovasi.slug}
+            className={cn(buttonVariants({ variant: "default" }), "hover:opacity-90 transition-transform w-full hover:scale-105 text-xs ")}
 
           >Beri Dukungan <ArrowRight className="ml-2 w-3 h-3 md:w-4 md:h-4" />
           </Link>

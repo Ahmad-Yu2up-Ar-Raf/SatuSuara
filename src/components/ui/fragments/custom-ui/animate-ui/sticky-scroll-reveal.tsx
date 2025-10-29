@@ -26,17 +26,9 @@ export const StickyScroll = () => {
           reverse: true,
           className : null
         },
+      
         {
           id: 2,
-          title: "Leaderboard & Voting",
-          description:
-            "Lihat proyek dengan dukungan terbanyak — berikan suara untuk ide yang kamu nilai berdampak agar mendapat prioritas pengembangan.",
-          LottieFilesData: animationData2,
-          reverse: false  ,
-                className : "w-90   md:mb-45 md:w-120"
-        },
-        {
-          id: 3,
           title: "Kolaborasi Komunitas",
           description:
             "Diskusikan, beri masukan, dan jalin tim dengan pembuat lain — fitur komentar dan kolaborasi untuk membuat ide jadi lebih matang.",
@@ -44,7 +36,15 @@ export const StickyScroll = () => {
           reverse: true,
         className : "w-70   md:w-110"
         },
-  
+    {
+          id: 3,
+          title: "Leaderboard & Voting",
+          description:
+            "Lihat proyek dengan dukungan terbanyak — berikan suara untuk ide yang kamu nilai berdampak agar mendapat prioritas pengembangan.",
+          LottieFilesData: animationData2,
+          reverse: false  ,
+                className : "w-90   md:mb-45 md:w-120"
+        },
       ];
       
     // Create refs and animations for each section
@@ -91,7 +91,10 @@ export const StickyScroll = () => {
                     <div 
                         key={section.id}
                         ref={sectionRefs[index]} 
-                        className={` min-h-[70lvh] md:min-h-dvh  flex-col md:flex-row flex items-center justify-center md:gap-30 gap-10 ${section.reverse ? 'md:flex-row-reverse' : ''}`}
+                        className={cn(`  min-h-[70lvh]  flex-col md:flex-row flex items-center justify-center md:gap-30 gap-10 ${section.reverse ? 'md:flex-row-reverse' : ''}`,
+                            section.id == 3 ?  'md:min-h-[30lvh]' : "md:min-h-dvh"
+
+                        )}
                     >
                     
                         <motion.div 

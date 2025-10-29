@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useMemo } from "react";
 import { gsap } from "gsap";
 import { Button } from "../../shadcn-ui/button";
 import { ArrowLeft, ArrowRight, ArrowUp } from "lucide-react";
@@ -8,8 +8,6 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/fragments/shadcn-ui/carousel";
 import { cn } from "@/lib/utils";
 import InovasiCard from "../card/InovasiCard";
@@ -38,11 +36,13 @@ export default function InovasiBlock() {
   const [kategoriAktif, setKategoriAktif] = useState("Semua");
   const [page, setPage] = useState(1);
   const [showTop, setShowTop] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [hovered, setHovered] = useState<number | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
   const itemsPerPage = 9;
 
-  // Cast data to proper type
   const allInovations = inovationsData as Inovasi[];
+  const totalVotes = allInovations.reduce((sum, i) => sum + i.totalVote, 0);
 
   useEffect(() => {
     const handleScroll = () => setShowTop(window.scrollY > 300);
@@ -51,7 +51,6 @@ export default function InovasiBlock() {
   }, []);
 
   useEffect(() => {
-    // Animate cards on mount/filter change
     gsap.fromTo(
       ".inovasi-card",
       { scale: 0.9, opacity: 0, y: 30 },
@@ -65,21 +64,47 @@ export default function InovasiBlock() {
         clearProps: "transform",
       }
     );
-  }, [page, kategoriAktif]);
+  }, [page, kategoriAktif, searchQuery]);
 
-  // Filter data based on category
-  const filteredData =
-    kategoriAktif === "Semua"
-      ? allInovations
-      : allInovations.filter((i) => i.kategori === kategoriAktif);
+  // Filter and search logic with useMemo for optimization
+  const filteredData = useMemo(() => {
+    let data = allInovations;
+
+    // Filter by category
+    if (kategoriAktif !== "Semua") {
+      data = data.filter((i) => i.kategori === kategoriAktif);
+    }
+
+    // Filter by search query
+    if (searchQuery.trim()) {
+      const query = searchQuery.toLowerCase();
+      data = data.filter(
+        (i) =>
+          i.judul.toLowerCase().includes(query) ||
+          i.deskripsi.toLowerCase().includes(query) ||
+          i.kategori.toLowerCase().includes(query) ||
+          i.pembuat.nama.toLowerCase().includes(query)
+      );
+    }
+
+    return data;
+  }, [allInovations, kategoriAktif, searchQuery]);
 
   // Sort by votes (descending)
-  const sortedData = [...filteredData].sort((a, b) => b.totalVote - a.totalVote);
+  const sortedData = useMemo(() => 
+    [...filteredData].sort((a, b) => b.totalVote - a.totalVote),
+    [filteredData]
+  );
 
   // Pagination
   const totalPages = Math.ceil(sortedData.length / itemsPerPage);
   const startIndex = (page - 1) * itemsPerPage;
   const paginatedData = sortedData.slice(startIndex, startIndex + itemsPerPage);
+
+  // Reset page when filter or search changes
+  useEffect(() => {
+    setPage(1);
+  }, [kategoriAktif, searchQuery]);
 
   const scrollToGridTop = () => {
     if (gridRef.current) {
@@ -101,21 +126,33 @@ export default function InovasiBlock() {
   const handleScrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
 
   const handleCardClick = (inovasi: Inovasi) => {
-    // Navigate to detail page or open modal
     console.log("Clicked inovasi:", inovasi.slug);
     // Router.push(`/inovasi/${inovasi.slug}`);
   };
-  const totalVotes = allInovations.reduce((sum, i) => sum + i.totalVote, 0)
-  const [hovered, setHovered] = useState<number | null>(null);
+
+  const handleSearchChange = (query: string) => {
+    setSearchQuery(query);
+  };
+
+  const handleResetFilter = () => {
+    setKategoriAktif("Semua");
+    setSearchQuery("");
+    setPage(1);
+  };
+
   return (
     <>
-      <HeaderInovasi totalIdeas={allInovations.length} totalVotes={totalVotes} />
-      <section className="py-8 w-full container sm:p-2 flex-1">
-        <div className="space-y-6">
-          {/* Header Stats */}
-
+      <HeaderInovasi 
+        totalIdeas={allInovations.length} 
+        totalVotes={totalVotes}
+        searchQuery={searchQuery}
+        onSearchChange={handleSearchChange}
+      />
+      <section className="py-1 w-full container sm:p-2 flex-1">
+        <div className="space-y-5">
           {/* Category Filter Carousel */}
           <Carousel
+            className="overflow-hidden"
             opts={{
               align: "start",
               breakpoints: {
@@ -137,10 +174,7 @@ export default function InovasiBlock() {
                       backgroundColor: kategoriAktif === kat ? primary : undefined,
                       color: kategoriAktif === kat ? "white" : undefined,
                     }}
-                    onClick={() => {
-                      setKategoriAktif(kat);
-                      setPage(1);
-                    }}
+                    onClick={() => setKategoriAktif(kat)}
                   >
                     {kat}
                     <span className="ml-2 text-xs opacity-70">
@@ -153,27 +187,27 @@ export default function InovasiBlock() {
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <CarouselPrevious />
-            <CarouselNext />
           </Carousel>
 
           {/* Current Filter Info */}
           <div className="flex items-center justify-between px-4">
-            <p className="text-sm sr-only text-muted-foreground">
+            <p className="text-sm text-muted-foreground">
               Menampilkan <span className="font-semibold text-foreground">{paginatedData.length}</span> dari{" "}
               <span className="font-semibold text-foreground">{filteredData.length}</span> inovasi
+              {searchQuery && (
+                <span className="ml-1">
+                  untuk "<span className="font-semibold text-foreground">{searchQuery}</span>"
+                </span>
+              )}
             </p>
-            {kategoriAktif !== "Semua" && (
+            {(kategoriAktif !== "Semua" || searchQuery) && (
               <Button
-                variant="ghost"
+                variant="secondary"
                 size="sm"
-                onClick={() => {
-                  setKategoriAktif("Semua");
-                  setPage(1);
-                }}
-                className="text-primary"
+                onClick={handleResetFilter}
+                className="text-primary rounded-2xl"
               >
-                Reset Filter
+                Reset Semua
               </Button>
             )}
           </div>
@@ -181,14 +215,14 @@ export default function InovasiBlock() {
           {/* Grid */}
           <div
             ref={gridRef}
-            className="grid gap-3  px-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full auto-rows-fr"
+            className="grid gap-7 md:gap-3 px-2 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-full auto-rows-fr"
           >
             {paginatedData.length > 0 ? (
-              paginatedData.map((inovasi ,i) => (
+              paginatedData.map((inovasi, i) => (
                 <InovasiCard
-                index={i}
-                hovered={hovered}
-                setHovered={setHovered}
+                  index={i}
+                  hovered={hovered}
+                  setHovered={setHovered}
                   key={inovasi.id}
                   inovasi={inovasi}
                   onClick={handleCardClick}
@@ -199,10 +233,16 @@ export default function InovasiBlock() {
               <div className="col-span-full flex flex-col items-center justify-center min-h-[400px] animate-fadeIn">
                 <div className="text-6xl mb-4">🔍</div>
                 <p className="text-gray-500 text-lg text-center mb-2">
-                  Belum ada inovasi di kategori ini
+                  {searchQuery 
+                    ? `Tidak ada inovasi yang cocok dengan "${searchQuery}"`
+                    : "Belum ada inovasi di kategori ini"
+                  }
                 </p>
                 <p className="text-gray-400 text-sm">
-                  Coba kategori lain atau reset filter
+                  {searchQuery 
+                    ? "Coba kata kunci lain"
+                    : "Coba kategori lain atau reset filter"
+                  }
                 </p>
               </div>
             )}
@@ -210,9 +250,9 @@ export default function InovasiBlock() {
 
           {/* Pagination */}
           {filteredData.length > 0 && totalPages > 1 && (
-            <div className="flex gap-4 items-center justify-center mt-8">
+            <div className="flex gap-4 items-center justify-between mt-8">
               <Button
-                variant="outline"
+                variant="ghost"
                 disabled={page === 1}
                 onClick={handlePrev}
                 style={{ borderColor: primary, color: primary }}
@@ -237,7 +277,7 @@ export default function InovasiBlock() {
                   return (
                     <Button
                       key={i}
-                      variant={page === pageNum ? "default" : "outline"}
+                      variant={page === pageNum ? "default" : "ghost"}
                       size="sm"
                       onClick={() => {
                         setPage(pageNum);
@@ -256,7 +296,7 @@ export default function InovasiBlock() {
               </div>
 
               <Button
-                variant="outline"
+                variant="ghost"
                 disabled={page === totalPages}
                 onClick={handleNext}
                 style={{ borderColor: primary, color: primary }}

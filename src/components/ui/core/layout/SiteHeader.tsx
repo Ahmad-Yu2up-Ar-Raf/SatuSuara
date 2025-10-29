@@ -15,10 +15,10 @@ import { useOnboardingStore } from "@/hooks/use-store-signup";
 
 export default function NavbarDemo() {
   const navItems = [
-    {
-      name: "Tentang Kami",
-      link: "/tentang-kami",
-    },
+    // {
+    //   name: "Tentang Kami",
+    //   link: "/tentang-kami",
+    // },
 
     {
       name: "Inovasi",
@@ -57,7 +57,7 @@ export default function NavbarDemo() {
       <NavBody>
         <NavbarLogo />
         <NavItems items={navItems} />
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-2">
           {postBody.name == null ? (
 <>
 <NavbarButton
@@ -68,7 +68,7 @@ export default function NavbarDemo() {
 </NavbarButton>
 <NavbarButton  variant={"secondary"}
   className=" rounded-full"
-  href="/masuk">Daftar</NavbarButton>
+  href="/daftar">Daftar</NavbarButton>
 </>
           ) : (
             <NavbarButton
