@@ -24,13 +24,7 @@ function VisualReportCard() {
   };
 
   return (
-    <BentoCard 
-      BadgeIcon={ChartArea} 
-      title="Peringkat Visual 📊" 
-      SubTitle="Inovasi Unggulan" 
-      descripcions="Lihat proyek teratas dengan suara terbanyak – dukung ide yang menurutmu paling berdampak."  
-      className="h-[360px] md:col-span-2  hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out  "
-    >
+  
       <motion.svg
         ref={chartRef}
         width="552"
@@ -150,7 +144,7 @@ function VisualReportCard() {
           />
         ))}
       </motion.svg>
-    </BentoCard>
+ 
   )
 }
 

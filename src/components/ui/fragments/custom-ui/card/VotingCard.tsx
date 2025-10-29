@@ -19,18 +19,12 @@ function VotingCardBento() {
   const { View } = useLottie(lottieOptions, style);
 
   return (
-    <BentoCard
-      BadgeIcon={ChartArea}
-      SubTitle="Dapat Dukungan"
-      borderBottom
-      descripcions="Berikan suara — bantu ide lokal menjadi solusi nyata."
-      title="kumpulkan dukungan publik"
-      className="h-full  md:gap-0 hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1  transition-all duration-200 ease-in-out  ">
-      <div className=" scale-150  m-auto  md:w-40 md:h-20  md:scale-400 w-60 h-30 ">
-        {View}
-      </div>
-    </BentoCard>
-  );
+
+  <div className=" scale-150  m-auto  md:w-40 md:h-20  md:scale-400 w-60 h-30 ">
+              {  View}
+              </div> 
+       
+  )
 }
 
 export default VotingCardBento;

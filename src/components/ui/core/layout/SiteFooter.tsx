@@ -122,8 +122,9 @@ export default function SiteFooter({ className, ...props }: StickyFooterProps) {
         </div>
 						 <div className=" w-full flex   items-center justify-center   ">
                    <h1 className="text-center relative text-[20dvw] lg:text-[14em] font-bold bg-clip-text tracking-tighter bg-gradient-to-b  to-background from-yellow-950/50 select-none">
-                   <div className=" w-full h-full absolute"/>
+                
                  <VerticalCutReveal
+              
             splitBy="characters"
             staggerDuration={0.05}
             staggerFrom="first"

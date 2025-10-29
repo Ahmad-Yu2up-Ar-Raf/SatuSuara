@@ -79,7 +79,7 @@ const router = useRouter()
       <Button
           disabled={isPending || loading}
           type="submit"
-          className="w-full  transition-colors"
+          className="w-full  mb-5 transition-colors"
         >
           Masuk
           {(isPending || loading) && (

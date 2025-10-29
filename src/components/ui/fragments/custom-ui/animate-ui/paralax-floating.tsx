@@ -12,6 +12,7 @@ import { useAnimationFrame } from "motion/react"
 
 import { cn } from "@/lib/utils"
 import { useMousePositionRef } from "@/hooks/use-mouse-position-ref"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 interface FloatingContextType {
   registerElement: (id: string, element: HTMLDivElement, depth: number) => void
@@ -84,6 +85,20 @@ const Floating = ({
     })
   })
 
+  const isMobile = useIsMobile();
+
+  if (isMobile) { 
+    return(
+    <div
+       
+        className={cn("absolute top-0 left-0 w-full h-full", className)}
+        {...props}
+      >
+        {children}
+      </div>
+    )
+    
+  }
   return (
     <FloatingContext.Provider value={{ registerElement, unregisterElement }}>
       <div
@@ -122,7 +137,18 @@ export const FloatingElement = ({
     context.registerElement(idRef.current, elementRef.current, nonNullDepth)
     return () => context.unregisterElement(idRef.current)
   }, [depth])
+  const isMobile = useIsMobile();
 
+  if (isMobile) {
+    return(
+         <div
+
+      className={cn("absolute cursor-target will-change-transform", className)}
+    >
+      {children}
+    </div>
+    )
+  }
   return (
     <div
       ref={elementRef}

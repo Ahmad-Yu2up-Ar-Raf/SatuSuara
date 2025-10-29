@@ -9,6 +9,7 @@ import {
   UseInViewOptions,
   Variants,
 } from "motion/react";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type MarginType = UseInViewOptions["margin"];
 
@@ -27,6 +28,7 @@ interface BlurFadeProps extends MotionProps {
   inViewMargin?: MarginType;
   blur?: string;
   show?: boolean;
+  isPreload?: boolean;
   initial?: "hidden" | "";
 }
 
@@ -42,12 +44,13 @@ export function BlurFade({
   inView = false,
   inViewMargin = "-50px",
   blur = "6px",
+  isPreload = false,
   show = true,
   ...props
 }: BlurFadeProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const inViewResult = useInView(ref, { once: true, margin: inViewMargin });
-
+  const isMobile = useIsMobile();
   const defaultVariants: Variants = {
     hidden: {
       [direction === "left" || direction === "right" ? "x" : "y"]:
@@ -69,7 +72,18 @@ export function BlurFade({
   const shouldAnimate = show && (!inView || inViewResult);
 
   // CRITICAL FIX: Render element selalu, tapi control animationnya
-  // Jangan pakai conditional render di AnimatePresence
+  if (isMobile && !isPreload) 
+    return(
+  <div
+
+ 
+      className={className}
+
+    >
+      {children}
+    </div>
+  )
+    
   return (
     <motion.div
       ref={ref}

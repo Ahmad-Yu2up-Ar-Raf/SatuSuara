@@ -2,14 +2,14 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MediaItem from '../media/MediaItem';
-import { InovasiRingkas } from '@/schemas/inovasi.schema';
+import type { Inovasi } from "@/schemas/inovasi.schema";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
 interface BounceCardsProps {
   className?: string;
-  images?: InovasiRingkas[];
+  images?: Inovasi[];
   containerWidth?: number;
   containerHeight?: number;
   animationDelay?: number;
@@ -163,7 +163,7 @@ export default function BounceCards({
           onMouseEnter={() => pushSiblings(idx)}
           onMouseLeave={resetSiblings}
         >
-          <MediaItem className="w-full h-full object-cover" webViewLink={src.imageUrl}  />
+          <MediaItem className="w-full h-full object-cover" webViewLink={src.media[0].url}  />
         </div>
       ))}
     </div>

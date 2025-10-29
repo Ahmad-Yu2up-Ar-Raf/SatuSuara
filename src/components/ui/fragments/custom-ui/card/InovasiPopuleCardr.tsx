@@ -7,18 +7,11 @@ import "swiper/css"
 import "swiper/css/effect-coverflow"
 import "swiper/css/pagination"
 import "swiper/css/navigation"
-import { SparklesIcon } from "lucide-react"
 
-import { Badge } from "../../shadcn-ui/badge"
-import { InovasiRingkas } from "@/schemas/inovasi.schema"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../../shadcn-ui/card"
+import type { Inovasi } from "@/schemas/inovasi.schema";
 
-interface CarouselProps {
-  inovations: InovasiRingkas[]
-  className?: string
-}
-
+import inovations from '@/config/data/Inovations.json'
 const transformStyles = [
   "rotate(5deg) translate(-100px)",
   "rotate(0deg) translate(-30px)",
@@ -29,19 +22,13 @@ const transformStyles = [
 import BounceCards from "./BounceCard"
 import { cn } from "@/lib/utils"
 import { BentoCard } from "./BentoCard"
-export const InovasiPopulerCard: React.FC<CarouselProps> = ({
-  inovations,
-  className,
-}) => {
- 
+export const InovasiPopulerCard = () => {
+  const inovationsData = inovations.slice(0, 4) as Inovasi[]
   return (
-    <BentoCard  SubTitle="Inovasi Terpopuler"  className={className} descripcions="Lihat inovasi yang paling banyak dibicarakan komunitas." title="Lihat Yang Lagi Naik Daun 🌿">
 
-     
-         
 <BounceCards
   className="custom-bounceCards "
-  images={inovations}
+  images={inovationsData}
   containerWidth={500}
   containerHeight={150}
   animationDelay={1}
@@ -52,7 +39,7 @@ export const InovasiPopulerCard: React.FC<CarouselProps> = ({
 />
        
         
-    </BentoCard>
+
   )
 }
 

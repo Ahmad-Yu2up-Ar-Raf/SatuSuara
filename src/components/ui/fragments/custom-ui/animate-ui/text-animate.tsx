@@ -4,6 +4,7 @@ import { ElementType, memo } from "react"
 import { AnimatePresence, motion, MotionProps, Variants } from "motion/react"
 
 import { cn } from "@/lib/utils"
+import { useIsMobile } from "@/hooks/use-mobile"
 
 type AnimationType = "text" | "word" | "character" | "line"
 type AnimationVariant =
@@ -380,6 +381,22 @@ const TextAnimateBase = ({
           item: defaultItemAnimationVariants[animation].item,
         }
       : { container: defaultContainerVariants, item: defaultItemVariants }
+        const isMobile = useIsMobile();
+
+if(isMobile)
+  return(
+
+      <MotionComponent
+  
+        className={cn("", className)}
+   
+        {...props}
+      >
+       {children}
+       
+      </MotionComponent>
+
+  )
 
   return (
     <AnimatePresence mode="popLayout">

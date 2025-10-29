@@ -4,9 +4,11 @@ import Link from "next/link";
 import { cn } from "@/lib/utils";
 import { useLottie } from "lottie-react";
 import * as React from "react";
-import { Logo, LogoDark, LogoWhiter } from "@/components/ui/fragments/svg/logo";
+import { Logo } from "@/components/ui/fragments/svg/logo";
 import animationData from "@/config/assets/animations/Phoenix.json";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { ArrowLeft } from "lucide-react";
+import { buttonVariants } from "@/components/ui/fragments/shadcn-ui/button";
 type AuthLayoutProps = {
   children?: React.ReactNode;
   title?: string;
@@ -43,12 +45,25 @@ const AuthLayoutTemplate = ({
      const style = { width:  "100%", height: "100%" , margin: "auto"  , }; // atur sesuai kebutuhan
   const { View } = useLottie(lottieOptions, style);
   return (
-    <div className=" max-h-lvh h-lvh flex items-center justify-center overflow-hidden ">
+    <>
+         
+    <div className=" relative max-h-lvh h-lvh flex items-center justify-center overflow-hidden ">
       <div
         className={cn(
           "  w-full relative max-w-lg  overflow-hidden flex flex-col  lg:flex-row shadow-xl lg:max-w-none h-lvh",
           className
         )}>
+           <nav
+      
+      
+              className='z-[999999]  left-7  absolute  top-4 bg-background/95 backdrop-blur   flex items-center   '>
+      
+              <Link href="/" className={cn(buttonVariants({ variant: "link" }), '  flex   has-[>svg]:px-0   w-fit py-2 md:flex  text-base items-center gap-3 px-0  group transition-colors')}>
+                <ArrowLeft className=" size-5  group-hover:-translate-x-1  group-hover:transform transition-all ease-out duration-300" />
+                <span className=''>Kembali </span>
+              </Link>
+              
+            </nav>
         {/* <div className="w-full h-full z-2 absolute bg-linear-to-t from-transparent to-black"></div> */}
         {/* <div className="flex absolute z-2    h-full overflow-hidden backdrop-blur-2xl ">
           <div className="h-full z-2 w-[4rem] bg-linear-90 from-[#ffffff00] via-[#000000] via-[69%] to-[#ffffff30] opacity-30 overflow-hidden"></div>
@@ -80,8 +95,8 @@ const AuthLayoutTemplate = ({
               </div> 
 
               <div className={cn("relative sr-only  hidden lg:inline-flex mb-6 md:ml-0 m-auto")}>
-                <LogoWhiter className="absolute top-0 size-12 opacity-100 transition-transform ease-in-out duration-500 dark:opacity-0" />
-                <LogoDark className="size-12 opacity-0 transition-transform ease-in-out duration-500 dark:opacity-100" />
+               
+                <Logo className="size-12 opacity-0 transition-transform ease-in-out duration-500 dark:opacity-100" />
               </div>
           
 
@@ -95,7 +110,7 @@ const AuthLayoutTemplate = ({
             {props.children}
 
             {formType && (
-              <div className="text-center  mt-2 text-muted-foreground text-sm">
+              <div className="text-center cursor-target  mt-2 text-muted-foreground text-sm">
                 {formType == "register"
                   ? `Sudah punya akun? `
                   : "belum punya akun? "}
@@ -117,6 +132,8 @@ const AuthLayoutTemplate = ({
         </main>
       </div>
     </div>
+    
+    </>
   );
 };
 

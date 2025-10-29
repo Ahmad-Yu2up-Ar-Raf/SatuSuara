@@ -19,7 +19,7 @@ import {
 import Link from "next/link";
 
 import React, { useRef, useState } from "react";
-import { Logo, LogoDark, LogoWhiter } from "../../svg/logo";
+import { Logo } from "../../svg/logo";
 import { Button, buttonVariants } from "../../shadcn-ui/button";
 import MediaItem from "../media/MediaItem";
 import { VariantProps } from "class-variance-authority";
@@ -63,6 +63,7 @@ interface MobileNavMenuProps {
     name: string;
     link: string;
   }[];
+  name?: string
 }
 
 export const Navbar = ({ children, className }: NavbarProps) => {
@@ -123,9 +124,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
           duration: delay ?  0.6 : 0.2,
           delay: delay ? 4 : 0,
         }}
-      className={cn("   inset-x-0 top-[20] md:top-[25] z-40 w-full",
-        pathName == "/" ? "  sticky md:fixed " : "sticky"
-        , className ,)}
+      className={cn("  fixed inset-x-0 top-[20] md:top-[36] z-40 w-full",
+         className ,)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -153,9 +153,8 @@ export const Navbar = ({ children, className }: NavbarProps) => {
           duration:  0.6 ,
           delay: 4 
         }}
-      className={cn("   inset-x-0 top-[20] md:top-[25] z-40 w-full",
-        pathName == "/" ? "  sticky md:fixed " : "sticky"
-        , className ,)}
+      className={cn("  fixed inset-x-0 top-[20] md:top-[25] z-40 w-full",
+className ,)}
     >
       {React.Children.map(children, (child) =>
         React.isValidElement(child)
@@ -189,7 +188,7 @@ export const NavBody = ({ children, className, visible }: NavBodyProps) => {
         minWidth: "800px",
       }}
       className={cn(
-        "relative z-[60]    bg-[#eee8da] border mx-auto hidden w-full max-w-2xl flex-row items-center justify-between self-start rounded-full  px-4 py-2 lg:flex ",
+        "relative z-[60]    bg-header border mx-auto hidden w-full max-w-2xl flex-row items-center justify-between self-start rounded-full  px-4 py-2 lg:flex ",
       
         className,
       )}
@@ -254,7 +253,7 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         damping: 50,
       }}
       className={cn(
-        "relative z-[60]  flex   bg-background/30 border mx-auto lg:hidden w-full  flex-row items-center justify-between self-start rounded-full max-w-[calc(100vw-2rem)]  px-4 py-2 ",
+        "relative z-[60]  flex   bg-header border mx-auto lg:hidden w-full  flex-row items-center justify-between self-start rounded-full max-w-[calc(100vw-2rem)]  px-4 py-2 ",
 
         className,
       )}
@@ -281,7 +280,8 @@ export const MobileNavHeader = ({
 };
 
 export const MobileNavMenu = ({
-items
+items,
+name
 }: MobileNavMenuProps) => {
   return (
           <Drawer>
@@ -327,20 +327,31 @@ items
 
              <div className="mt-2 flex flex-col gap-2">
                     
-            
+            {name == null ? (
+<>
+
                 <Link
-                      href="/login"
+                      href="/masuk"
                       className={buttonVariants({ variant: "default"})}
                     >
                     Masuk
                     </Link>
              
                     <Link
-                      href="/register"
+                      href="/daftar"
                       className={buttonVariants({ variant: "outline"})}
                     >
                       Daftar
                     </Link>
+</>
+            ) : (
+              <Link
+              href="/dashboard"
+              className={buttonVariants({ variant: "default"})}
+            >
+              Dashboard
+            </Link>
+            )}
                   </div>
      
                 </DrawerFooter>
@@ -377,7 +388,7 @@ export const NavbarLogo = () => {
                 >  
       <MediaItem webViewLink="/assets/logo/dark-logo.png" className=" size-20 "/>
                   </div>
-              <LogoWhiter className=" hidden lg:inline-flex  size-7"  />
+              <Logo className=" hidden lg:inline-flex  size-7"  />
 
       <span className="font-semibold    text-accent-foreground">SatuSuara</span>
     </Link>
