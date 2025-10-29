@@ -1,7 +1,5 @@
-import { cn } from "@/lib/utils";
 import * as React from "react"
 import { SVGProps } from "react"
-import MediaItem from "../custom-ui/media/MediaItem";
 export const Logo = (props: SVGProps<SVGSVGElement>) => (
    <svg
     xmlns="http://www.w3.org/2000/svg"

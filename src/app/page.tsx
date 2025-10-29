@@ -25,8 +25,8 @@ export default function HomePage() {
 
 
       <Features />
-      <InovasiCarousel href="/jelajahi-inovasi" label="Terpopuler" />
       <Bento/>
+      <InovasiCarousel href="/jelajahi-inovasi" label="Terpopuler" />
     </>
   );
 }

@@ -44,13 +44,13 @@ type componentsProps = {
 }
 
 
-function InovasiCarousel({ linkLabel = "Jelajahi lebih lanjut", data = inovationsData as Inovasi[], title = "Inovasi Terbaik", ...props }: componentsProps) {
+function InovasiCarousel({ linkLabel = "Lebih lanjut", data = inovationsData as Inovasi[], title = "Inovasi Terbaik", ...props }: componentsProps) {
 
 
 
   const [hovered, setHovered] = useState<number | null>(null);
   return (
-    <section className='container    space-y-10 '>
+    <section className=' container overflow-x-hidden  lg:overflow-x-visible  space-y-10 '>
 
       <header className='  px-4    flex-row flex justify-between items-end'>
         <h1 className=' pr-3 text-2xl md:text-3xl lg:text-4xl lg:items-center  flex-col gap-1 lg:gap-1 flex lg:flex-row  font-bold'>
@@ -67,7 +67,7 @@ function InovasiCarousel({ linkLabel = "Jelajahi lebih lanjut", data = inovation
           <Link
             className={cn(
               buttonVariants({ variant: "secondary" })
-              , '  has-[>svg]:py-0 text-[2dvw] sm:text-xs px-3 py-0 text-black dark:text-white')}
+              , '  has-[>svg]:py-0 text-[10px] sm:text-xs px-3 py-0 text-black dark:text-white')}
             href={props.href}
           >
             {linkLabel}

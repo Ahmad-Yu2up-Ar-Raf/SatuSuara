@@ -140,7 +140,7 @@ export default function NotifikasiVote({ selectedInnovation }: Props) {
   ];
 
   return (
-    <section className="fixed inset-0 w-full h-[100dvh] flex items-center justify-center px-4 bg-background/70 backdrop-blur-sm z-50">
+    <section className="fixed inset-0 w-full h-[100lvh] flex items-center justify-center px-4 bg-background/70 backdrop-blur-sm z-50">
       {/* main card */}
       <motion.div
         className="w-full max-w-[92vw] md:max-w-5xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-lg p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8"

@@ -51,11 +51,11 @@ export default function SiteFooter({ className, ...props }: StickyFooterProps) {
             <div className="col-span-2 lg:col-span-1">
               <div className="mb-6 md:mb-6 flex items-center space-x-2 group transition-transform">
                 {/* Logo lebih kecil dan animasi hover */}
-                <div className="w-4 sm:w-5 md:w-8 lg:w-10 transition-transform duration-300 group-hover:scale-105 group-hover:brightness-110">
+                <div className="size-10 sm:w-5 md:w-8 lg:w-10 transition-transform duration-300 group-hover:scale-105 group-hover:brightness-110">
                   <Logo />
                 </div>
               </div>
-              <p className="text-foreground/60 mb-3 md:mb-6 text-sm md:text-base leading-relaxed">
+              <p className="text-foreground/60 text- mb-3 md:mb-6 text-sm md:text-base leading-relaxed">
                 Memberdayakan bisnis dengan solusi yang andal, skalabel, dan
                 inovatif.
               </p>
@@ -93,7 +93,7 @@ export default function SiteFooter({ className, ...props }: StickyFooterProps) {
 
           {/* Judul besar tengah */}
           <div className="w-full flex items-center justify-center mt-8">
-            <h1 className="text-center relative text-[18dvw] lg:text-[12em] font-bold bg-clip-text tracking-tighter bg-gradient-to-b to-background from-yellow-950/50 select-none">
+            <h1 className="text-center relative text-[18dvw] lg:text-[13em] font-bold bg-clip-text tracking-tighter bg-linear-to-b to-background from-yellow-950/50 select-none">
               <VerticalCutReveal
                 splitBy="characters"
                 staggerDuration={0.05}

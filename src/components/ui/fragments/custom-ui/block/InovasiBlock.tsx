@@ -14,6 +14,7 @@ import InovasiCard from "../card/InovasiCard";
 import type { Inovasi } from "@/schemas/inovasi.schema";
 import inovationsData from "@/config/data/Inovations.json";
 import HeaderInovasi from "@/components/ui/core/layout/header/jelajahiInovasiHeader";
+import { useIsMobile } from "@/hooks/use-mobile";
 const primary = "#63493f";
 const kategoriList = [
   "Semua",
@@ -137,7 +138,7 @@ export default function InovasiBlock() {
     setSearchQuery("");
     setPage(1);
   };
-
+  const isMobile = useIsMobile()
   return (
     <>
       <HeaderInovasi 
@@ -260,7 +261,7 @@ export default function InovasiBlock() {
               </Button>
 
               <div className="flex gap-2 items-center">
-                {Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
+                {!isMobile && Array.from({ length: Math.min(5, totalPages) }, (_, i) => {
                   let pageNum;
                   if (totalPages <= 5) {
                     pageNum = i + 1;

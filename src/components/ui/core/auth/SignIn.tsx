@@ -13,6 +13,7 @@ import { useForm } from 'react-hook-form';
 import { Loader } from 'lucide-react';
 import AuthLayoutTemplate from '../layout/auth/auth-simple-layout';
 import { useRouter } from 'next/navigation';
+import { useOnboardingStore } from '@/hooks/use-store-signup';
 
 
 
@@ -30,32 +31,31 @@ function SignIn() {
     defaultValues: {
        email: "",
        password: "",
+      
        remember_token: false
       },
     resolver: zodResolver(loginSchema),
   })
-  const [errors, setErrors] = useState<string[]>([])
-  const [status, setStatus] = useState<string | null>(null)
 
+  const [status, setStatus] = useState<string | null>(null)
+  const setData = useOnboardingStore((state) => state.setData);
 const router = useRouter()
   async function onSubmit(input: LoginSchema) {
+      const postBody = {
+      ...input,
+      name : "guest user",
+      password_confirmation : input.password,
+      occupasion: "student",
+      country : "Indonesia",
+      province : "DKI Jakarta",
+      phone : "081234567890"
+    }
     try {
       setLoading(true)
-      toast.loading("Signing in...", { id: "login" })
       
-      // const result = await login({
-      //   ...input,
-
-  
-      // })
-
-      // if (result.success) {
-      //   toast.success(result.message || "Welcome back!", { id: "login" })
-      // } else {
-      //   toast.error(result.message || "Login failed", { id: "login" })
-      // }
-      
-  router.push("/dashboard" );
+      setData(postBody);
+      router.push("/dashboard" );
+      toast.success("Selamat Datang", { id: "login" })
     } catch (error) {
       console.error("Form submission error", error)
       toast.error("Network error. Please check your connection.", { id: "login" })
@@ -75,7 +75,7 @@ const router = useRouter()
 
   return (
     <AuthLayoutTemplate  loading={loading} numberOfIterations={10}  formType="login" className=' lg:max-w-none h-lvh '>
-      <SignInForm setIsTyping={setIsTyping} form={form} isPending={isPending || loading} onSubmit={onSubmit}>
+      <SignInForm  form={form} isPending={isPending || loading} onSubmit={onSubmit}>
       <Button
           disabled={isPending || loading}
           type="submit"

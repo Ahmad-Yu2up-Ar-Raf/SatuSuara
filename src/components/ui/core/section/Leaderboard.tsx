@@ -24,7 +24,7 @@ import { cn } from "@/lib/utils";
 import { categoryColors } from "@/lib/utils/getCategory";
 import { ArrowLeft, Tag } from "lucide-react";
 import { batasiHuruf } from "@/hooks/use-worldMax";
-import { Button } from "../../fragments/shadcn-ui/button";
+import { Button, buttonVariants } from "../../fragments/shadcn-ui/button";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 export default function Leaderboard() {
@@ -78,16 +78,16 @@ export default function Leaderboard() {
     <section className="max-w-5xl mx-auto px-5 sm:px-6 py-4 flex flex-col items-center">
       <section className=" pt-9 relative w-full h-full md:min-h-lvh content-start">
   <nav className='z-50 top-0  absolute bg-background/95 backdrop-blur flex items-center justify-between'>
-        <Button  
-        variant={"link"}
-         onClick={() => {window.history.back}}
+        <Link  
+      href={"/"}
           className={cn(
+            buttonVariants({ variant: "link" }),
             'flex has-[>svg]:px-0  text-xs md:text-sm w-fit py-2 md:flex items-center gap-2 px-0 group transition-colors'
           )}
         >
           <ArrowLeft className="size-4 md:size-5 group-hover:-translate-x-1 group-hover:transform transition-all ease-out duration-300" />
           <span>Kembali</span>
-        </Button>
+        </Link>
       </nav>
       {/* === HEADER === */}
       <motion.div
