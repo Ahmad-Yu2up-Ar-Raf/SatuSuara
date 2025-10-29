@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
        <html lang="en" suppressHydrationWarning>
       <head>
-        <script src="https://cdn.userway.org/widget.js" data-account="t85cN7BOL2"/>
+        <script src="https://cdn.userway.org/widget.js" async data-account="t85cN7BOL2"/>
         </head>
       <body
         className={`${fontVariables} antialiased `}
