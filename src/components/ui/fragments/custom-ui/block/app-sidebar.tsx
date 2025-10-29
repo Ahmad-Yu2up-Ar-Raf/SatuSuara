@@ -8,6 +8,7 @@ import {
   IconSettings,
   IconHelp,
   IconSearch,
+  IconInnerShadowTop,
 } from "@tabler/icons-react"
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../../shadcn-ui/sidebar"
@@ -19,8 +20,8 @@ import { Logo } from "../../svg/logo";
 
 const data = {
   user: {
-    name: "Your Name",
-    email: "yourname@example.com",
+    name: "Nama Kamu",
+    email: "namakamu@example.com",
     avatar: "/avatars/user.jpg",
   },
   navMain: [
