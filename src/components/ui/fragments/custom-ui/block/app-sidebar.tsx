@@ -5,33 +5,17 @@ import {
   IconDashboard,
   IconChartBar,
   IconFolder,
-  IconUsers,
   IconSettings,
   IconHelp,
   IconSearch,
-  IconDatabase,
-  IconReport,
-  IconFileWord,
-  IconInnerShadowTop,
 } from "@tabler/icons-react"
-import {
-  Navbar,
-  NavBody,
-  NavItems,
-  MobileNav,
-  NavbarLogo,
-  NavbarButton,
-  MobileNavHeader,
-
-  MobileNavMenu,
-} from "@/components/ui/fragments/custom-ui/animate-ui/resizable-navbar";
 
 import { Sidebar, SidebarContent, SidebarFooter, SidebarHeader, SidebarMenu, SidebarMenuButton, SidebarMenuItem } from "../../shadcn-ui/sidebar"
 import { NavMain } from "./nav-main"
-import { NavDocuments } from "./nav-documents"
 import { NavSecondary } from "./nav-secondary"
 import { NavUser } from "./nav-user"
 import Link from "next/link";
+import { Logo } from "../../svg/logo";
 
 const data = {
   user: {
@@ -40,9 +24,8 @@ const data = {
     avatar: "/avatars/user.jpg",
   },
   navMain: [
-    { title: "Dashboard", url: "/dashboard", icon: IconDashboard },
-    { title: "Inovasi", url: "/src/app/jelajahi-inovasi/page.tsx", icon: IconFolder },
-    { title: "Leaderboard", url: "/analytics", icon: IconChartBar },
+    { title: "Inovasi", link: "/jelajahi-inovasi", icon: IconFolder },
+    { title: "Leaderboard", link: "/leaderboard", icon: IconChartBar },
    
   ],
   navSecondary: [
