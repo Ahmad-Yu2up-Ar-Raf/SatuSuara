@@ -69,7 +69,7 @@ export const ColorfullBento = () => {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
-    <Card id='free-tools' className='w-full max-w-[70em] m-auto  gap-10  py-10 rounded-4xl  px-5 content-center'>
+    <Card id='features' className='w-full max-w-[70em] m-auto  gap-10  py-10 rounded-4xl  px-5 content-center'>
 
 
       <CardHeader className='flex px-2   flex-col md:flex-row items-end justify-between w-full'>

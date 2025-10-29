@@ -15,10 +15,10 @@ import { useOnboardingStore } from "@/hooks/use-store-signup";
 
 export default function NavbarDemo() {
   const navItems = [
-    // {
-    //   name: "Tentang Kami",
-    //   link: "/tentang-kami",
-    // },
+    {
+      name: "Fitur",
+      link: "#features",
+    },
 
     {
       name: "Inovasi",

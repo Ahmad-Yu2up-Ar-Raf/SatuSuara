@@ -34,6 +34,7 @@ const EXCLUDED_ROUTES_FOOTER = [
   "/daftar",
   "/daftar/lokasi",
   "/daftar/sandi",
+  "/dashboard",
 ];
 const EXCLUDED_ROUTES = [
   "/",
