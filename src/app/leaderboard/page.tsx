@@ -1,5 +1,5 @@
 "use client";
-import Leaderboard from "@/components/ui/core/section/Leaderboard";
+import Leaderboard from "@/components/ui/fragments/custom-ui/block/Leaderboard";
 
 export default function Page() {
   return (

@@ -6,7 +6,7 @@ import {
   type VoteStorage,
   validateVotePayload 
 } from "@/lib/validations/vote.schema";
-import { useModal } from "@/components/ui/core/providers/ContextProvider";
+
 
 interface VoteState extends VoteStorage {
   _hasHydrated: boolean;

@@ -2,8 +2,8 @@ import React from "react";
 import { cn } from "@/lib/utils";
 import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
-import { Logo } from "../../fragments/svg/logo";
-import VerticalCutReveal from "../../fragments/custom-ui/animate-ui/vertical-cut-reveal";
+import { Logo } from "../../../fragments/svg/logo";
+import VerticalCutReveal from "../../../fragments/custom-ui/animate-ui/vertical-cut-reveal";
 
 type StickyFooterProps = React.ComponentProps<"footer">;
 

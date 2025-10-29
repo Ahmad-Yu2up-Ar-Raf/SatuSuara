@@ -64,24 +64,7 @@ const AuthLayoutTemplate = ({
               </Link>
               
             </nav>
-        {/* <div className="w-full h-full z-2 absolute bg-linear-to-t from-transparent to-black"></div> */}
-        {/* <div className="flex absolute z-2    h-full overflow-hidden backdrop-blur-2xl ">
-          <div className="h-full z-2 w-[4rem] bg-linear-90 from-[#ffffff00] via-[#000000] via-[69%] to-[#ffffff30] opacity-30 overflow-hidden"></div>
-          {Array.from({ length: numberOfIterations || 10 }, (_, index) => (
-            <div
-              key={index}
-              className="h-full z-2 w-[4rem] bg-linear-90 from-[#ffffff00] via-[#000000] via-[69%] to-[#ffffff30]  opacity-30 overflow-hidden"></div>
-          ))}
-        </div>
-        <div className="w-[15rem] h-[15rem] blur-2xl bg-primary absolute z-1 rounded-full bottom-0 animate-pulse pointer-events-none"></div>
-        <div className="w-[8rem] h-[5rem] blur-2xl bg-background absolute z-1 rounded-full bottom-0 animate-pulse pointer-events-none"></div>
-        <div className="w-[8rem] h-[5rem] blur-2xl bg-background absolute z-1 rounded-full bottom-0 animate-pulse pointer-events-none"></div>
-
-        <div className="bg-black hidden lg:flex text-white p-8 lg:p-12 lg:w-1/2 relative  overflow-hidden">
-          <h1 className="text-2xl max-w-md lg:text-3xl font-medium leading-tight z-10 tracking-tight relative">
-            {quote}
-          </h1>
-        </div> */}
+   
 
         <main
           className={cn(

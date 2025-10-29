@@ -44,7 +44,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
-import NotificationSuccess from "@/components/ui/core/section/notifikasi";
+import NotificationSuccess from "@/components/ui/fragments/custom-ui/block/notifikasi";
 import { batasiHuruf, batasiKata } from "@/hooks/use-worldMax";
 import MediaItem from "../media/MediaItem";
 import { useOnboardingStore } from "@/hooks/use-store-signup";
@@ -130,6 +130,7 @@ export default function InovasiDetailUI({ inovasi }: { inovasi: Inovasi }) {
     const namaSingkat = batasiKata(inovasi.pembuat.nama, 3); 
     const organisasiSingkat = batasiKata(inovasi.pembuat.organisasi!, 15); 
   return (
+    <>
     <div className="container  py-7 px-5 space-y-7">
       {/* Tombol Kembali */}
        <nav className='z-50 top-0   relative bg-background/95 backdrop-blur flex items-center justify-between'>
@@ -375,7 +376,8 @@ export default function InovasiDetailUI({ inovasi }: { inovasi: Inovasi }) {
       </div>
 
   
-           <div className="flex  mt-20 w-full h-lvh justify-center items-center">
+    </div>
+           <div className="flex container px-5  mt-20 w-full  h-full min-h-lvh justify-center items-center">
        <InovasiTestimonials 
         testimonials={testimonialInovasiDummy}
         title="Apa Kata Mereka"
@@ -383,7 +385,7 @@ export default function InovasiDetailUI({ inovasi }: { inovasi: Inovasi }) {
         maxDisplayed={6}
       />
     </div>
-    </div>
+    </>
   );
 }
 

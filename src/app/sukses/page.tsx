@@ -1,4 +1,4 @@
-import NotificationSuccess from "@/components/ui/core/section/notifikasi";
+import NotificationSuccess from "@/components/ui/fragments/custom-ui/block/notifikasi";
 
 export default function NotificationPage() {
   return (

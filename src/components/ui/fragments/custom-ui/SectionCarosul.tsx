@@ -22,7 +22,7 @@ import inovationsData from "@/config/data/Inovations.json";
 import { Badge } from '@/components/ui/fragments/shadcn-ui/badge';
 import Link from 'next/link';
 import { buttonVariants } from '@/components/ui/fragments/shadcn-ui/button';
-import { useIsMobile } from '@/hooks/use-mobile';
+
 import { ChevronRight } from 'lucide-react';
 
 

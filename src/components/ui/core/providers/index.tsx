@@ -3,20 +3,20 @@
 import { Toaster } from '@/components/ui/fragments/shadcn-ui/sonner';
 import { ProgressProvider } from '@bprogress/next/app';
 import { AnimatePresence } from 'framer-motion';
-import SiteFooter from '../layout/SiteFooter';
+import SiteFooter from '../layout/footer/SiteFooter';
 import ReactLenis from 'lenis/react';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-import { ModalProvider } from './ContextProvider';
-import SiteHeader from '../layout/SiteHeader';
+
+import SiteHeader from '../layout/header/SiteHeader';
 import SmoothFollower from '../../fragments/custom-ui/cursor';
 
 import Preload from '../../fragments/custom-ui/animate-ui/Preload';
 import { useEffect, useState } from 'react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
-import SignInModal from '../auth/components/SignInModal';
+
 
 /**
  * ========================================
@@ -173,7 +173,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
   
   return (
     <ReactLenis root>
-      <ModalProvider>
+  
         <ProgressProvider 
           height="2px"
           color="var(--primary)"
@@ -185,7 +185,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
           }}
           shallowRouting
         >
-                <SignInModal/>
+            
           {(!isMobile && contentReady) && (
 
           <SmoothFollower/>
@@ -250,7 +250,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
           {/* Component ini selalu aktif terlepas dari preload */}
           <Toaster position="top-center" />
         </ProgressProvider>
-      </ModalProvider>
+    
     </ReactLenis>
   );
 };

@@ -40,7 +40,7 @@ export function InovasiTestimonials({
             <MessageCircle className="w-8 h-8 text-primary" />
             <h2 className="text-center text-3xl md:text-4xl font-bold">{title}</h2>
           </div>
-          <p className="text-center text-muted-foreground max-w-2xl mx-auto">
+          <p className="text-center text-muted-foreground  mx-auto">
             {description.split("<br />").map((line, i) => (
               <span key={i}>
                 {line}

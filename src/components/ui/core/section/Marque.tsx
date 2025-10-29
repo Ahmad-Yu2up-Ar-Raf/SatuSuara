@@ -1,5 +1,5 @@
 import React from 'react'
-import ScrollVelocity from '../../fragments/custom-ui/animate-ui/marquee-along'
+
 import { useIsMobile } from '@/hooks/use-mobile'
 
 function Marque() {

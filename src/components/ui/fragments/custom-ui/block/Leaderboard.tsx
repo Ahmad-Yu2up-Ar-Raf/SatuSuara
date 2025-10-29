@@ -17,14 +17,14 @@ import inovations from "@/config/data/Inovations.json";
 import { Inovasi, inovasiSchema } from "@/schemas/inovasi.schema";
 import animationData from "@/config/assets/animations/Winner Trophy Emoji.json";
 import { useLottie } from "lottie-react";
-import { Badge } from "../../fragments/shadcn-ui/badge";
-import { Avatar, AvatarFallback, AvatarImage } from "../../fragments/shadcn-ui/avatar";
+import { Badge } from "../../shadcn-ui/badge";
+import { Avatar, AvatarFallback, AvatarImage } from "../../shadcn-ui/avatar";
 import { useInitials } from "@/hooks/use-initials";
 import { cn } from "@/lib/utils";
 import { categoryColors } from "@/lib/utils/getCategory";
 import { ArrowLeft, Tag } from "lucide-react";
 import { batasiHuruf } from "@/hooks/use-worldMax";
-import { Button, buttonVariants } from "../../fragments/shadcn-ui/button";
+import { Button, buttonVariants } from "../../shadcn-ui/button";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 export default function Leaderboard() {
