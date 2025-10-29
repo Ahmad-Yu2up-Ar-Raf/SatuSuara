@@ -185,7 +185,7 @@ export default function NotifikasiVote({ selectedInnovation }: Props) {
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-800 dark:text-gray-100">
-                  Copy link
+                  salin tautan
                 </p>
                 <p className="text-xs text-gray-500 dark:text-gray-400">
                   Salin link voting untuk dibagikan
