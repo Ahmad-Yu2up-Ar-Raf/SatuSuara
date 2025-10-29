@@ -1,16 +1,13 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence, Variants } from "framer-motion";
 import { useLottie } from "lottie-react";
 import confetti from "canvas-confetti";
 import animationData from "@/config/assets/animations/Vote.json";
-import { BlurFade } from "@/components/ui/fragments/custom-ui/animate-ui/blur-fade";
-import { Progress } from "@/components/ui/fragments/shadcn-ui/progress";
 import { Button } from "@/components/ui/fragments/shadcn-ui/button";
-import { BentoCard } from "@/components/ui/fragments/custom-ui/card/BentoCard";
-import { ChartArea } from "lucide-react";
+import { Check, Share2, Link2, X } from "lucide-react";
 
 interface Innovation {
   name: string;
@@ -23,9 +20,11 @@ interface Props {
 
 export default function NotifikasiVote({ selectedInnovation }: Props) {
   const router = useRouter();
-  const [progress, setProgress] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
+  const [copiedOk, setCopiedOk] = useState<boolean | null>(null);
+  const hideRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scrollY = useRef<number>(0);
 
-  // 🎬 Animasi Lottie
   const { View } = useLottie({
     animationData,
     loop: true,
@@ -33,174 +32,271 @@ export default function NotifikasiVote({ selectedInnovation }: Props) {
     style: { width: "100%", height: "100%" },
   });
 
+  // --- Lock scroll while modal aktif ---
   useEffect(() => {
+    scrollY.current = window.scrollY || window.pageYOffset || 0;
     const html = document.documentElement;
     const body = document.body;
-
     html.style.overflow = "hidden";
-    body.style.overflow = "hidden";
-    body.style.height = "100vh";
     body.style.position = "fixed";
+    body.style.top = `-${scrollY.current}px`;
+    body.style.left = "0";
+    body.style.right = "0";
     body.style.width = "100%";
+    body.style.overscrollBehavior = "none";
 
-    // 🎉 Confetti ringan, 2 detik
-    const colors = ["#ff595e", "#ffca3a", "#8ac926", "#1982c4", "#6a4c93"];
-    const confettiDuration = 2000; // 2 detik
-    const confettiEnd = Date.now() + confettiDuration;
+    const preventTouch = (e: TouchEvent) => {
+      if (e.cancelable) e.preventDefault();
+    };
+    document.addEventListener("touchmove", preventTouch, { passive: false });
 
-    const confettiFrame = () => {
+    // Confetti
+    const colors = ["#06b6d4", "#34d399", "#f59e0b", "#ef4444", "#7c3aed"];
+    const particleCount = window.innerWidth > 768 ? 18 : 7;
+    const dur = 1200;
+    const end = Date.now() + dur;
+    const run = () => {
       confetti({
-        particleCount: 5, // lebih sedikit
-        spread: 80,
-        startVelocity: 50,
-        gravity: 0.8,
+        particleCount,
+        spread: 70,
+        gravity: 0.6,
         origin: { x: Math.random(), y: Math.random() - 0.2 },
         colors,
       });
-      if (Date.now() < confettiEnd) requestAnimationFrame(confettiFrame);
+      if (Date.now() < end) requestAnimationFrame(run);
     };
-    confettiFrame();
-
-    let val = 0;
-    const progressInterval = setInterval(() => {
-      val += 3;
-      if (val >= 100) {
-        val = 100;
-        clearInterval(progressInterval);
-        router.push("/leaderboard");
-      }
-      setProgress(val);
-    }, 100);
+    run();
 
     return () => {
-      clearInterval(progressInterval);
+      document.removeEventListener("touchmove", preventTouch);
       html.style.overflow = "";
-      body.style.overflow = "";
-      body.style.height = "";
       body.style.position = "";
+      body.style.top = "";
+      body.style.left = "";
+      body.style.right = "";
       body.style.width = "";
+      body.style.overscrollBehavior = "";
+      window.scrollTo(0, scrollY.current);
+      if (hideRef.current) clearTimeout(hideRef.current);
     };
-  }, [router]);
+  }, []);
 
-  // Tombol share WhatsApp
-  const shareVote = (innovation: Innovation) => {
-    const text = `Aku baru saja vote inovasi "${innovation.name}"! 🌟`;
+  const openAnimatedCard = () => {
+    setShowPopup(true);
+    if (hideRef.current) clearTimeout(hideRef.current);
+    hideRef.current = setTimeout(() => {
+      setShowPopup(false);
+      setCopiedOk(null);
+    }, 5000);
+  };
+
+  const copyLink = async () => {
     const url = window.location.href;
-    const whatsappUrl = `https://wa.me/?text=${encodeURIComponent(
-      text + " " + url
-    )}`;
-    window.open(whatsappUrl, "_blank");
+    try {
+      await navigator.clipboard.writeText(url);
+      setCopiedOk(true);
+      confetti({ particleCount: 40, spread: 90, origin: { x: 0.5, y: 0.2 } });
+      openAnimatedCard();
+    } catch {
+      setCopiedOk(false);
+      openAnimatedCard();
+    }
   };
 
-  // Tombol copy link
-  const copyLink = () => {
-    const link = window.location.href;
-    navigator.clipboard.writeText(link);
-    alert("Link vote berhasil dicopy! Bagikan ke temanmu 😊");
+  const shareWA = () => {
+    const text = `Aku baru saja vote inovasi "${selectedInnovation.name}"!`;
+    const wa = `https://wa.me/?text=${encodeURIComponent(
+      text + " " + window.location.href
+    )}`;
+    window.open(wa, "_blank");
+    setCopiedOk(null);
+    openAnimatedCard();
   };
+
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: -8, scale: 0.98 },
+    show: { opacity: 1, y: 0, scale: 1, transition: { duration: 0.32 } },
+    exit: { opacity: 0, y: -12, scale: 0.98, transition: { duration: 0.22 } },
+  };
+
+  const listVariants: Variants = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1, transition: { staggerChildren: 0.12 } },
+  };
+
+  const itemVariants: Variants = {
+    hidden: { opacity: 0, x: -8 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: { type: "spring", stiffness: 700, damping: 22 },
+    },
+  };
+
+  const checklist = [
+    "Suaramu tercatat dengan aman",
+    "Ajak teman supaya ide lebih kuat",
+    "Pantau leaderboard untuk hasil",
+  ];
 
   return (
-    <section className="fixed inset-0 w-full h-[100dvh] flex flex-col items-center justify-center bg-background px-6 text-center overflow-hidden">
-      {/* ✨ Floating Sparkle */}
+    <section className="fixed inset-0 w-full h-[100dvh] flex items-center justify-center px-4 bg-background/70 backdrop-blur-sm z-50">
+      {/* main card */}
       <motion.div
-        className="absolute top-10 left-1/4 text-2xl z-10"
-        initial={{ y: 20, opacity: 0 }}
-        animate={{ y: -100, opacity: 1 }}
-        transition={{ duration: 1, repeat: Infinity, repeatDelay: 2 }}>
-        🎉✨💡
+        className="w-full max-w-[92vw] md:max-w-5xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl shadow-lg p-6 md:p-8 flex flex-col md:flex-row items-center gap-6 md:gap-8"
+        initial={{ opacity: 0, scale: 0.98, y: -6 }}
+        animate={{ opacity: 1, scale: 1, y: 0 }}
+        transition={{ duration: 0.35 }}>
+        {/* Left: Info & Buttons */}
+        <div className="flex-1 flex flex-col items-center md:items-start gap-3 md:gap-4">
+          <div className="w-16 h-16 rounded-full bg-emerald-400/95 flex items-center justify-center shadow-md -mt-12">
+            <Check size={24} color="white" />
+          </div>
+          <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-gray-100 text-center md:text-left">
+            Voting Berhasil!
+          </h2>
+          <p className="text-gray-600 dark:text-gray-300 text-center md:text-left text-sm sm:text-base">
+            Terima kasih, suara kamu sudah tercatat. Tunggu pengumuman
+            leaderboard.
+          </p>
+
+          <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-3 mt-3 md:mt-4 w-full">
+            <Button
+              variant="secondary"
+              size="lg"
+              onClick={() => router.push("/dashboard")}
+              className="flex-1 flex items-center justify-center gap-2">
+              Lihat Dashboard
+            </Button>
+            <Button
+              variant="default"
+              size="lg"
+              onClick={() => router.push("/leaderboard")}
+              className="flex-1 flex items-center justify-center gap-2">
+              Lihat leaderboard
+            </Button>
+          </div>
+
+          {/* Copy link */}
+          <div className="mt-4 w-full flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
+            <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
+              <div className="p-2 rounded-md bg-emerald-50 text-emerald-600">
+                <Link2 size={18} />
+              </div>
+              <div>
+                <p className="text-sm font-medium text-gray-800 dark:text-gray-100">
+                  Copy link
+                </p>
+                <p className="text-xs text-gray-500 dark:text-gray-400">
+                  Salin link voting untuk dibagikan
+                </p>
+              </div>
+            </div>
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={copyLink}
+              className="mt-2 sm:mt-0">
+              <Link2 size={14} />
+            </Button>
+          </div>
+        </div>
+
+        {/* Right: Lottie animation */}
+        <div className="w-48 h-48 sm:w-64 sm:h-64 md:w-80 md:h-80 flex items-center justify-center">
+          <div className="w-full h-full rounded-xl overflow-hidden shadow-lg">
+            {View}
+          </div>
+        </div>
       </motion.div>
 
-      <div className="max-w-md w-full flex flex-col items-center justify-center space-y-4 relative z-10">
-        {/* 🎉 Judul */}
-        <BlurFade direction="up" delay={0.1}>
-          <motion.h1
-            className="text-2xl sm:text-3xl font-bold text-primary"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}>
-            Voting Berhasil!
-          </motion.h1>
-        </BlurFade>
+      {/* Animated small popup */}
+      <AnimatePresence>
+        {showPopup && (
+          <motion.div
+            variants={cardVariants}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+            className="fixed left-1/2 -translate-x-1/2 top-20 md:top-24 z-60 w-[90vw] max-w-md bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-lg shadow-xl p-4 md:p-6"
+            role="dialog"
+            aria-modal="false">
+            <div className="flex flex-col items-center">
+              <motion.div
+                className="w-12 h-12 rounded-full bg-emerald-400/95 flex items-center justify-center mb-3 shadow"
+                initial={{ scale: 0.7, opacity: 0 }}
+                animate={{ scale: [1.08, 0.96, 1], opacity: 1 }}
+                transition={{ duration: 0.6, times: [0, 0.6, 1] }}>
+                {copiedOk === true ? (
+                  <Check size={18} color="white" />
+                ) : (
+                  <X size={18} color="white" />
+                )}
+              </motion.div>
 
-        {/* BentoCard animatif */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            scale: [1, 1.03, 1],
-          }}
-          transition={{
-            duration: 1,
-            delay: 0.8,
-            ease: "easeOut",
-            repeat: Infinity,
-            repeatDelay: 4,
-          }}
-          className="w-full">
-          <BentoCard
-            BadgeIcon={ChartArea}
-            SubTitle="Terima Kasih"
-            title="Suaramu Telah Tercatat ✅"
-            descripcions="Partisipasimu membantu ide terbaik naik ke permukaan. Nantikan hasilnya di leaderboard!"
-            borderBottom
-            className="hover:scale-[1.01] transition-all duration-300 bg-card/60 backdrop-blur-md border border-muted">
-            <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.8, ease: "easeOut" }}
-              whileHover={{
-                scale: 1.05,
-                rotate: 0.5,
-                transition: { duration: 0.3 },
-              }}
-              className="m-auto w-56 h-56 md:w-64 md:h-64 overflow-hidden rounded-xl">
-              {View}
-            </motion.div>
-          </BentoCard>
-        </motion.div>
+              <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100 text-center">
+                {copiedOk === true
+                  ? "Link berhasil disalin"
+                  : copiedOk === false
+                  ? "Gagal menyalin"
+                  : "Informasi"}
+              </h3>
 
-        {/* Progress bar fun */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 1.2 }}
-          className="w-full">
-          <Progress
-            value={progress}
-            className="h-2 mt-2 bg-muted/40 relative overflow-hidden"
-          />
-          <p className="text-xs text-muted-foreground mt-1">
-            Mengarahkan ke leaderboard...
-          </p>
-        </motion.div>
+              <motion.ul
+                className="mt-4 w-full max-w-md text-left"
+                variants={listVariants}
+                initial="hidden"
+                animate="show">
+                {checklist.map((t, i) => (
+                  <motion.li
+                    key={i}
+                    className="flex items-center gap-3 py-1"
+                    variants={itemVariants}>
+                    <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-emerald-100 text-emerald-600">
+                      <Check size={12} />
+                    </span>
+                    <span className="text-sm text-gray-700 dark:text-gray-200">
+                      {t}
+                    </span>
+                  </motion.li>
+                ))}
+              </motion.ul>
 
-        {/* Tombol interaktif */}
-        <Button
-          variant="default"
-          size="lg"
-          className="w-full mt-2"
-          onClick={() => router.push("/leaderboard")}>
-          Pergi ke Leaderboard Sekarang
-        </Button>
-
-        <div className="flex gap-2 w-full mt-2">
-          <Button
-            variant="secondary"
-            size="lg"
-            className="flex-1"
-            onClick={() => shareVote(selectedInnovation)}>
-            Bagikan Vote WA
-          </Button>
-          <Button
-            variant="outline"
-            size="lg"
-            className="flex-1"
-            onClick={() => copyLink()}>
-            Copy Link
-          </Button>
-        </div>
-      </div>
+              <div className="mt-5 flex flex-col sm:flex-row items-center gap-2 sm:gap-3 w-full">
+                <Button
+                  size="sm"
+                  variant="default"
+                  className="flex-1"
+                  onClick={() => {
+                    router.push("/leaderboard");
+                    setShowPopup(false);
+                  }}>
+                  Lihat Leaderboard
+                </Button>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="flex-1 flex items-center justify-center gap-2"
+                  onClick={() => {
+                    shareWA();
+                    setShowPopup(false);
+                  }}>
+                  <Share2 size={14} /> Bagikan
+                </Button>
+                <button
+                  onClick={() => {
+                    setShowPopup(false);
+                    setCopiedOk(null);
+                  }}
+                  className="mt-2 sm:mt-0 text-xs text-gray-500 hover:text-gray-700 dark:text-gray-400"
+                  aria-label="Tutup">
+                  <X size={14} />
+                </button>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
