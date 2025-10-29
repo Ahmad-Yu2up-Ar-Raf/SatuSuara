@@ -169,138 +169,138 @@ const formatDate = (dateString: string): string => {
 }
 
 // Components
-function StatCounter({ 
-  icon, 
-  value, 
-  label, 
-  suffix = "", 
-  delay = 0 
-}: { 
-  icon: React.ReactNode
-  value: number
-  label: string
-  suffix?: string
-  delay?: number
-}) {
-  const countRef = useRef(null)
-  const isInView = useInView(countRef, { once: false })
-  const [hasAnimated, setHasAnimated] = useState(false)
+// function StatCounter({ 
+//   icon, 
+//   value, 
+//   label, 
+//   suffix = "", 
+//   delay = 0 
+// }: { 
+//   icon: React.ReactNode
+//   value: number
+//   label: string
+//   suffix?: string
+//   delay?: number
+// }) {
+//   const countRef = useRef(null)
+//   const isInView = useInView(countRef, { once: false })
+//   const [hasAnimated, setHasAnimated] = useState(false)
 
-  const springValue = useSpring(0, {
-    stiffness: 50,
-    damping: 10,
-  })
+//   const springValue = useSpring(0, {
+//     stiffness: 50,
+//     damping: 10,
+//   })
 
-  useEffect(() => {
-    if (isInView && !hasAnimated) {
-      springValue.set(value)
-      setHasAnimated(true)
-    } else if (!isInView && hasAnimated) {
-      springValue.set(0)
-      setHasAnimated(false)
-    }
-  }, [isInView, value, springValue, hasAnimated])
+//   useEffect(() => {
+//     if (isInView && !hasAnimated) {
+//       springValue.set(value)
+//       setHasAnimated(true)
+//     } else if (!isInView && hasAnimated) {
+//       springValue.set(0)
+//       setHasAnimated(false)
+//     }
+//   }, [isInView, value, springValue, hasAnimated])
 
-  const displayValue = useTransform(springValue, (latest) => Math.floor(latest))
+//   const displayValue = useTransform(springValue, (latest) => Math.floor(latest))
 
-  return (
-    <div
-      className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl flex flex-col items-center text-center group hover:bg-white dark:hover:bg-gray-800 transition-colors duration-300"
-      variants={{
-        hidden: { opacity: 0, y: 20 },
-        visible: {
-          opacity: 1,
-          y: 0,
-          transition: { duration: 0.6, delay },
-        },
-      }}
-      whileHover={{ y: -5, transition: { duration: 0.2 } }}
-    >
-      <div
-        className="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center mb-4 text-primary group-hover:bg-primary/10 transition-colors duration-300"
-        whileHover={{ rotate: 360, transition: { duration: 0.8 } }}
-      >
-        {icon}
-      </div>
-      <div ref={countRef} className="text-3xl font-bold text-foreground flex items-center">
-        <span>{displayValue}</span>
-        <span>{suffix}</span>
-      </div>
-      <p className="text-muted-foreground text-sm mt-1">{label}</p>
-      <div className="w-10 h-0.5 bg-primary mt-3 group-hover:w-16 transition-all duration-300" />
-    </div>
-  )
-}
+//   return (
+//     <div
+//       className="bg-white/50 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-xl flex flex-col items-center text-center group hover:bg-white dark:hover:bg-gray-800 transition-colors duration-300"
+//       variants={{
+//         hidden: { opacity: 0, y: 20 },
+//         visible: {
+//           opacity: 1,
+//           y: 0,
+//           transition: { duration: 0.6, delay },
+//         },
+//       }}
+//       whileHover={{ y: -5, transition: { duration: 0.2 } }}
+//     >
+//       <div
+//         className="w-14 h-14 rounded-full bg-primary/5 flex items-center justify-center mb-4 text-primary group-hover:bg-primary/10 transition-colors duration-300"
+//         whileHover={{ rotate: 360, transition: { duration: 0.8 } }}
+//       >
+//         {icon}
+//       </div>
+//       <div ref={countRef} className="text-3xl font-bold text-foreground flex items-center">
+//         <span>{displayValue}</span>
+//         <span>{suffix}</span>
+//       </div>
+//       <p className="text-muted-foreground text-sm mt-1">{label}</p>
+//       <div className="w-10 h-0.5 bg-primary mt-3 group-hover:w-16 transition-all duration-300" />
+//     </div>
+//   )
+// }
 
-function DonateDialog({ 
-  inovasi, 
-  isOpen, 
-  onClose, 
-  onDonate, 
-  isLoading 
-}: { 
-  inovasi: Inovasi
-  isOpen: boolean
-  onClose: () => void
-  onDonate: (amount: number) => Promise<void>
-  isLoading?: boolean
-}) {
-  const [amount, setAmount] = useState<number>(0)
-  const amounts = [10000, 25000, 50000, 100000, 250000]
+// function DonateDialog({ 
+//   inovasi, 
+//   isOpen, 
+//   onClose, 
+//   onDonate, 
+//   isLoading 
+// }: { 
+//   inovasi: Inovasi
+//   isOpen: boolean
+//   onClose: () => void
+//   onDonate: (amount: number) => Promise<void>
+//   isLoading?: boolean
+// }) {
+//   const [amount, setAmount] = useState<number>(0)
+//   const amounts = [10000, 25000, 50000, 100000, 250000]
 
-  return (
-    <Dialog open={isOpen} onOpenChange={() => onClose()}>
-      <DialogContent className="max-w-md">
-        <DialogHeader>
-          <DialogTitle>Dukung Inovasi Ini</DialogTitle>
-          <DialogDescription>
-            Pilih nominal donasi untuk mendukung &quot;{inovasi.judul}&quot;
-          </DialogDescription>
-        </DialogHeader>
+//   return (
+//     <Dialog open={isOpen} onOpenChange={() => onClose()}>
+//       <DialogContent className="max-w-md">
+//         <DialogHeader>
+//           <DialogTitle>Dukung Inovasi Ini</DialogTitle>
+//           <DialogDescription>
+//             Pilih nominal donasi untuk mendukung &quot;{inovasi.judul}&quot;
+//           </DialogDescription>
+//         </DialogHeader>
 
-        <div className="grid grid-cols-3 gap-2 my-4">
-          {amounts.map((amt) => (
-            <Button
-              key={amt}
-              variant={amount === amt ? "default" : "outline"}
-              className="w-full"
-              onClick={() => setAmount(amt)}
-            >
-              {formatCurrency(amt)}
-            </Button>
-          ))}
-        </div>
+//         <div className="grid grid-cols-3 gap-2 my-4">
+//           {amounts.map((amt) => (
+//             <Button
+//               key={amt}
+//               variant={amount === amt ? "default" : "outline"}
+//               className="w-full"
+//               onClick={() => setAmount(amt)}
+//             >
+//               {formatCurrency(amt)}
+//             </Button>
+//           ))}
+//         </div>
 
-        <div className="space-y-2">
-          <label htmlFor="custom-amount" className="text-sm">
-            Atau masukkan nominal lain:
-          </label>
-          <Input
-            id="custom-amount"
-            type="number"
-            min="1000"
-            step="1000"
-            value={amount || ''}
-            onChange={(e) => setAmount(Number(e.target.value))}
-            placeholder="Rp"
-          />
-        </div>
+//         <div className="space-y-2">
+//           <label htmlFor="custom-amount" className="text-sm">
+//             Atau masukkan nominal lain:
+//           </label>
+//           <Input
+//             id="custom-amount"
+//             type="number"
+//             min="1000"
+//             step="1000"
+//             value={amount || ''}
+//             onChange={(e) => setAmount(Number(e.target.value))}
+//             placeholder="Rp"
+//           />
+//         </div>
 
-        <DialogFooter className="mt-4">
-          <Button variant="outline" onClick={onClose}>
-            Batal
-          </Button>
-          <Button 
-            onClick={() => onDonate(amount)}
-            disabled={amount < 1000 || isLoading}
-          >
-            {isLoading ? 'Memproses...' : 'Donasi Sekarang'}
-          </Button>
-        </DialogFooter>
-      </DialogContent>
-    </Dialog>
-  )
-}
+//         <DialogFooter className="mt-4">
+//           <Button variant="outline" onClick={onClose}>
+//             Batal
+//           </Button>
+//           <Button 
+//             onClick={() => onDonate(amount)}
+//             disabled={amount < 1000 || isLoading}
+//           >
+//             {isLoading ? 'Memproses...' : 'Donasi Sekarang'}
+//           </Button>
+//         </DialogFooter>
+//       </DialogContent>
+//     </Dialog>
+//   )
+// }
 
 export default function InovasiDetailPage({ inovasi = mockInovasi }: { inovasi?: Inovasi }) {
   const [showDonateDialog, setShowDonateDialog] = useState(false)

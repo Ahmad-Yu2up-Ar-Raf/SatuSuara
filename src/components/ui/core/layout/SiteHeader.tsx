@@ -33,7 +33,7 @@ export default function NavbarDemo() {
   const email = useOnboardingStore((state) => state.email);
   const password = useOnboardingStore((state) => state.password);
   const password_confirmation = useOnboardingStore((state) => state.password_confirmation);
-  const hasHydrated = useOnboardingStore((state) => state._hasHydrated);
+
     const country = useOnboardingStore((state) => state.country); 
     const province = useOnboardingStore((state) => state.province); 
     const phone = useOnboardingStore((state) => state.phone);
