@@ -1,5 +1,6 @@
 // 'use client'
 import React, { CSSProperties, JSX, ReactNode, useEffect, useMemo, useRef } from "react";
+import MediaItem from "../media/MediaItem";
 
 /* =========================
    Types
@@ -373,9 +374,9 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
     if (mediaType === "image") {
       const src = typeof media === "string" ? media : media?.mp4 || "";
       return (
-        <img
-          src={src}
-          alt=""
+        <MediaItem
+          webViewLink={src}
+        
           className="w-full h-full object-cover"
         />
       );
