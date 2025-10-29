@@ -1,0 +1,548 @@
+[
+  {
+    "id": 1,
+    "title": "Digitalisasi UMKM Desa",
+    "description": "Platform untuk membantu UMKM desa menjual produk ke pasar nasional.",
+    "creator": "Rina Setiawan",
+    "kategori": "Perdagangan (UMKM)",
+    "votes": 123
+  },
+  {
+    "id": 2,
+    "title": "Aplikasi Layanan Desa Pintar",
+    "description": "Pelayanan administrasi warga secara online.",
+    "creator": "Budi Santoso",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 98
+  },
+  {
+    "id": 3,
+    "title": "Sistem Irigasi Otomatis",
+    "description": "Sensor otomatis untuk sawah berdasarkan cuaca.",
+    "creator": "Dewi Rahmawati",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 210
+  },
+  {
+    "id": 4,
+    "title": "Pakan Ternak Fermentasi",
+    "description": "Meningkatkan kualitas pakan ternak menggunakan fermentasi alami.",
+    "creator": "Andi Saputra",
+    "kategori": "Peternakan",
+    "votes": 77
+  },
+  {
+    "id": 5,
+    "title": "Wisata Edukasi Sawah",
+    "description": "Desa wisata berbasis edukasi pertanian.",
+    "creator": "Siti Aminah",
+    "kategori": "Pariwisata Desa",
+    "votes": 164
+  },
+  {
+    "id": 6,
+    "title": "Kerajinan Bambu Inovatif",
+    "description": "Produk kerajinan ramah lingkungan dari bambu lokal.",
+    "creator": "Joko Prabowo",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 82
+  },
+  {
+    "id": 7,
+    "title": "Kopi Organik Perkebunan Rakyat",
+    "description": "Inovasi pengolahan kopi organik hasil perkebunan rakyat lokal.",
+    "creator": "Tono Wibisono",
+    "kategori": "Perkebunan",
+    "votes": 134
+  },
+  {
+    "id": 8,
+    "title": "Budidaya Lele dengan Sistem Bioflok",
+    "description": "Teknologi bioflok untuk meningkatkan efisiensi budidaya lele desa.",
+    "creator": "Fitri Handayani",
+    "kategori": "Perikanan",
+    "votes": 96
+  },
+  {
+    "id": 9,
+    "title": "Desa Wisata Ekologi",
+    "description": "Program wisata berbasis kelestarian alam dan edukasi lingkungan.",
+    "creator": "Agus Riyanto",
+    "kategori": "Pariwisata Desa",
+    "votes": 188
+  },
+  {
+    "id": 10,
+    "title": "Sistem Informasi Pertanian Cerdas",
+    "description": "Platform digital untuk prediksi cuaca dan harga hasil tani.",
+    "creator": "Laila Karimah",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 201
+  },
+  {
+    "id": 11,
+    "title": "Pupuk Organik dari Limbah Ternak",
+    "description": "Pengolahan limbah peternakan menjadi pupuk ramah lingkungan.",
+    "creator": "Rizal Maulana",
+    "kategori": "Peternakan",
+    "votes": 109
+  },
+  {
+    "id": 12,
+    "title": "Anyaman Pandan Kreatif",
+    "description": "Produk anyaman pandan modern yang punya nilai jual tinggi.",
+    "creator": "Yuni Kartika",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 87
+  },
+  {
+    "id": 13,
+    "title": "Layanan Drone Mapping Lahan",
+    "description": "Pemetaan lahan desa menggunakan drone untuk efisiensi pertanian.",
+    "creator": "Deni Arifin",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 145
+  },
+  {
+    "id": 14,
+    "title": "Toko Online Hasil Perkebunan",
+    "description": "Marketplace khusus produk hasil perkebunan lokal.",
+    "creator": "Mega Lestari",
+    "kategori": "Perdagangan (UMKM)",
+    "votes": 172
+  },
+  {
+    "id": 15,
+    "title": "Rumah Makan Desa Kreatif",
+    "description": "Memperkenalkan masakan lokal desa dengan konsep modern.",
+    "creator": "Rudi Hartono",
+    "kategori": "Pariwisata Desa",
+    "votes": 111
+  },
+  {
+    "id": 16,
+    "title": "Aplikasi Monitoring Ikan",
+    "description": "Memantau kesehatan kolam ikan secara real-time.",
+    "creator": "Nina Anggraeni",
+    "kategori": "Perikanan",
+    "votes": 92
+  },
+  {
+    "id": 17,
+    "title": "Pertanian Organik Bersertifikat",
+    "description": "Program pertanian organik dengan sertifikasi resmi.",
+    "creator": "Hendra Gunawan",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 175
+  },
+  {
+    "id": 18,
+    "title": "Pelatihan Kewirausahaan Anak Desa",
+    "description": "Memberikan skill bisnis untuk generasi muda desa.",
+    "creator": "Sari Melati",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 128
+  },
+  {
+    "id": 19,
+    "title": "Produksi Susu Kambing Inovatif",
+    "description": "Metode pengolahan susu kambing dengan kualitas tinggi.",
+    "creator": "Bagus Santoso",
+    "kategori": "Peternakan",
+    "votes": 95
+  },
+  {
+    "id": 20,
+    "title": "Festival Kuliner Desa",
+    "description": "Event tahunan untuk memperkenalkan kuliner lokal desa.",
+    "creator": "Intan Pratiwi",
+    "kategori": "Pariwisata Desa",
+    "votes": 142
+  },
+  {
+    "id": 21,
+    "title": "Pemanfaatan Limbah Sawah",
+    "description": "Mengubah limbah pertanian menjadi pupuk organik.",
+    "creator": "Dwi Setiawan",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 110
+  },
+  {
+    "id": 22,
+    "title": "Kerajinan Kayu Minimalis",
+    "description": "Produk kerajinan kayu modern untuk pasar lokal.",
+    "creator": "Eka Pratama",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 88
+  },
+  {
+    "id": 23,
+    "title": "Pemanfaatan Lahan Pekarangan",
+    "description": "Mendorong warga memanfaatkan pekarangan untuk hortikultura.",
+    "creator": "Fajar Nugroho",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 132
+  },
+  {
+    "id": 24,
+    "title": "Wisata Petik Buah Desa",
+    "description": "Memberikan pengalaman memetik buah lokal untuk wisatawan.",
+    "creator": "Lina Maharani",
+    "kategori": "Pariwisata Desa",
+    "votes": 156
+  },
+  {
+    "id": 25,
+    "title": "Pelatihan Olahan Makanan Desa",
+    "description": "Membuat produk makanan lokal yang bisa dipasarkan lebih luas.",
+    "creator": "Ahmad Fauzi",
+    "kategori": "Perdagangan (UMKM)",
+    "votes": 119
+  },
+  {
+    "id": 26,
+    "title": "Budidaya Jamur Tiram Desa",
+    "description": "Teknologi budidaya jamur untuk meningkatkan pendapatan warga.",
+    "creator": "Diana Kusuma",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 137
+  },
+  {
+    "id": 27,
+    "title": "Pembuatan Tempe Organik",
+    "description": "Produksi tempe dengan bahan baku organik lokal.",
+    "creator": "Yusuf Maulana",
+    "kategori": "Perdagangan (UMKM)",
+    "votes": 102
+  },
+  {
+    "id": 28,
+    "title": "Pembibitan Ikan Lele Unggul",
+    "description": "Meningkatkan kualitas bibit ikan lele untuk desa.",
+    "creator": "Rika Handayani",
+    "kategori": "Perikanan",
+    "votes": 121
+  },
+  {
+    "id": 29,
+    "title": "Paket Wisata Desa Kreatif",
+    "description": "Menawarkan paket wisata terpadu untuk desa tujuan wisata.",
+    "creator": "Anton Wijaya",
+    "kategori": "Pariwisata Desa",
+    "votes": 164
+  },
+  {
+    "id": 30,
+    "title": "Pelatihan Kerajinan Kulit",
+    "description": "Mengembangkan industri kerajinan kulit lokal desa.",
+    "creator": "Maya Sari",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 97
+  },
+  {
+    "id": 31,
+    "title": "Perkebunan Kopi Desa Mandiri",
+    "description": "Inisiatif perkebunan kopi dengan metode modern dan ramah lingkungan.",
+    "creator": "Rudi Santoso",
+    "kategori": "Perkebunan",
+    "votes": 178
+  },
+  {
+    "id": 32,
+    "title": "Sistem Pemantauan Hama Sawah",
+    "description": "Alat untuk mendeteksi hama secara dini agar produksi meningkat.",
+    "creator": "Fitri Anggraini",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 126
+  },
+  {
+    "id": 33,
+    "title": "Desa Kreatif Fashion Lokal",
+    "description": "Mengembangkan pakaian tradisional desa dengan sentuhan modern.",
+    "creator": "Salsa Putri",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 139
+  },
+  {
+    "id": 34,
+    "title": "Pelayanan Kesehatan Desa Digital",
+    "description": "Layanan kesehatan online untuk warga desa terpencil.",
+    "creator": "Ahmad Ramadhan",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 154
+  }
+  ,
+  {
+    "id": 35,
+    "title": "Pelatihan Budidaya Ikan Lele",
+    "description": "Program pelatihan warga untuk budidaya lele secara efisien.",
+    "creator": "Rina Fauziah",
+    "kategori": "Perikanan",
+    "votes": 108
+  },
+  {
+    "id": 36,
+    "title": "Pertanian Hidroponik Desa",
+    "description": "Menggunakan metode hidroponik untuk sayuran desa.",
+    "creator": "Bambang Sutrisno",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 142
+  },
+  {
+    "id": 37,
+    "title": "Kerajinan Anyaman Rotan",
+    "description": "Produk rotan tradisional dengan desain modern.",
+    "creator": "Sari Lestari",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 96
+  },
+  {
+    "id": 38,
+    "title": "Wisata Kuliner Tradisional",
+    "description": "Menawarkan pengalaman kuliner lokal desa bagi wisatawan.",
+    "creator": "Andi Firmansyah",
+    "kategori": "Pariwisata Desa",
+    "votes": 131
+  },
+  {
+    "id": 39,
+    "title": "Platform E-Learning Desa",
+    "description": "Memberikan akses pembelajaran online untuk anak desa.",
+    "creator": "Dewi Kartika",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 167
+  },
+  {
+    "id": 40,
+    "title": "Pupuk Cair Organik",
+    "description": "Inovasi pupuk cair dari limbah organik pertanian.",
+    "creator": "Fajar Hidayat",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 120
+  },
+  {
+    "id": 41,
+    "title": "Budidaya Lele Sistem Tertutup",
+    "description": "Teknologi kolam tertutup untuk menjaga kualitas ikan.",
+    "creator": "Nina Setyowati",
+    "kategori": "Perikanan",
+    "votes": 115
+  },
+  {
+    "id": 42,
+    "title": "Pelatihan Pembuatan Kerajinan Kulit",
+    "description": "Memberikan skill pembuatan kerajinan kulit untuk pemuda desa.",
+    "creator": "Yusuf Pranata",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 99
+  },
+  {
+    "id": 43,
+    "title": "Sistem Monitoring Lahan Sawah",
+    "description": "Sensor digital untuk memantau kelembaban dan pertumbuhan tanaman.",
+    "creator": "Hani Prasetya",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 138
+  },
+  {
+    "id": 44,
+    "title": "Festival Seni Desa",
+    "description": "Acara tahunan untuk memperkenalkan seni lokal desa.",
+    "creator": "Mira Anggraeni",
+    "kategori": "Pariwisata Desa",
+    "votes": 129
+  },
+  {
+    "id": 45,
+    "title": "Pertanian Terpadu Organik",
+    "description": "Menggabungkan pertanian dan peternakan untuk hasil maksimal.",
+    "creator": "Andri Setiawan",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 147
+  },
+  {
+    "id": 46,
+    "title": "Pelatihan Digital Marketing UMKM",
+    "description": "Memberikan skill pemasaran online untuk pelaku UMKM desa.",
+    "creator": "Siti Nurhaliza",
+    "kategori": "Perdagangan (UMKM)",
+    "votes": 134
+  },
+  {
+    "id": 47,
+    "title": "Wisata Alam Sungai Desa",
+    "description": "Program wisata edukasi di sepanjang sungai desa.",
+    "creator": "Hendri Prakoso",
+    "kategori": "Pariwisata Desa",
+    "votes": 157
+  },
+  {
+    "id": 48,
+    "title": "Kerajinan Bambu Multifungsi",
+    "description": "Produk bambu yang bisa digunakan untuk berbagai kebutuhan rumah tangga.",
+    "creator": "Lina Pratiwi",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 111
+  },
+  {
+    "id": 49,
+    "title": "Pengolahan Padi Modern",
+    "description": "Mesin pengolahan padi untuk meningkatkan efisiensi panen.",
+    "creator": "Agus Pranowo",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 159
+  },
+  {
+    "id": 50,
+    "title": "Pelayanan Kesehatan Mobile",
+    "description": "Mobil klinik yang berkeliling desa untuk layanan kesehatan.",
+    "creator": "Fitriani Sari",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 148
+  },
+  {
+    "id": 51,
+    "title": "Perkebunan Sayur Organik",
+    "description": "Menanam sayuran organik untuk memenuhi kebutuhan lokal dan pasar.",
+    "creator": "Budi Santoso",
+    "kategori": "Perkebunan",
+    "votes": 125
+  },
+  {
+    "id": 52,
+    "title": "Budidaya Lele Kolam Terpal",
+    "description": "Teknologi sederhana untuk budidaya lele di desa.",
+    "creator": "Rika Anggraeni",
+    "kategori": "Perikanan",
+    "votes": 104
+  },
+  {
+    "id": 53,
+    "title": "Festival Tanaman Hias Desa",
+    "description": "Acara tahunan untuk memperkenalkan tanaman hias lokal.",
+    "creator": "Dewi Maharani",
+    "kategori": "Pariwisata Desa",
+    "votes": 117
+  },
+  {
+    "id": 54,
+    "title": "Produksi Keripik Organik",
+    "description": "UMKM desa membuat keripik sehat dari bahan lokal.",
+    "creator": "Rudi Hartono",
+    "kategori": "Perdagangan (UMKM)",
+    "votes": 122
+  },
+  {
+    "id": 55,
+    "title": "Pelatihan Pengolahan Susu Kambing",
+    "description": "Memberikan skill pengolahan susu kambing untuk pemuda desa.",
+    "creator": "Nina Rahmawati",
+    "kategori": "Peternakan",
+    "votes": 116
+  },
+  {
+    "id": 56,
+    "title": "Kerajinan Anyaman Ecoprint",
+    "description": "Anyaman dengan teknik pewarnaan ecoprint ramah lingkungan.",
+    "creator": "Yuli Prasetya",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 94
+  },
+  {
+    "id": 57,
+    "title": "Pelayanan Administrasi Online",
+    "description": "Aplikasi untuk mempermudah pengurusan administrasi desa.",
+    "creator": "Ahmad Ramadhan",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 130
+  },
+  {
+    "id": 58,
+    "title": "Wisata Edukasi Peternakan",
+    "description": "Program wisata yang mengenalkan proses peternakan modern.",
+    "creator": "Siti Aminah",
+    "kategori": "Pariwisata Desa",
+    "votes": 141
+  },
+  {
+    "id": 59,
+    "title": "Pertanian Vertikultur Desa",
+    "description": "Metode pertanian vertikal untuk lahan terbatas.",
+    "creator": "Hendra Gunawan",
+    "kategori": "Pertanian (Agriculture)",
+    "votes": 136
+  },
+  {
+    "id": 60,
+    "title": "Pelatihan Pemeliharaan Ternak Ayam",
+    "description": "Meningkatkan keterampilan pemuda dalam pemeliharaan ayam lokal.",
+    "creator": "Bagus Santoso",
+    "kategori": "Peternakan",
+    "votes": 105
+  },
+  {
+    "id": 61,
+    "title": "Platform E-Commerce Produk Desa",
+    "description": "Marketplace online untuk produk UMKM desa.",
+    "creator": "Laila Karimah",
+    "kategori": "Perdagangan (UMKM)",
+    "votes": 174
+  },
+  {
+    "id": 62,
+    "title": "Pengolahan Kopi Fermentasi",
+    "description": "Metode inovatif fermentasi kopi untuk meningkatkan cita rasa.",
+    "creator": "Tono Wibisono",
+    "kategori": "Perkebunan",
+    "votes": 143
+  },
+  {
+    "id": 63,
+    "title": "Budidaya Lele Organik",
+    "description": "Teknologi budidaya lele dengan pakan organik alami.",
+    "creator": "Fitri Handayani",
+    "kategori": "Perikanan",
+    "votes": 118
+  },
+  {
+    "id": 64,
+    "title": "Wisata Edukasi Hutan Desa",
+    "description": "Pengunjung belajar menjaga kelestarian hutan desa.",
+    "creator": "Agus Riyanto",
+    "kategori": "Pariwisata Desa",
+    "votes": 152
+  },
+  {
+    "id": 65,
+    "title": "Sistem Prediksi Hasil Panen",
+    "description": "Platform untuk memprediksi hasil panen berdasarkan data cuaca.",
+    "creator": "Laila Karimah",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 168
+  },
+  {
+    "id": 66,
+    "title": "Pupuk Organik Cair Limbah Ternak",
+    "description": "Mengolah limbah ternak menjadi pupuk cair bernutrisi tinggi.",
+    "creator": "Rizal Maulana",
+    "kategori": "Peternakan",
+    "votes": 113
+  },
+  {
+    "id": 67,
+    "title": "Kerajinan Anyaman Rotan Modern",
+    "description": "Produk anyaman rotan dengan desain kekinian.",
+    "creator": "Yuni Kartika",
+    "kategori": "Kerajinan / Industri Rumah Tangga",
+    "votes": 108
+  },
+  {
+    "id": 68,
+    "title": "Pelayanan Kesehatan Terpadu",
+    "description": "Integrasi layanan kesehatan digital dan kunjungan mobile desa.",
+    "creator": "Ahmad Ramadhan",
+    "kategori": "Jasa & Teknologi (Desa Digital)",
+    "votes": 162
+  }
+]
+
