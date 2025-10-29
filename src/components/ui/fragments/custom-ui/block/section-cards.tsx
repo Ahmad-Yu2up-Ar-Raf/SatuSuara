@@ -1,6 +1,6 @@
 "use client";
 
-import { IconTrendingDown, IconTrendingUp } from "@tabler/icons-react"
+import { IconTrendingUp } from "@tabler/icons-react"
 import { Badge } from "@/components/ui/fragments/shadcn-ui/badge"
 import {
   Card,
@@ -51,7 +51,7 @@ export function SectionCards() {
         </CardHeader>
         <CardFooter className="flex-col items-start gap-1.5 text-sm">
           <div className="line-clamp-1 flex gap-2 font-medium">
-            Partisipasi meningkat <IconTrendingDown className="size-4" />
+            Partisipasi meningkat <IconTrendingUp className="size-4" />
           </div>
           <div className="text-muted-foreground">
             Dalam 30 hari terakhir
