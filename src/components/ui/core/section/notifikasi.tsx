@@ -14,11 +14,8 @@ interface Innovation {
   imageUrl?: string;
 }
 
-interface Props {
-  selectedInnovation: Innovation;
-}
 
-export default function NotifikasiVote({ selectedInnovation }: Props) {
+export default function NotifikasiVote() {
   const router = useRouter();
   const [showPopup, setShowPopup] = useState(false);
   const [copiedOk, setCopiedOk] = useState<boolean | null>(null);
@@ -104,7 +101,7 @@ export default function NotifikasiVote({ selectedInnovation }: Props) {
   };
 
   const shareWA = () => {
-    const text = `Aku baru saja vote inovasi "${selectedInnovation.name}"!`;
+    const text = `Aku baru saja vote inovasi !`;
     const wa = `https://wa.me/?text=${encodeURIComponent(
       text + " " + window.location.href
     )}`;
