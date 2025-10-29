@@ -1,5 +1,5 @@
 // Import the schema type
-import { inovasiSchema, InovasiRingkas } from '@/schemas/inovasi.schema';
+import { inovasiSchema, Inovasi } from '@/schemas/inovasi.schema';
 
 // Re-export for convenience
 
@@ -13,7 +13,7 @@ export interface KomponenLeaderboardProps {
 }
 
 export interface KartuPeringkatProps {
-  item: InovasiRingkas;
+  item: Inovasi;
   rank?: number;
   kompaks?: boolean;
   onVote?: (id: string) => Promise<void>;
@@ -21,12 +21,12 @@ export interface KartuPeringkatProps {
 }
 
 // Validation helper
-export const validateInovasiData = (data: unknown): InovasiRingkas => {
+export const validateInovasiData = (data: unknown): Inovasi => {
   return inovasiSchema.parse(data);
 };
 
 // Utility to map API data (future use)
-export const mapApiToInovasi = (apiData: any): InovasiRingkas => {
+export const mapApiToInovasi = (apiData: any): Inovasi => {
   return inovasiSchema.parse({
     id: apiData.id,
     slug: apiData.slug,
