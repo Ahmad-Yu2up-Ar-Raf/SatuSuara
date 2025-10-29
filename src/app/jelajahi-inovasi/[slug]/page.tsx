@@ -1,15 +1,15 @@
-import { notFound } from 'next/navigation';
-import Image from 'next/image';
-import Link from 'next/link';
-import { 
-  getInovasiBySlug, 
-  getAllSlugs, 
-  formatCurrency, 
-  formatNumber, 
-  formatDate 
-} from '@/lib/inovation';
-import { Metadata } from 'next';
-import InovasiDetailUI from '@/components/ui/fragments/custom-ui/block/detail-block-page-inovation';
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import Link from "next/link";
+import {
+  getInovasiBySlug,
+  getAllSlugs,
+  formatCurrency,
+  formatNumber,
+  formatDate,
+} from "@/lib/inovation";
+import { Metadata } from "next";
+import InovasiDetailUI from "@/components/ui/fragments/custom-ui/block/detail-block-page-inovation";
 
 // Generate static params untuk semua inovasi (ISR/SSG)
 export async function generateStaticParams() {
@@ -20,16 +20,16 @@ export async function generateStaticParams() {
 }
 
 // Generate dynamic metadata untuk SEO
-export async function generateMetadata({ 
-  params 
-}: { 
-  params: { slug: string } 
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
 }): Promise<Metadata> {
   const inovasi = getInovasiBySlug(params.slug);
-  
+
   if (!inovasi) {
     return {
-      title: 'Inovasi Tidak Ditemukan',
+      title: "Inovasi Tidak Ditemukan",
     };
   }
 
@@ -44,10 +44,10 @@ export async function generateMetadata({
   };
 }
 
-export default async function InovasiDetailPage({ 
-  params 
-}: { 
-  params: { slug: string } 
+export default async function InovasiDetailPage({
+  params,
+}: {
+  params: { slug: string };
 }) {
   const inovasi = getInovasiBySlug(params.slug);
 
@@ -56,7 +56,5 @@ export default async function InovasiDetailPage({
     notFound();
   }
 
-  return (
-    <InovasiDetailUI inovasi={inovasi} />
-  );
+  return <InovasiDetailUI inovasi={inovasi} />;
 }
