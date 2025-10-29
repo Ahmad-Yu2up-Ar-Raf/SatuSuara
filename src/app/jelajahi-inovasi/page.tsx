@@ -12,7 +12,7 @@ export default function Page() {
        {/* HEADER */}
 <header
   className="border-b border-gray-200 dark:border-gray-700 dark:bg-gray-800 
-  flex items-center justify-center sticky top-0 z-20 
+  flex items-center sticky justify-center top-0 z-20 
   pt-6 sm:pt-20 pb-4 sm:pb-1"
 >
  <div className="flex items-center sm:gap-6 justify-center text-center">
