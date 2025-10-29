@@ -16,6 +16,7 @@ import Preload from '../../fragments/custom-ui/animate-ui/Preload';
 import { useEffect, useState } from 'react';
 
 import { useIsMobile } from '@/hooks/use-mobile';
+import SignInModal from '../auth/components/SignInModal';
 
 /**
  * ========================================
@@ -183,6 +184,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
           }}
           shallowRouting
         >
+                <SignInModal/>
           {(!isMobile && contentReady) && (
 
           <SmoothFollower/>
@@ -218,7 +220,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
                 <div
                   key={`main-content-${pathname}`}
                   className={cn(
-                    "mx-auto z-10 content-center  items-center justify-center relative w-full min-h-dvh h-full",
+                    "mx-auto z-10 content-center md:overflow-x-visible overflow-x-hidden  items-center justify-center relative w-full min-h-lvh h-full",
                     EXCLUDED_ROUTES.includes(pathname) && "flex flex-col gap-30  ",
                     !EXCLUDED_ROUTES_FOOTER.includes(pathname) && " pb-20",
                   )}
@@ -245,7 +247,7 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
 
           {/* ==================== GLOBAL COMPONENTS ==================== */}
           {/* Component ini selalu aktif terlepas dari preload */}
-          <Toaster />
+          <Toaster position="top-center" />
         </ProgressProvider>
       </ModalProvider>
     </ReactLenis>

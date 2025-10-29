@@ -76,25 +76,23 @@ const router = useRouter()
 
 
   async function onSubmit(data: FormLastStepSchema) {
-    // const postBody = {
-    //   ...data,
-    //   name,
-    //   email,
-    //   password,
-    //   phone,
-    //   country,
-    //   province,
-    //   password_confirmation,
-    // }
 
-  
     setLoading(true)
-    
+     const postBody = {
+      ...data,
+      name,
+      email,
+      password,
+      phone,
+      country,
+      province,
+      password_confirmation,
+    }
     try {
-             toast.loading("Loading...", { id: "register"});
- 
-
-  router.push("/dashboard" );
+      
+      setData(postBody);
+      router.push("/dashboard" );
+      toast.success("Selamat Datang", { id: "register"});
   
   
     } catch (error) {

@@ -71,7 +71,7 @@ export const StickyScroll = () => {
     );
 
   return (
-    <section className=" min-h-lvh content-center items-center container md:min-h-dvh ">
+    <section className=" min-h-lvh content-center items-center container md:min-h-lvh ">
     
       {/* <ScrollSection /> */}
        <div className="flex flex-col  md:gap-0  md:px-0 px-10">
@@ -92,7 +92,7 @@ export const StickyScroll = () => {
                         key={section.id}
                         ref={sectionRefs[index]} 
                         className={cn(`  min-h-[70lvh]  flex-col md:flex-row flex items-center justify-center md:gap-30 gap-10 ${section.reverse ? 'md:flex-row-reverse' : ''}`,
-                            section.id == 3 ?  'md:min-h-[30lvh]' : "md:min-h-dvh"
+                            section.id == 3 ?  'md:min-h-[30lvh]' : "md:min-h-lvh"
 
                         )}
                     >
