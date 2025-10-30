@@ -120,17 +120,18 @@ export default function SuccessNotification({
             <CardFooter>
 
             <CardAction className='  md:flex items-center gap-4 md:space-y-0 space-y-3 w-full'>
-<Link href={"/jelajahi-inovasi"} className={cn(buttonVariants({ variant: "secondary" ,  }), "w-full md:w-fit  text-xs")}>
-                    <ArrowLeft className="ml-2 size-4" />
-                    Jelajahi Inovasi
-                </Link>
-                <Link href={"/leaderboard"} className={cn(buttonVariants({ variant: "default" }) , 
+                  <Link href={"/leaderboard"} className={cn(buttonVariants({ variant: "default" }) , 
                 "w-full md:w-fit  text-xs "
             )}>
                     Lihat Peringkat
                     <ArrowRight className="ml-2 size-4" />
                 </Link>
                 
+<Link href={"/jelajahi-inovasi"} className={cn(buttonVariants({ variant: "secondary" ,  }), "w-full md:w-fit  text-xs")}>
+                    <ArrowLeft className="ml-2 size-4" />
+                    Jelajahi Inovasi
+                </Link>
+            
                 </CardAction>
             </CardFooter>
             </CardContent>

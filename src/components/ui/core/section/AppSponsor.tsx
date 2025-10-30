@@ -10,6 +10,7 @@ import { Card, CardAction, CardContent, CardDescription, CardFooter, CardHeader,
 import { cn } from '@/lib/utils'
 import { buttonVariants } from '../../fragments/shadcn-ui/button'
 import { ArrowRight } from 'lucide-react'
+import { useOnboardingStore } from '@/hooks/use-store-signup'
 
 
 
@@ -29,7 +30,8 @@ linkLabel?: string
 
 function AppSponsor() {
 
-  
+         const name = useOnboardingStore((state) => state.name);
+         
 
   return (
     <section  className='  container   sm:px-10 px-5   space-y-7'> 
@@ -55,24 +57,26 @@ function AppSponsor() {
         </CardDescription>
       </CardHeader>
       <CardFooter className="flex flex-col md:flex-row max-w-lg m-auto mt-5 gap-2 items-center justify-center p-0">
-        <CardAction className=' w-full'>
-          <Link 
-            href="/download/ios" 
-            className={cn(buttonVariants({ variant : "outline"}) ,"group rounded-xl overflow-hidden w-full  relative ")}
-            aria-label="Download di App Store"
-          >
-        Ciptakan Inovasi 
-          </Link>
-        </CardAction>
-        <CardAction className=' w-full'>
+      
+             <CardAction className=' md:w-fit w-full'>
         <Link 
-            href="/download/ios" 
-            className={cn(buttonVariants({ variant : "default"}) ,"group rounded-xl w-full overflow-hidden  relative ")}
+            href="/jelajahi-inovasi" 
+            className={cn(buttonVariants({ variant : "default"}) ,"group lg:order-2 rounded-xl w-full overflow-hidden  md:w-fit  relative ")}
             aria-label="Download di App Store"
           >
-         Jelahi Inovasi 
+         Jelahi Inovasi <ArrowRight/>
           </Link>
         </CardAction>
+          <CardAction className='  md:w-fit w-full'>
+          <Link 
+                 href={name ? "/dashboard" : "/masuk"} 
+            className={cn(buttonVariants({ variant : "outline"}) ,"group lg:order-1 rounded-xl overflow-hidden w-full md:w-fit  relative ")}
+            aria-label="Download di App Store"
+          >
+        Ciptakan Inovasi  <ArrowRight/>
+          </Link>
+        </CardAction>
+     
       </CardFooter>
 
     </CardContent>
