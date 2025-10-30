@@ -258,7 +258,7 @@ export default function InovasiDetailUI({ inovasi }: { inovasi: Inovasi }) {
                 {inovasi.media.map((media, idx) => (
                   <div 
                     key={idx}
-                    className="relative w-20 aspect-video flex-shrink-0 rounded-md overflow-hidden border cursor-pointer hover:ring-2 ring-primary transition-all"
+                    className="relative w-20 aspect-video flex-shrink-0 rounded-md overflow-hidden border cursor-target hover:ring-2 ring-primary transition-all"
                   >
                     <MediaItem 
                       className="object-cover w-full h-full"

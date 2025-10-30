@@ -124,7 +124,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
           duration: delay ?  0.6 : 0.2,
           delay: delay ? 4 : 0,
         }}
-      className={cn("  fixed inset-x-0 top-[20] md:top-[36] z-40 w-full",
+      className={cn("  fixed inset-x-0 top-[20] md:top-[30] z-40 w-full",
          className ,)}
     >
       {React.Children.map(children, (child) =>
@@ -153,7 +153,7 @@ export const Navbar = ({ children, className }: NavbarProps) => {
           duration:  0.6 ,
           delay: 4 
         }}
-      className={cn("  fixed inset-x-0 top-[20] md:top-[25] z-40 w-full",
+      className={cn("  fixed inset-x-0 top-[20]  z-40 w-full",
 className ,)}
     >
       {React.Children.map(children, (child) =>
@@ -383,7 +383,7 @@ export const NavbarLogo = () => {
         <div
                  
                
-                  className=" size-7  relative  flex justify-center object-cover duration-200 cursor-pointer transition-transform  rounded-full lg:hidden"
+                  className=" size-7  relative  flex justify-center object-cover duration-200 cursor-target transition-transform  rounded-full lg:hidden"
                 
                 >  
       <MediaItem webViewLink="/assets/logo/dark-logo.png" className=" size-20 "/>
@@ -412,7 +412,7 @@ export const NavbarButton = ({
   return (
     <Link
       href={href || "/"}
-      className={cn(buttonVariants({variant: variant}) , "cursor-pointer  cursor-target text-xs z-50", className)}
+      className={cn(buttonVariants({variant: variant}) , "cursor-target  cursor-target text-xs z-50", className)}
       // {...props}
     >
       {children}

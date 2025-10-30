@@ -208,7 +208,7 @@ export function DonateDialog({ inovasi, onSuccess }: DonateDialogProps) {
                 <div
                   key={pm.id}
                   className={cn(
-                    "group flex cursor-target items-center justify-between rounded-lg border p-4 cursor-pointer hover:bg-accent/50 transition-colors",
+                    "group flex cursor-target items-center justify-between rounded-lg border p-4 cursor-target hover:bg-accent/50 transition-colors",
                     method === pm.id && "border-primary bg-primary/5"
                   )}
                   onClick={() => setMethod(pm.id)}

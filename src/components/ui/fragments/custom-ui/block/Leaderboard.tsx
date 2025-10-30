@@ -76,7 +76,7 @@ export default function Leaderboard() {
   const { View } = useLottie(lottieOptions, style);
   return (
     <section className="max-w-5xl mx-auto px-5 sm:px-6 py-4 flex flex-col items-center">
-      <section className=" pt-9 relative w-full h-full md:min-h-lvh content-start">
+      <section className=" pt-9 relative w-full h-full content-start">
   <nav className='z-50 top-0  absolute bg-background/95 backdrop-blur flex items-center justify-between'>
         <Link  
       href={"/"}
@@ -135,7 +135,7 @@ export default function Leaderboard() {
                 whileHover={{ scale: 1.04 }}
                 transition={{ type: "spring", stiffness: 300 }}
             
-                className={cn(`relative  transition-all duration-300 ease-out flex flex-col items-center cursor-pointer ${orderClasses}` ,
+                className={cn(`relative  transition-all duration-300 ease-out flex flex-col items-center cursor-target ${orderClasses}` ,
     !isFirst && "  translate-y-2.5",
         hovered !== null && hovered !== index && "blur-sm scale-[0.98]",
 

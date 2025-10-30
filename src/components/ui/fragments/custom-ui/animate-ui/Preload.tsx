@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import animationData from "@/config/assets/animations/Logo-animation-preload.json";
+import animationData from "@/config/assets/animations/Logo-3-[remix] (4).json";
 import { useLottie } from "lottie-react";
 import { BlurFade } from "./blur-fade";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -30,7 +30,7 @@ export default function Preload({ onComplete }: PreloadProps) {
 
   // ========== CONFIG DURASI ANIMASI ==========
   const FADE_DURATION = 0.4;  // Durasi fade in/out dalam detik
-  const HOLD_DURATION = 3;    // Durasi hold animation dalam detik
+  const HOLD_DURATION = 6;    // Durasi hold animation dalam detik
   // ===========================================
 
   useEffect(() => {
@@ -74,9 +74,9 @@ export default function Preload({ onComplete }: PreloadProps) {
       duration={FADE_DURATION}
       show={show}
       isPreload
-      className="flex fixed inset-0 bg-background z-[9999] justify-center items-center pointer-events-none"
+      className="flex fixed inset-0 bg-background z-9999 justify-center items-center pointer-events-none"
     >
-      <div className="md:scale-100 scale-130">{View}</div>
+      <div className="md:scale-100 scale-120">{View}</div>
     </BlurFade>
   );
 }

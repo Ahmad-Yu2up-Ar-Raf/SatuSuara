@@ -30,7 +30,7 @@ function VisualReportCard() {
         width="552"
         height="225"
         viewBox="0 0 552 225"
-        className="w-fit sm:relative sm:pt-0 absolute h-72 pt-35"
+        className="sm:relative sm:pt-0  h-full w-full md:h-72 md:pt-[-20em]"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         initial={{ opacity: 0 }}

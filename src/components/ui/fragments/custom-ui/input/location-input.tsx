@@ -148,7 +148,7 @@ export const CountrySelector = ({
                     key={country.id}
                     value={country.name}
                     onSelect={() => handleSelect(country)}
-                    className="flex cursor-pointer items-center justify-between text-sm py-2"
+                    className="flex cursor-target items-center justify-between text-sm py-2"
                   >
                     <div className="flex items-center gap-2 flex-1 min-w-0">
                       <span className="text-base">{country.emoji}</span>
@@ -321,7 +321,7 @@ export const ProvinceSelector = ({
                         key={province.id}
                         value={province.name}
                         onSelect={() => handleSelect(province)}
-                        className="flex cursor-pointer items-center justify-between text-sm py-2"
+                        className="flex cursor-target items-center justify-between text-sm py-2"
                       >
                         <span className="truncate flex-1 min-w-0">{province.name}</span>
                         <Check

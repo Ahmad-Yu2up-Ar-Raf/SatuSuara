@@ -31,9 +31,19 @@ const kategoriList = [
   "Keamanan",
 ];
 
-export default function InovasiBlock() {
-  const [kategoriAktif, setKategoriAktif] = useState("Semua");
+interface InovasiBlockProps {
+  initialKategori?: string;
+}
+
+export default function InovasiBlock({ initialKategori = "Semua" }: InovasiBlockProps) {
+  const [kategoriAktif, setKategoriAktif] = useState(initialKategori);
   const [page, setPage] = useState(1);
+
+  // Effect untuk mengupdate kategori ketika initialKategori berubah
+  useEffect(() => {
+    setKategoriAktif(initialKategori);
+    setPage(1); // Reset page ketika kategori berubah
+  }, [initialKategori]);
   const [showTop, setShowTop] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [hovered, setHovered] = useState<number | null>(null);
@@ -307,15 +317,7 @@ export default function InovasiBlock() {
           )}
 
           {/* Back to Top */}
-          {showTop && (
-            <Button
-              onClick={handleScrollTop}
-              className="fixed bottom-6 right-6 rounded-full p-3 shadow-lg transition-all z-50 hover:scale-110"
-              style={{ backgroundColor: primary }}
-            >
-              <ArrowUp className="w-5 h-5 text-white" />
-            </Button>
-          )}
+        
         </div>
       </section>
     </>

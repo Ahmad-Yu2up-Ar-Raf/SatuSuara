@@ -61,7 +61,7 @@ function SignUpFormLastStep<T extends FieldValues, >({
       <FormItem 
       
       key={i}
-      className="relative cursor-target cursor-pointer flex w-full items-start gap-2 rounded-xl border border-input p-4 shadow-sm shadow-black/5 has-[[data-state=checked]]:border-primary  has-[[data-state=checked]]:border-2">
+      className="relative cursor-target cursor-target flex w-full items-start gap-2 rounded-xl border border-input p-4 shadow-sm shadow-black/5 has-[[data-state=checked]]:border-primary  has-[[data-state=checked]]:border-2">
         <FormControl>
 
         <RadioGroupItem
@@ -69,14 +69,14 @@ function SignUpFormLastStep<T extends FieldValues, >({
           value={item.value}
           id={`${i}-1`}
           aria-describedby={`${i}-1-description`}
-          className="order-1  cursor-pointer after:absolute after:inset-0"
+          className="order-1  cursor-target after:absolute after:inset-0"
         />
         </FormControl>
         <FormLabel className="flex grow items-center gap-3">
        { item.icon && (
 <item.icon/>
        )} 
-          <div className="grid grow gap-2 cursor-pointer">
+          <div className="grid grow gap-2 cursor-target">
             <Label htmlFor={`${i}-1`}>
               {item.label} {" "}
               <span className="text-xs font-normal leading-[inherit] text-muted-foreground">

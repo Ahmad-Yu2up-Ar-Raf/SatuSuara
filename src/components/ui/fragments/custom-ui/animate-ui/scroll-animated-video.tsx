@@ -446,7 +446,7 @@ export const HeroScrollVideo: React.FC<HeroScrollVideoProps> = ({
                 {overlay?.heading && (
                   <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white mb-4">
                     {overlay.heading}
-                    <div className="w-18 h-1 bg-gradient-to-r from-primary to-primary/60 rounded-full mx-auto mt-3" />
+                    <div className="w-18 h-1 bg-linear-to-r from-primary to-primary/60 rounded-full mx-auto mt-3" />
                   </h3>
                 )}
                 

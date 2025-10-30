@@ -41,9 +41,9 @@ const AuthLayoutTemplate = ({
           preserveAspectRatio: "xMidYMid slice",
         },
       };
+      const style = { width:  "100%", height: "100%" , margin: "auto"  , }; // atur sesuai kebutuhan
+   const { View } = useLottie(lottieOptions, style);
       const isMobile = useIsMobile()
-     const style = { width:  "100%", height: "100%" , margin: "auto"  , }; // atur sesuai kebutuhan
-  const { View } = useLottie(lottieOptions, style);
   return (
     <>
          

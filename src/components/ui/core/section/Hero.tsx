@@ -103,7 +103,7 @@ function Hero() {
         >
           <motion.div
         
-            className="w-18 h-20 sm:w-24 relative overflow-hidden sm:h-16 md:w-28 md:h-20 lg:w-35 lg:h-40 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform -rotate-[3deg] shadow-2xl rounded-xl"
+            className="w-18 h-20 sm:w-24 relative overflow-hidden sm:h-16 md:w-28 md:h-20 lg:w-35 lg:h-40 object-cover hover:scale-105 duration-200 cursor-target transition-transform -rotate-[3deg] shadow-2xl rounded-xl"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.5 }}
@@ -120,7 +120,7 @@ function Hero() {
 delay={delay }
 
                    key={exampleImages[1].url}
-            className="w-40 h-36 relative overflow-hidden sm:w-48 sm:h-36 md:w-56 md:h-44 lg:w-60 lg:h-67 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform -rotate-12 shadow-2xl rounded-xl"
+            className="w-40 h-36 relative overflow-hidden sm:w-48 sm:h-36 md:w-56 md:h-44 lg:w-60 lg:h-67 object-cover hover:scale-105 duration-200 cursor-target transition-transform -rotate-12 shadow-2xl rounded-xl"
             
           >
                <MediaItem   webViewLink={exampleImages[1].url} />
@@ -135,7 +135,7 @@ delay={delay }
 delay={delay * 2}
           key={exampleImages[2].url}
 
-            className="w-40 h-40 relative overflow-hidden sm:w-48 sm:h-48 md:w-60 md:h-60 lg:w-64 lg:h-70 object-cover -rotate-[4deg] hover:scale-105 duration-200 cursor-pointer transition-transform shadow-2xl rounded-xl"
+            className="w-40 h-40 relative overflow-hidden sm:w-48 sm:h-48 md:w-60 md:h-60 lg:w-64 lg:h-70 object-cover -rotate-[4deg] hover:scale-105 duration-200 cursor-target transition-transform shadow-2xl rounded-xl"
            
           >
             <MediaItem   webViewLink={exampleImages[2].url} />
@@ -149,7 +149,7 @@ delay={delay * 2}
           <BlurFade  isPreload             
  delay={delay * 3}
           key={exampleImages[3].url}
-            className="w-40 h-36 overflow-hidden sm:w-48 sm:h-44 md:w-60 md:h-52 lg:w-64 lg:h-70 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform shadow-2xl rotate-[6deg] rounded-xl"
+            className="w-40 h-36 overflow-hidden sm:w-48 sm:h-44 md:w-60 md:h-52 lg:w-64 lg:h-70 object-cover hover:scale-105 duration-200 cursor-target transition-transform shadow-2xl  rounded-xl"
       
           >
              <MediaItem   webViewLink={exampleImages[3].url} />
@@ -164,7 +164,7 @@ delay={delay * 2}
           key={exampleImages[4].url}
 delay={delay * 4}
    
-            className="w-44 overflow-hidden h-44 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover hover:scale-105 duration-200 cursor-pointer transition-transform shadow-2xl rotate-[19deg] rounded-xl"
+            className="w-44 overflow-hidden h-44 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 object-cover hover:scale-105 duration-200 cursor-target transition-transform shadow-2xl  rounded-xl"
          
   
           >
@@ -272,7 +272,7 @@ delay={delay * 8}
        
           </Link>
           <Link
-              href={name ? "/dashboard" : "/login"} 
+              href={name ? "/dashboard" : "/masuk"} 
             className={cn(
     
                 "md:text-lg  cursor-target   hover:scale-110 transition-all duration-300 ease-out text-sm  justify-center flex items-center py-3.5   gap-5 w-full font-semibold tracking-tight text-white bg-primary px-4  sm:px-5  md:px-6 md:py-4 lg:px-8  rounded-full z-20 shadow-2xl font-calendas")}

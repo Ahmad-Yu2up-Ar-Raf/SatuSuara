@@ -89,6 +89,13 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
    */
   const [isInitializing, setIsInitializing] = useState(true);
 
+  /**
+   * isWebsiteReady: Status kesiapan website
+   * - true = Semua resource utama sudah dimuat
+   * - false = Masih dalam proses loading
+   */
+  const [isWebsiteReady, setIsWebsiteReady] = useState(false);
+
   // ========================================
   // EFFECT: CEK STATUS PRELOAD
   // ========================================
@@ -99,34 +106,63 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
      * 
      * Logika:
      * 1. Cek apakah preload sudah pernah ditampilkan di tab ini
-     * 2. Jika mobile -> Skip preload
-     * 3. Jika desktop + belum pernah tampil -> Tampilkan preload
-     * 4. Jika sudah pernah tampil -> Langsung tampilkan konten
+     * 2. Tunggu website ready
+     * 3. Jika mobile -> Skip preload
+     * 4. Jika desktop + belum pernah tampil -> Tampilkan preload
+     * 5. Jika sudah pernah tampil -> Langsung tampilkan konten
      */
     
     // Cek sessionStorage (hanya available di browser/client-side)
     const hasShownPreload = sessionStorage.getItem(PRELOAD_SESSION_KEY);
     
-    // Kondisi untuk menampilkan preload:
-    // - Belum pernah ditampilkan di tab ini (hasShownPreload === null)
-    // - Bukan mobile device
-    const shouldShowPreload = !hasShownPreload ;
-    
-    if (shouldShowPreload) {
-      // SCENARIO 1: Tab baru / belum pernah lihat preload
-      console.log('🎬 Tampilkan preload animation');
-      setShowPreload(true);      // Aktifkan preload
-      setContentReady(false);     // Tahan konten
-    } else {
-      // SCENARIO 2: Sudah pernah lihat preload / mobile
-      console.log('⚡ Skip preload, langsung tampilkan konten');
-      setShowPreload(false);      // Skip preload
-      setContentReady(true);      // Langsung tampilkan konten
-    }
-    
-    // Selesai inisialisasi
-    setIsInitializing(false);
-  }, []); // Dependency: hanya re-run jika isMobile berubah
+    // Fungsi untuk mengecek kesiapan website
+    const checkWebsiteReady = () => {
+      // Cek apakah document sudah fully loaded
+      if (document.readyState === 'complete') {
+        console.log('🌐 Website fully loaded');
+        setIsWebsiteReady(true);
+        checkPreloadStatus();
+      } else {
+        // Tunggu sampai website fully loaded
+        window.addEventListener('load', () => {
+          console.log('🌐 Website fully loaded (via load event)');
+          setIsWebsiteReady(true);
+          checkPreloadStatus();
+        });
+      }
+    };
+
+    // Fungsi untuk menentukan status preload
+    const checkPreloadStatus = () => {
+      // Kondisi untuk menampilkan preload:
+      // - Belum pernah ditampilkan di tab ini (hasShownPreload === null)
+      // - Bukan mobile device
+      const shouldShowPreload = !hasShownPreload;
+      
+      if (shouldShowPreload) {
+        // SCENARIO 1: Tab baru / belum pernah lihat preload
+        console.log('🎬 Website siap, mulai preload animation');
+        setShowPreload(true);      // Aktifkan preload
+        setContentReady(false);    // Tahan konten
+      } else {
+        // SCENARIO 2: Sudah pernah lihat preload / mobile
+        console.log('⚡ Skip preload, langsung tampilkan konten');
+        setShowPreload(false);     // Skip preload
+        setContentReady(true);     // Langsung tampilkan konten
+      }
+      
+      // Selesai inisialisasi
+      setIsInitializing(false);
+    };
+
+    // Mulai cek kesiapan website
+    checkWebsiteReady();
+
+    // Cleanup
+    return () => {
+      window.removeEventListener('load', checkWebsiteReady);
+    };
+  }, []); // Empty dependency array - hanya run sekali saat mount
 
   // ========================================
   // HANDLER: PRELOAD SELESAI

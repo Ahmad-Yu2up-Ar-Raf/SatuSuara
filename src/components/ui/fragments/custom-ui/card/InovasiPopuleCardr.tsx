@@ -13,17 +13,17 @@ import type { Inovasi } from "@/schemas/inovasi.schema";
 
 import inovations from '@/config/data/Inovations.json'
 const transformStyles = [
-  "rotate(5deg) translate(-100px)",
-  "rotate(0deg) translate(-30px)",
-  "rotate(-5deg) translate(40px)",
-  "rotate(5deg) translate(96px)",
-  "rotate(-5deg) translate(150px)"
+  "rotate(5deg) translate(-80px)",
+  "rotate(0deg) translate(-10px)",
+  "rotate(-5deg) translate(80px)",
+  // "rotate(5deg) translate(96px)",
+  // "rotate(-5deg) translate(150px)"
 ];
 import BounceCards from "./BounceCard"
 import { cn } from "@/lib/utils"
 import { BentoCard } from "./BentoCard"
 export const InovasiPopulerCard = () => {
-  const inovationsData = inovations.slice(0, 4) as Inovasi[]
+  const inovationsData = inovations.slice(0, 3) as Inovasi[]
   return (
 
 <BounceCards

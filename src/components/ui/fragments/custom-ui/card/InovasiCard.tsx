@@ -49,7 +49,7 @@ function InovasiCard({ inovasi, className, onClick  ,  index,
         'transform transition-all duration-300 hover:scale-105 hover:rotate-1 ',
         "mx-auto cursor-target content-center w-full  p-3   border border-black/5  shadow-sm  rounded-[30px]",
         ' overflow-hidden hover:shadow-2xl flex flex-col h-full',
-        'cursor-pointer',
+        'cursor-target',
            hovered !== null && hovered !== index && "blur-sm scale-[0.98]",
         className
       )}

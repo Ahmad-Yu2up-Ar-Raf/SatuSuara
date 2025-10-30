@@ -39,7 +39,7 @@ type componentsProps = {
 
   tag?: string
 
-
+  
   data?: Inovasi[]
 }
 
@@ -47,7 +47,8 @@ type componentsProps = {
 function InovasiCarousel({ linkLabel = "Lebih lanjut", data = inovationsData as Inovasi[], title = "Inovasi Terbaik", ...props }: componentsProps) {
 
 
-
+  const dataCut = title != "Inovasi Terbaik" ? 10 : 5
+  const dataCutFirst = title != "Inovasi Terbaik" ? 6 : 0
   const [hovered, setHovered] = useState<number | null>(null);
   return (
     <section className=' container overflow-x-hidden  lg:overflow-x-visible  space-y-10 '>
@@ -94,7 +95,7 @@ function InovasiCarousel({ linkLabel = "Lebih lanjut", data = inovationsData as 
         }}
       >
         <CarouselContent className="mx-4 relative cursor-grab overflow-y-visible  2xl:mr-[max(0rem,calc(50vw-700px))]">
-          {data.slice(0, 5).map((inovasi: Inovasi, i: number) => {
+          {data.slice(dataCutFirst, dataCut).map((inovasi: Inovasi, i: number) => {
 
             return (
               <CarouselItem

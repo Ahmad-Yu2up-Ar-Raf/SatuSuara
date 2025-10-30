@@ -3,6 +3,7 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import MediaItem from '../media/MediaItem';
 import type { Inovasi } from "@/schemas/inovasi.schema";
+import { useIsMobile } from '@/hooks/use-mobile';
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -142,9 +143,36 @@ export default function BounceCards({
       });
     });
   };
-
+  const isMobile = useIsMobile()
+  if(isMobile)
   return (
-    <div
+  <div
+     
+      className={`relative flex items-center justify-center ${className}`}
+      style={{
+        width: containerWidth,
+        height: containerHeight
+      }}
+    >
+      {images.map((src, idx) => (
+        <div
+          key={idx}
+          className={` h-[15lvh] md:h-[11lvh] md:w-[11dvw] lg:h-[20lvh] absolute w-[25dvw] sm:w-[9em] aspect-square border-4 border-white rounded-[30px] overflow-hidden  `}
+          style={{
+            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
+            transform: transformStyles[idx] || 'none'
+          }}
+          // onMouseEnter={() => pushSiblings(idx)}
+          // onMouseLeave={resetSiblings}
+        >
+          <MediaItem className="w-full h-full object-cover" webViewLink={src.media[0].url}  />
+        </div>
+      ))}
+    </div>
+   
+  );
+  return (
+   <div
       ref={containerRef}
       className={`relative flex items-center justify-center ${className}`}
       style={{
@@ -155,7 +183,7 @@ export default function BounceCards({
       {images.map((src, idx) => (
         <div
           key={idx}
-          className={`card card-${idx} h-[15lvh] md:h-[20lvh] absolute w-[25dvw] sm:w-[9em] aspect-square border-4 border-white rounded-[30px] overflow-hidden  `}
+          className={`card card-${idx} h-[15lvh] md:h-[11lvh] md:w-[11dvw] lg:w-[8em] lg:h-[9em] absolute w-[25dvw] sm:w-[9em] aspect-square border-4 border-white rounded-[30px] overflow-hidden  `}
           style={{
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)',
             transform: transformStyles[idx] || 'none'

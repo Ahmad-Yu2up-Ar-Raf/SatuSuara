@@ -4,6 +4,8 @@ import { Instagram, Linkedin, Twitter, Youtube } from "lucide-react";
 import Link from "next/link";
 import { Logo } from "../../../fragments/svg/logo";
 import VerticalCutReveal from "../../../fragments/custom-ui/animate-ui/vertical-cut-reveal";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { TextAnimate } from "@/components/ui/fragments/custom-ui/animate-ui/text-animate";
 
 type StickyFooterProps = React.ComponentProps<"footer">;
 
@@ -34,7 +36,7 @@ const socialIcons = [
   { icon: <Linkedin className="h-5 w-5" />, href: "#" },
   { icon: <Youtube className="h-5 w-5" />, href: "#" },
 ];
-
+const isMobile = useIsMobile
 export default function SiteFooter({ className, ...props }: StickyFooterProps) {
   return (
     <footer
@@ -93,18 +95,10 @@ export default function SiteFooter({ className, ...props }: StickyFooterProps) {
 
           {/* Judul besar tengah */}
           <div className="w-full flex items-center justify-center mt-8">
-            <h1 className="text-center relative text-[18dvw] lg:text-[13em] font-bold bg-clip-text tracking-tighter bg-linear-to-b to-background from-yellow-950/50 select-none">
-              <VerticalCutReveal
-                splitBy="characters"
-                staggerDuration={0.05}
-                staggerFrom="first"
-                transition={{
-                  type: "spring",
-                  stiffness: 200,
-                  damping: 21,
-                }}>
+            <h1 className="text-center relative text-[18dvw] lg:text-[13em] font-bold bg-clip-text tracking-tighter bg-linear-to-b to-background text-transparent from-yellow-950/50 select-none">
+  
                 SatuSuara
-              </VerticalCutReveal>
+            
             </h1>
           </div>
         </div>

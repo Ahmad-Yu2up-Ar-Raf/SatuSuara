@@ -90,18 +90,18 @@ function SignInForm<T extends FieldValues, >({
           disabled={isPending}
       name={"remember" as FieldPath<T>}
           render={({ field }) => (
-            <FormItem className="flex cursor-pointer flex-row items-start space-x-2 space-y-0 rounded-md ">
+            <FormItem className="flex cursor-target flex-row items-start space-x-2 space-y-0 rounded-md ">
               <FormControl>
                 <Checkbox
                 
                   checked={field.value}
                        disabled={isPending}
                   onCheckedChange={field.onChange}
-                   className='  cursor-pointer  border-accent-foreground/40'
+                   className='  cursor-target  border-accent-foreground/40'
                 />
               </FormControl>
-              <div className="space-y-1  cursor-pointer  leading-none">
-                <FormLabel className='  cursor-pointer'>Ingat saya</FormLabel>
+              <div className="space-y-1  cursor-target  leading-none">
+                <FormLabel className='  cursor-target'>Ingat saya</FormLabel>
                 <FormDescription className=' sr-only'>You can manage your mobile notifications in the mobile settings page.</FormDescription>
                 <FormMessage />
               </div>

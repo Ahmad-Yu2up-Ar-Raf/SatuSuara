@@ -50,7 +50,7 @@ const bentoData: BentoProps[] = [
     SubTitle: "Bagikan ide & karya inovatifmu",
     descripcions: "Ciptakan, unggah, dan bagikan inovasimu agar bisa dikenal dan didukung komunitas.",
     borderBottom: true,
-    contentClassName: " scale-80 ",
+    contentClassName: " scale-80 md:scale-100 ",
     children: <BerkaryaBentoCard />,
     className: " hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out h-full",
   },
