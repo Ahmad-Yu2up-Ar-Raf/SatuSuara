@@ -20,8 +20,7 @@ const transformStyles = [
   // "rotate(-5deg) translate(150px)"
 ];
 import BounceCards from "./BounceCard"
-import { cn } from "@/lib/utils"
-import { BentoCard } from "./BentoCard"
+
 export const InovasiPopulerCard = () => {
   const inovationsData = inovations.slice(0, 3) as Inovasi[]
   return (
@@ -35,7 +34,7 @@ export const InovasiPopulerCard = () => {
   animationStagger={0.08}
   easeType="elastic.out(1, 0.5)"
   transformStyles={transformStyles}
-  enableHover={true}
+  // enableHover={true}
 />
        
         

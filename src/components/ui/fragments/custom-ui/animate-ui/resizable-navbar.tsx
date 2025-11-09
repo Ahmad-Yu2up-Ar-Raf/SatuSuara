@@ -242,10 +242,10 @@ export const MobileNav = ({ children, className, visible }: MobileNavProps) => {
         boxShadow: visible
           ? "0 0 24px rgba(34, 42, 53, 0.06), 0 1px 1px rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(34, 42, 53, 0.04), 0 0 4px rgba(34, 42, 53, 0.08), 0 16px 68px rgba(47, 48, 55, 0.05), 0 1px 0 rgba(255, 255, 255, 0.1) inset"
           : "none",
-        width: visible ? "90%" : "100%",
+      
     
       
-        y: visible ? 10 : 0,
+    
       }}
       transition={{
         type: "spring",
@@ -380,15 +380,8 @@ export const NavbarLogo = () => {
       href="/"
       className="relative  z-20 mr-4 flex items-center space-x-3 px-2 py-1 md:text-sm text-xs font-normal text-black"
     >
-        <div
-                 
-               
-                  className=" size-7  relative  flex justify-center object-cover duration-200 cursor-target transition-transform  rounded-full lg:hidden"
-                
-                >  
-      <MediaItem webViewLink="/assets/logo/dark-logo.png" className=" size-20 "/>
-                  </div>
-              <Logo className=" hidden lg:inline-flex  size-7"  />
+  
+              <Logo className=" size-6  md:size-7"  />
 
       <span className="font-semibold    text-accent-foreground">SatuSuara</span>
     </Link>

@@ -58,7 +58,7 @@ export default function Leaderboard() {
   const searched = categoryFiltered.filter((item) =>
     item.judul.toLowerCase().includes(search.toLowerCase())
   );
-
+  const router = useRouter()
   const sorted = [...searched].sort((a, b) => b.totalVote - a.totalVote);
   const topThree = sorted.slice(0, 3);
   const others = sorted.slice(3);
@@ -137,7 +137,7 @@ export default function Leaderboard() {
             
                 className={cn(`relative  transition-all duration-300 ease-out flex flex-col items-center cursor-target ${orderClasses}` ,
     !isFirst && "  translate-y-2.5",
-        hovered !== null && hovered !== index && "blur-sm scale-[0.98]",
+        hovered !== null && hovered !== index && "lg:blur-sm lg:scale-[0.98]",
 
                 )}>
                   
@@ -243,11 +243,12 @@ export default function Leaderboard() {
           return(
    
             <TableRow 
+            onClick={() => router.push(`/jelajahi-inovasi/${inovasi.slug}`)}
                    onMouseEnter={() => setHoveredTableColom(index)}
     onMouseLeave={() => setHoveredTableColom(null)}
             key={inovasi.id} className={cn(" transition-all duration-300 ease-out cursor-target",
 
-                     HoveredTableColom !== null && HoveredTableColom !== index && "blur-sm scale-[0.98]",
+                     HoveredTableColom !== null && HoveredTableColom !== index && "lg:blur-sm lg:scale-[0.98]",
             )}>
               {/* <TableCell className="font-medium sticky right-0 ">
                  <Checkbox

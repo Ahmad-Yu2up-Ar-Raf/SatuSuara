@@ -38,7 +38,7 @@ const HeaderInovasi = ({ totalIdeas, totalVotes, searchQuery, onSearchChange }: 
   });
 
   return (
-    <div className=' space-y-3 md:space-y-1 container px-5 '>
+    <div className=' space-y-3 sm:px-10 px-5  md:space-y-1 container '>
       <nav className='z-50 top-0 bg-background/95 backdrop-blur flex items-center justify-between'>
         <Link 
           href="/" 

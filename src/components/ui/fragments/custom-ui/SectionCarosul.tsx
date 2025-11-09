@@ -26,7 +26,6 @@ import { buttonVariants } from '@/components/ui/fragments/shadcn-ui/button';
 import { ChevronRight } from 'lucide-react';
 
 
-import Autoplay from "embla-carousel-autoplay"
 
 
 
@@ -80,11 +79,7 @@ function InovasiCarousel({ linkLabel = "Lebih lanjut", data = inovationsData as 
 
       <Carousel
       className=''
- plugins={[
-        Autoplay({
-          delay: 2000,
-        }),
-      ]}
+
         opts={{
           align: "start",
           breakpoints: {

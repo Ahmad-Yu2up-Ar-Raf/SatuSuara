@@ -26,13 +26,13 @@ const bentoData: BentoProps[] = [
     SubTitle: "Inovasi Unggulan",
     descripcions: "Lihat proyek teratas dengan suara terbanyak – dukung ide yang menurutmu paling berdampak.",
     contentClassName: "  w-full h-full flex items-emd justify-end",
-    className: "h-[360px] md:col-span-2  hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out  ",
+    className: "md:h-[360px] md:col-span-2  hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out  ",
     children: <VisualReportCard />,
   },
 
   {
     SubTitle: "Inovasi Terpopuler",
-    className: "h-full hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out", descripcions: "Lihat inovasi yang paling banyak dibicarakan komunitas.",
+    className: "md:h-full hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out", descripcions: "Lihat inovasi yang paling banyak dibicarakan komunitas.",
     title: "Lihat Yang Lagi Naik Daun 🌿",
     children: <InovasiPopulerCard />,
   },
@@ -43,16 +43,16 @@ const bentoData: BentoProps[] = [
     descripcions: "Bergabung, beri masukan, dan dukung ide yang menurutmu paling berdampak.",
     borderBottom: true,
     children: <CommunityCard />,
-    className: " hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out h-full",
+    className: " h-[20em] md:h-full hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out ",
   },
   {
     title: "Ruang Berkarya",
     SubTitle: "Bagikan ide & karya inovatifmu",
     descripcions: "Ciptakan, unggah, dan bagikan inovasimu agar bisa dikenal dan didukung komunitas.",
     borderBottom: true,
-    contentClassName: " scale-80 md:scale-100 ",
+    contentClassName: " scale-100 md:scale-85  ",
     children: <BerkaryaBentoCard />,
-    className: " hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out h-full",
+    className: " h-fit hover:scale-101 hover:shadow-[-6px_6px_32px_8px_rgba(192,192,192,0.2)] hover:rotate-1 transition-all duration-200 ease-in-out  h-[20em] md:h-full ",
   },
   {
     BadgeIcon: ChartArea,
@@ -86,15 +86,15 @@ export const ColorfullBento = () => {
           <div className='flex flex-col md:flex-row gap-5 md:items-end w-full md:justify-between '>
             <CardTitle className="relative text-2xl lg:text-5xl font-sans font-semibold  text-balance  tracking-tighter max-w-xl text-left leading-[1.1em] space-x-3 md:space-x-6 text-base-content">
 
-              <TextAnimate as={"span"}>
+              <span>
                 SatuSuara — Bagikan & Dukung Inovasi
-              </TextAnimate>
+              </span>
               <Gift className="inline-flex text-primary md:size-10 size-5 fill-primary/10 rotate-12" strokeWidth={2} />
             </CardTitle>
             <CardDescription className='max-w-sm line-clamp-2  text-xs text-muted-foreground'>
-              <TextAnimate as={"span"}>
+              <span>
                 Platform voting & showcase untuk ide anak bangsa — submit ide, kumpulkan dukungan, dan wujudkan solusi.
-              </TextAnimate></CardDescription>
+              </span></CardDescription>
           </div>
 
           <div className=' text-xs md::text-base  hidden md:flex flex-row text-primary gap-2 md:gap-6 items-start md:justify-center'>

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo } from "react";
-import { gsap } from "gsap";
+
 import { Button } from "../../shadcn-ui/button";
 import { ArrowLeft, ArrowRight, ArrowUp } from "lucide-react";
 import {
@@ -44,7 +44,7 @@ export default function InovasiBlock({ initialKategori = "Semua" }: InovasiBlock
     setKategoriAktif(initialKategori);
     setPage(1); // Reset page ketika kategori berubah
   }, [initialKategori]);
-  const [showTop, setShowTop] = useState(false);
+
   const [searchQuery, setSearchQuery] = useState("");
   const [hovered, setHovered] = useState<number | null>(null);
   const gridRef = useRef<HTMLDivElement | null>(null);
@@ -53,27 +53,6 @@ export default function InovasiBlock({ initialKategori = "Semua" }: InovasiBlock
   const allInovations = inovationsData as Inovasi[];
   const totalVotes = allInovations.reduce((sum, i) => sum + i.totalVote, 0);
 
-  useEffect(() => {
-    const handleScroll = () => setShowTop(window.scrollY > 300);
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
-    gsap.fromTo(
-      ".inovasi-card",
-      { scale: 0.9, opacity: 0, y: 30 },
-      {
-        scale: 1,
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.08,
-        ease: "power3.out",
-        clearProps: "transform",
-      }
-    );
-  }, [page, kategoriAktif, searchQuery]);
 
   // Filter and search logic with useMemo for optimization
   const filteredData = useMemo(() => {
@@ -132,7 +111,7 @@ export default function InovasiBlock({ initialKategori = "Semua" }: InovasiBlock
     setTimeout(scrollToGridTop, 0);
   };
 
-  const handleScrollTop = () => window.scrollTo({ top: 0, behavior: "smooth" });
+
 
   const handleCardClick = (inovasi: Inovasi) => {
     console.log("Clicked inovasi:", inovasi.slug);
@@ -157,7 +136,7 @@ export default function InovasiBlock({ initialKategori = "Semua" }: InovasiBlock
         searchQuery={searchQuery}
         onSearchChange={handleSearchChange}
       />
-      <section className="py-1 w-full container sm:p-2 flex-1">
+      <section className="py-1 w-full container   md:py-2 sm:px-8 px-0 flex-1">
         <div className="space-y-5">
           {/* Category Filter Carousel */}
           <Carousel
@@ -171,7 +150,7 @@ export default function InovasiBlock({ initialKategori = "Semua" }: InovasiBlock
               },
             }}
           >
-            <CarouselContent className="mx-4 relative cursor-grab">
+            <CarouselContent className="mx-5 relative cursor-grab">
               {kategoriList.map((kat, i) => (
                 <CarouselItem
                   key={i}
@@ -199,7 +178,7 @@ export default function InovasiBlock({ initialKategori = "Semua" }: InovasiBlock
           </Carousel>
 
           {/* Current Filter Info */}
-          <div className="flex items-center justify-between px-4">
+          <div className="flex items-center justify-between px-5">
             <p className="text-sm text-muted-foreground">
               Menampilkan <span className="font-semibold text-foreground">{paginatedData.length}</span> dari{" "}
               <span className="font-semibold text-foreground">{filteredData.length}</span> inovasi
@@ -259,7 +238,7 @@ export default function InovasiBlock({ initialKategori = "Semua" }: InovasiBlock
 
           {/* Pagination */}
           {filteredData.length > 0 && totalPages > 1 && (
-            <div className="flex gap-4 items-center justify-between mt-8">
+            <div className="flex gap-4 items-center justify-between mt-12">
               <Button
                 variant="ghost"
                 disabled={page === 1}

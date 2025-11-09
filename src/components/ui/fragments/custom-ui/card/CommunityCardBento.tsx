@@ -1,19 +1,20 @@
 import React from 'react'
-import { BentoCard } from './BentoCard'
+
 import animationData from "@/config/assets/animations/Global Network.json";
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useLottie } from 'lottie-react';
 
 function CommunityCard() {
+    const isMobile = useIsMobile()
      const lottieOptions = {
-          loop: true,
-          autoplay: true,
+          loop: !isMobile,
+          autoplay: !isMobile,
           animationData: animationData,
           rendererSettings: {
             preserveAspectRatio: "xMidYMid slice",
           },
         };
-        const isMobile = useIsMobile()
+     
     const style = { width:  "100%", height: "100%" , margin: "auto"  , }; // atur sesuai kebutuhan
     const { View } = useLottie(lottieOptions, style);
   return (

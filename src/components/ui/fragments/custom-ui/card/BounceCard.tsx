@@ -39,35 +39,35 @@ export default function BounceCards({
 }: BounceCardsProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    if (!containerRef.current) return;
+  // useEffect(() => {
+  //   if (!containerRef.current) return;
 
-    // Setup ScrollTrigger animation
-    const ctx = gsap.context(() => {
-      gsap.fromTo(
-        '.card',
-        { scale: 0 },
-        {
-          scale: 1,
-          stagger: animationStagger,
-          ease: easeType,
-          delay: animationDelay,
-          scrollTrigger: {
-            trigger: containerRef.current,
-            start: 'top 80%', // Trigger ketika top container mencapai 80% dari viewport
-            once: true, // Animasi cuma jalan sekali
-            // markers: true // Uncomment untuk debug
-          }
-        }
-      );
-    }, containerRef);
+  //   // Setup ScrollTrigger animation
+  //   const ctx = gsap.context(() => {
+  //     gsap.fromTo(
+  //       '.card',
+  //       { scale: 0 },
+  //       {
+  //         scale: 1,
+  //         stagger: animationStagger,
+  //         ease: easeType,
+  //         delay: animationDelay,
+  //         scrollTrigger: {
+  //           trigger: containerRef.current,
+  //           start: 'top 80%', // Trigger ketika top container mencapai 80% dari viewport
+  //           once: true, // Animasi cuma jalan sekali
+  //           // markers: true // Uncomment untuk debug
+  //         }
+  //       }
+  //     );
+  //   }, containerRef);
 
-    // Cleanup function
-    return () => {
-      ctx.revert(); // Revert semua animasi di context
-      ScrollTrigger.getAll().forEach(trigger => trigger.kill());
-    };
-  }, [animationDelay, animationStagger, easeType]);
+  //   // Cleanup function
+  //   return () => {
+  //     ctx.revert(); // Revert semua animasi di context
+  //     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+  //   };
+  // }, [animationDelay, animationStagger, easeType]);
 
   const getNoRotationTransform = (transformStr: string): string => {
     const hasRotate = /rotate\([\s\S]*?\)/.test(transformStr);

@@ -5,15 +5,15 @@ import { useIsMobile } from '@/hooks/use-mobile';
 import { useLottie } from 'lottie-react';
 
 function BerkaryaBentoCard() {
-     const lottieOptions = {
-          loop: true,
-          autoplay: true,
-          animationData: animationData,
-          rendererSettings: {
-            preserveAspectRatio: "xMidYMid slice",
-          },
-        };
         const isMobile = useIsMobile()
+         const lottieOptions = {
+              loop: !isMobile,
+              autoplay: !isMobile,
+              animationData: animationData,
+              rendererSettings: {
+                preserveAspectRatio: "xMidYMid slice",
+              },
+            };
     const style = { width:  "100%", height: "100%" , margin: "auto"  , }; // atur sesuai kebutuhan
     const { View } = useLottie(lottieOptions, style);
   return (

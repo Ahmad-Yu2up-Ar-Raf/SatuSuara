@@ -1,31 +1,14 @@
 import React, { useRef } from 'react'
-import { BentoCard } from './BentoCard'
-import { ChartArea } from 'lucide-react';
-import { motion, useInView } from "framer-motion"
+
 
 function VisualReportCard() {
   // Ref untuk track visibility
   const chartRef = useRef(null);
-  const isInView = useInView(chartRef, { 
-    once: true, // Animasi cuma jalan sekali
-    amount: 0.3 // Trigger ketika 30% component visible
-  });
 
-  const barVariants = {
-    hidden: { scaleY: 0, originY: 1 },
-    visible: (i: number) => ({
-      scaleY: 1,
-      transition: {
-        delay: 0.4 + i * 0.1, // Delay relatif dari visibility, bukan hardcoded
-        duration: 0.8,
-        ease: "easeOut" as const, // Fix: Cast as const untuk type safety
-      },
-    }),
-  };
 
   return (
   
-      <motion.svg
+      <svg
         ref={chartRef}
         width="552"
         height="225"
@@ -33,20 +16,16 @@ function VisualReportCard() {
         className="sm:relative sm:pt-0  h-full w-full md:h-72 md:pt-[-20em]"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        initial={{ opacity: 0 }}
-        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-        transition={{ duration: 0.5 }}
+     
       >
         {/* Grid lines */}
         {[224, 163, 106, 50, 230].map((y, i) => (
-          <motion.path
+          <path
             key={i}
             d={`M0 ${y}H552`}
             stroke="oklch(0.6180 0.0778 65.5444)"
             strokeDasharray="2 2"
-            initial={{ pathLength: 0 }}
-            animate={isInView ? { pathLength: 12 } : { pathLength: 0 }}
-            transition={{ delay: 0.2 + i * 0.1, duration: 0.8 }}
+           
           />
         ))}
 
@@ -133,17 +112,14 @@ function VisualReportCard() {
             fill: "oklch(0.6180 0.0778 65.5444)",
           },
         ].map((bar, i) => (
-          <motion.path
+          <path
             key={i}
             d={bar.d}
             fill={bar.fill}
-            variants={barVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            custom={i}
+ 
           />
         ))}
-      </motion.svg>
+      </svg>
  
   )
 }
