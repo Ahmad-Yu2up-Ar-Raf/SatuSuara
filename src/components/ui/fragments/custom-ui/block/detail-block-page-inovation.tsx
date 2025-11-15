@@ -37,15 +37,9 @@ import {
   HeartHandshake,
   X,
 } from "lucide-react";
-import {
-  motion,
-  useInView,
-  useSpring,
-  useTransform,
-  useMotionValueEvent,
-} from "framer-motion";
+
 import { cn } from "@/lib/utils";
-import NotificationSuccess from "@/components/ui/fragments/custom-ui/block/notifikasi";
+
 import { batasiHuruf, batasiKata } from "@/hooks/use-worldMax";
 import MediaItem from "../media/MediaItem";
 import { useOnboardingStore } from "@/hooks/use-store-signup";
@@ -241,149 +235,18 @@ export default function InovasiDetailUI({ inovasi }: { inovasi: Inovasi }) {
       </section>
 
       {/* Content Section using Bento Grid */}
-      <div className="grid gap-6 md:grid-cols-12 mt-12">
-        {/* Left Column - Media & Description */}
-        <div className="md:col-span-7 space-y-6">
-          {/* Media Gallery */}
-          <Card className="overflow-hidden sr-only bg-accent/5">
-            <div className="relative aspect-video">
-              <MediaItem 
-                className="rounded-t-xl object-cover w-full h-full" 
-                webViewLink={inovasi.media[0].url}
-                data-testid="media-carousel"
-              />
-            </div>
-            {inovasi.media.length > 1 && (
-              <div className="p-4 flex gap-2 overflow-x-auto">
-                {inovasi.media.map((media, idx) => (
-                  <div 
-                    key={idx}
-                    className="relative w-20 aspect-video flex-shrink-0 rounded-md overflow-hidden border cursor-target hover:ring-2 ring-primary transition-all"
-                  >
-                    <MediaItem 
-                      className="object-cover w-full h-full"
-                      webViewLink={media.url}
-                    />
-                  </div>
-                ))}
-              </div>
-            )}
-          </Card>
-
-          {/* Description Card */}
-          <Card className="p-6">
-            <CardHeader className="space-y-4 px-0 pt-0">
-              <div className="flex flex-wrap gap-2">
-                <Badge variant="outline" className="rounded-full">
-                  {inovasi.kategori}
-                </Badge>
-              </div>
-              <h2 className="text-xl font-semibold">Deskripsi Lengkap</h2>
-            </CardHeader>
-            <CardContent className="px-0">
-              <div className="prose prose-neutral dark:prose-invert max-w-none">
-                <p className="leading-relaxed text-muted-foreground">
-                  {inovasi.deskripsi}
-                </p>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Tags */}
-          {inovasi.tag.length > 0 && (
-            <Card className="p-6">
-              <h3 className="text-sm font-medium mb-3">Tags</h3>
-              <div className="flex flex-wrap gap-2">
-                {inovasi.tag.map((tag, idx) => (
-                  <Badge key={idx} variant="secondary" className="rounded-full px-3">
-                    {tag}
-                  </Badge>
-                ))}
-              </div>
-            </Card>
-          )}
-        </div>
-
-        {/* Right Column - Actions & Info */}
-        <div className="md:col-span-5 space-y-6">
-          {/* Vote & Stats Card */}
-          <Card className="p-6">
-            <div className="space-y-6">
-              <div>
-                <p className="text-sm text-muted-foreground mb-1">Total Dukungan</p>
-                <p className="text-3xl font-bold" role="status" aria-live="polite">
-                  {formatNumber(inovasi.totalVote)}
-                </p>
-              </div>
-
-      
-            </div>
-          </Card>
-
-          {/* Creator Info Card */}
-          <Card className="p-6 sr-only">
-            <div className="flex items-center gap-4">
-              <Avatar className="size-12 ring-2 ring-primary/20">
-                {inovasi.pembuat.avatarUrl && (
-                  <AvatarImage src={inovasi.pembuat.avatarUrl} alt={inovasi.pembuat.nama} />
-                )}
-                <AvatarFallback>{inovasi.pembuat.nama.charAt(0)}</AvatarFallback>
-              </Avatar>
-              <div>
-                <p className="font-semibold">{namaSingkat}</p>
-                {inovasi.pembuat.organisasi && (
-                  <p className="text-sm text-muted-foreground">{organisasiSingkat}</p>
-                )}
-              </div>
-            </div>
-          </Card>
-
-          {/* Sources Card */}
-          {inovasi.sumber.length > 0 && (
-            <Card className="p-6">
-              <h3 className="text-sm font-medium mb-4">Sumber & Referensi</h3>
-              <div className="space-y-3">
-                {inovasi.sumber.map((src, i) => (
-                  <a
-                    key={i}
-                    href={src.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3 p-2 hover:bg-accent rounded-lg transition-colors group"
-                  >
-                    <ExternalLink className="w-4 h-4 text-primary" />
-                    <div className="flex-1 min-w-0">
-                      <p className="text-sm font-medium truncate group-hover:text-primary transition-colors">
-                        {src.title || new URL(src.url).hostname}
-                      </p>
-                      {src.publishedAt && (
-                        <p className="text-xs text-muted-foreground">
-                          {new Date(src.publishedAt).toLocaleDateString('id-ID', {
-                            year: 'numeric',
-                            month: 'long',
-                            day: 'numeric'
-                          })}
-                        </p>
-                      )}
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </Card>
-          )}
-        </div>
-      </div>
+     
 
   
     </div>
-           <div className="flex container px-5  mt-20 w-full  h-full min-h-lvh justify-center items-center">
+           {/* <div className="flex container px-5  mt-20 w-full  h-full min-h-lvh justify-center items-center">
        <InovasiTestimonials 
         testimonials={testimonialInovasiDummy}
         title="Apa Kata Mereka"
         description="Testimoni nyata dari petani dan pengguna yang merasakan dampak positif inovasi sistem irigasi pintar"
         maxDisplayed={6}
       />
-    </div>
+    </div> */}
     </>
   );
 }

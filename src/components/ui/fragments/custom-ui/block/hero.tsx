@@ -80,8 +80,8 @@ export default function HeroDeviceLaptop() {
     
    const isMobile = useIsMobile()
          const lottieOptions = {
-              loop: !isMobile,
-              autoplay: !isMobile,
+              loop: true,
+              autoplay: true,
               animationData: animationData,
               rendererSettings: {
                 preserveAspectRatio: "xMidYMid slice",
@@ -117,7 +117,7 @@ export default function HeroDeviceLaptop() {
           depth={1}
           className="top-[0%] left-[3%]"
         >
-            <BlurFade                
+            <BlurFade  isPreload               
          
 delay={delay }
 
@@ -133,7 +133,7 @@ delay={delay }
           depth={4}
           className="top-[90%] left-[6%] md:top-[80%] md:left-[8%]"
         >
-               <BlurFade                           
+               <BlurFade  isPreload                          
 delay={delay * 2}
           key={exampleImages[2].url}
 
@@ -148,7 +148,7 @@ delay={delay * 2}
           depth={2}
           className="top-[0%] left-[87%] md:top-[2%] md:left-[83%]"
         >
-          <BlurFade                           
+          <BlurFade  isPreload                          
  delay={delay * 3}
           key={exampleImages[3].url}
             className="w-40 h-36 overflow-hidden sm:w-48 sm:h-44 md:w-60 md:h-52 lg:w-64 lg:h-70 object-cover hover:scale-105 duration-200 cursor-target transition-transform shadow-2xl  rounded-xl"
@@ -162,7 +162,7 @@ delay={delay * 2}
           depth={1}
           className="top-[78%] left-[83%] md:top-[68%] md:left-[83%]"
         >
-          <BlurFade                           
+          <BlurFade  isPreload                          
           key={exampleImages[4].url}
 delay={delay * 4}
    
@@ -179,7 +179,7 @@ delay={delay * 4}
         <div className=" space-y-4">
         
 
- <BlurFade 
+ <BlurFade  isPreload
                            
 delay={delay * 5}
      direction="up"
@@ -190,7 +190,7 @@ delay={delay * 5}
     </BlurFade>
       
     
-    <BlurFade                           
+    <BlurFade  isPreload                          
 delay={delay * 6}
      direction="up"
     >
@@ -245,7 +245,7 @@ delay={delay * 6}
 </motion.h1>
       </BlurFade>    
 
-<BlurFade                            
+<BlurFade  isPreload                           
         direction="up"
 
 
@@ -262,7 +262,7 @@ delay={delay * 7}
 
         </div>
 
-        <BlurFade                           
+        <BlurFade  isPreload                          
 delay={delay * 8}
         direction="up"
          className="flex w-full flex-col md:flex-row justify-center md:space-x-4  md:space-y-0 space-y-2.5 items-center ">

@@ -63,7 +63,7 @@ export const BentoCard: React.FC<componentProps> = ({
 
 
 
-          <CardHeader className="flex md:px-2  px-0 flex-col w-full justify-center pb-2  pt-0  ">
+          <CardHeader className="flex md:px-2  gap-1 px-0 flex-col w-full justify-center pb-2  pt-0  ">
 
             <Badge
               variant="outline"
